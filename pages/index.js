@@ -43,9 +43,6 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Box sx={{ flexGrow: 1 }} marginBottom={2}>
-                    <Navbar />
-                </Box>
                 <Box style={{ backgroundColor: '#116936' }} borderRadius={'8px'} sx={{ flexGrow: 1, flexDirection: 'column', px: { xs: '1em', md: '3em' }, py: { xs: '2em', md: '4em' } }}>
                     <Box borderRadius={'8px'} sx={{ px: { xs: '1em', md: '3em' }, py: { xs: '1em', md: '3em' } }}>
                         <Typography variant="h3" sx={{ display: { xs: 'none', md: 'flex' } }} fontWeight={"bold"} marginBottom={'5px'} color={'#fff'}> Welcome to the <br />Kenya National Health <br />Data Dictionary </Typography>
@@ -118,11 +115,11 @@ export default function Home() {
                         </Button>
                     </Box>
                 </Box>
-                <Box style={{ backgroundColor: '#fcfcfc', borderBottom: '3px solid #333' }} mb={2} mt={2} sx={{ display: 'flex', flexGrow: 1, flexDirection: 'row', alignItems: 'center', px: { xs: '1em', md: '2em' }, py: { xs: '2em', md: '3em' }, gap: 3 }}>
+                <Box style={{ backgroundColor: '#fcfcfc', borderBottom: '3px solid #333' }} my={1} sx={{ display: 'flex', flexGrow: 1, flexDirection: 'row', alignItems: 'center', px: { xs: '1em', md: '2em' }, py: { xs: '1em', md: '2em' }, gap: 2 }}>
                     <Box>
-                        <img src="/assets/images/knhdd.png" alt="MoH KNHTS" width={'auto'} style={{ marginBottom: '1em' }} height={60} />
+                        <img src="/assets/images/knhdd.png" alt="MoH KNHTS" width={'auto'} height={60} />
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', justifyContent: 'center', gap: 3 }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', justifyContent: 'center', gap: 2 }}>
                         <Link style={{ fontWeight: '500', textDecoration: 'none', color: '#334', fontSize: '1.1em' }} href={'/'}>Resources</Link>
                         <Link style={{ fontWeight: '500', textDecoration: 'none', color: '#334', fontSize: '1.1em' }} href={'/'}>About</Link>
                         <Link style={{ fontWeight: '500', textDecoration: 'none', color: '#334', fontSize: '1.1em' }} href={'/'}>Knowledge base</Link>
