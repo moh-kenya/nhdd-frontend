@@ -37,8 +37,8 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>MOH NHDD</title>
-                <meta name="description" content="MOH NHDD" />
+                <title>MOH KNHTS</title>
+                <meta name="description" content="MOH KNHTS" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
