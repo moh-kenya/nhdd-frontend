@@ -110,7 +110,7 @@ export default function Home() {
                         <Typography variant="h6" color={'#fff'}> You can submit a request for a concept to be added, or visit our <Link href={'/support'} style={{ color: 'teal' }}>help &amp; support page</Link> </Typography>
                     </Box>
                     <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Button size="large" sx={{ borderRadius: '11px', marginLeft: '10px', backgroundColor: '#fff', color: '#333' }} variant="contained" color="primary">
+                        <Button size="large" sx={{ borderRadius: '11px', marginLeft: '10px', backgroundColor: '#fff', color: '#333' }} variant="contained" color="primary"  href={'/RequestConcept'}>
                             Submit Request
                         </Button>
                     </Box>
