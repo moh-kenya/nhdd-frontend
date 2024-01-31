@@ -110,7 +110,7 @@ function NavBar() {
                             </Box>
                             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
                                 <Button sx={{ borderRadius: '3em', mr: 2, backgroundColor: '#116936' }} size='large' variant="contained" color="primary" href="/auth/login">Login</Button>
-                                <Button sx={{ borderRadius: '3em' }} variant="outline" size='small' color="primary" href="/auth/register">Register</Button>
+                                <Button sx={{ borderRadius: '3em' }} variant="outline" size='small' color="primary" href="/auth/signup">Register</Button>
                             </Box>
                         </Box>
                     )}
