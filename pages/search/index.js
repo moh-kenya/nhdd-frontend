@@ -26,7 +26,7 @@ function SearchResults() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Box sx={{ width: '100%' }}>
-                <TextField sx={{ flexGrow: 1, backgroundColor: '#f0fffa', borderRadius: '8px', width: '100%' }} id="hero-search" label="Search any concept, institution, domain, sub-domain etc." variant="outlined" color={"info"} />
+                <TextField sx={{ flexGrow: 1, borderRadius: '8px', width: '100%' }} id="hero-search" label="Search any concept, institution, domain, sub-domain etc." variant="outlined" color={"info"} />
             </Box>
             
             <Box my={2} sx={{ width: '100%' }}>

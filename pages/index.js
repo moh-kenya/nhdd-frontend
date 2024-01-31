@@ -43,7 +43,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Box style={{ backgroundColor: '#116936' }} borderRadius={'8px'} sx={{ flexGrow: 1, flexDirection: 'column', px: { xs: '1em', md: '3em' }, py: { xs: '2em', md: '4em' } }}>
+                <Box style={{ backgroundColor: '#365699' }} borderRadius={'8px'} sx={{ flexGrow: 1, flexDirection: 'column', px: { xs: '1em', md: '3em' }, py: { xs: '2em', md: '4em' } }}>
                     <Box borderRadius={'8px'} sx={{ px: { xs: '1em', md: '3em' }, py: { xs: '1em', md: '3em' } }}>
                         <Typography variant="h3" sx={{ display: { xs: 'none', md: 'flex' } }} fontWeight={"bold"} marginBottom={'5px'} color={'#fff'}> Welcome to the <br />Kenya National Health <br />Data Dictionary </Typography>
                         <Typography variant="h4" sx={{ display: { xs: 'flex', md: 'none' } }} fontWeight={"bold"} marginBottom={'5px'} color={'#fff'}> Welcome to the Kenya National Health Data Dictionary </Typography>
@@ -77,13 +77,13 @@ export default function Home() {
                                     gap: 2,
                                 }}>
                                     {domains.map((domain) => (
-                                        <Box key={domain.id} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', my: 2, px: 2, py: 3, borderRadius: '5px', backgroundColor: '#fcfcfc', border: '1px solid #ccc', borderRadius: '8px' }}>
+                                        <Box key={domain.id} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', my: {xs: '1', md: '2'}, px: 2, py: 3, borderRadius: '5px', backgroundColor: '#fcfcfc', border: '1px solid #ccc', borderRadius: '8px' }}>
                                             <Typography variant="h6">{domain.name}</Typography>
                                             <Image src={"/assets/images/" + domain.icon + ".png"} alt={domain.name} width={50} height={50} />
                                         </Box>
                                     ))}
                                     <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }} >
-                                        <Link href="/domains" style={{ color: '#116936', textDecoration: 'none' }}> View all domains &hellip; </Link>
+                                        <Link href="/domains" style={{ color: '#365699', textDecoration: 'none' }}> View all domains &hellip; </Link>
                                     </Box>
                                 </Box>
                             </Box>
@@ -107,7 +107,7 @@ export default function Home() {
                 <Box style={{ backgroundColor: '#121212' }} borderRadius={'8px'} sx={{ display: 'flex', flexGrow: 1, flexDirection: { xs: 'column', md: 'row' }, px: { xs: '1em', md: '2em' }, py: { xs: '2em', md: '3em' }, gap: 3 }}>
                     <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <Typography variant="h4" color={'#fff'}> Can't find what you're looking for? </Typography>
-                        <Typography variant="h6" color={'#fff'}> You can submit a request for a concept to be added, or visit our <Link href={'/support'} style={{ color: 'teal' }}>help &amp; support page</Link> </Typography>
+                        <Typography variant="h6" color={'#fff'}> You can submit a request for a concept to be added, or visit our <Link href={'/support'} style={{ color: '#365699' }}>help &amp; support page</Link> </Typography>
                     </Box>
                     <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Button size="large" sx={{ borderRadius: '11px', marginLeft: '10px', backgroundColor: '#fff', color: '#333' }} variant="contained" color="primary">
@@ -115,7 +115,7 @@ export default function Home() {
                         </Button>
                     </Box>
                 </Box>
-                <Box style={{ backgroundColor: '#fcfcfc', borderBottom: '3px solid #333' }} my={1} sx={{ display: 'flex', flexGrow: 1, flexDirection: 'row', alignItems: 'center', px: { xs: '1em', md: '2em' }, py: { xs: '1em', md: '2em' }, gap: 2 }}>
+                <Box style={{ backgroundColor: '#fcfcfc' }} my={1} sx={{ display: 'flex', flexGrow: 1, flexDirection: 'row', alignItems: 'center', px: { xs: '1em', md: '2em' }, py: { xs: '1em', md: '2em' }, gap: 2 }}>
                     <Box>
                         <img src="/assets/images/knhdd.png" alt="MoH KNHTS" width={'auto'} height={60} />
                     </Box>
@@ -131,7 +131,7 @@ export default function Home() {
                         </Link>
                     </Box>
                 </Box>
-                <Box sx={{ py: 3, flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', justifyContent: 'center', gap: 3 }}>
+                <Box sx={{ borderTop: '3px solid #333', py: 3, flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', justifyContent: 'center', gap: 3 }}>
                     <Typography style={{ textDecoration: 'none', color: '#777' }}>&copy; Ministry of Health</Typography>
                     <Link style={{ textDecoration: 'none', color: '#445' }} href={'/'}>Privacy Policy</Link>
                     <Link style={{ textDecoration: 'none', color: '#445' }} href={'/'}>Terms of use</Link>
