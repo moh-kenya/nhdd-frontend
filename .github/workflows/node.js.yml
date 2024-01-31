@@ -21,8 +21,13 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build
+      run: yarn build
+        
     - name: copy file via ssh password
       uses: appleboy/scp-action@v0.1.7
       with:
