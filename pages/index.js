@@ -79,7 +79,7 @@ export default function Home() {
                                     {domains.map((domain) => (
                                         <Box key={domain.id} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', my: {xs: '1', md: '2'}, px: 2, py: 3, borderRadius: '5px', backgroundColor: '#fcfcfc', border: '1px solid #ccc', borderRadius: '8px' }}>
                                             <Typography variant="h6">{domain.name}</Typography>
-                                            <Image src={"/assets/images/knhdd.png"} alt={domain.name} width={50} height={50} />
+                                            <Image src={"/assets/images/" + domain.icon + ".png"} alt={domain.name} width={50} height={50} />                                        
                                         </Box>
                                     ))}
                                     <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }} >
