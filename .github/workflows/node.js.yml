@@ -35,5 +35,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        source: "build/*"
+        source: .next/*
         target: /usr/knhts/moh-knhts-web
