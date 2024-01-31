@@ -5,11 +5,13 @@ import {
     documentGetInitialProps,
 } from '@mui/material-nextjs/v13-pagesRouter';
 
+
 export default function Document(props) {
     return (
         <Html lang="en">
             <Head>
                 <DocumentHeadTags {...props} />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
             </Head>
             <body>
                 <Main />
@@ -20,6 +22,6 @@ export default function Document(props) {
 }
 
 Document.getInitialProps = async (ctx) => {
-  const finalProps = await documentGetInitialProps(ctx);
-  return finalProps;
+    const finalProps = await documentGetInitialProps(ctx);
+    return finalProps;
 };
