@@ -37,3 +37,4 @@ jobs:
         port: ${{ secrets.PORT }}
         source: .next/*
         target: /usr/knhts/moh-knhts-web
+        strip_components: 1
