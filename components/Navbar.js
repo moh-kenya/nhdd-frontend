@@ -62,7 +62,7 @@ function NavBar() {
                         <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left' }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' } }}>
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link style={{ textDecoration: 'none', color: '#365699' }} href={'/'+page.toLocaleLowerCase()}>{page}</Link>
+                                    <Link style={{ textDecoration: 'none', color: '#1651B6' }} href={'/'+page.toLocaleLowerCase()}>{page}</Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -75,7 +75,7 @@ function NavBar() {
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: 3 }}>
                             {pages.map((page) => (
-                                <Link style={{ textDecoration: 'none', color: '#365699', fontSize: '1.1em' }} key={page} href={'/'+page.toLocaleLowerCase()}>{page}</Link>
+                                <Link style={{ textDecoration: 'none', color: '#1651B6', fontSize: '1.1em' }} key={page} href={'/'+page.toLocaleLowerCase()}>{page}</Link>
                             ))}
                         </Box>
                     </Box>
@@ -109,7 +109,7 @@ function NavBar() {
                                 </Menu>
                             </Box>
                             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-                                <Button sx={{ borderRadius: '3em', mr: 2, backgroundColor: '#365699' }} size='large' variant="contained" color="primary" href="/auth/login">Login</Button>
+                                <Button sx={{ borderRadius: '3em', mr: 2, backgroundColor: '#1651B6' }} size='large' variant="contained" color="primary" href="/auth/login">Login</Button>
                                 <Button sx={{ borderRadius: '3em' }} variant="outline" size='small' color="primary" href="/auth/register">Register</Button>
                             </Box>
                         </Box>
