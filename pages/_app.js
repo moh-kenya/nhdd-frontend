@@ -6,8 +6,9 @@ import NavBar from '@/components/Navbar';
 export default function App({ Component, pageProps }) {
     return (
         <>
-            <Box sx={{ flexGrow: 1 }} marginBottom={2}>
+            <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }} marginBottom={2}>
                 <NavBar />
+                {/* TODO: breadcrumbs */}
             </Box>
             <Component {...pageProps} />
         </>

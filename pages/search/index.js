@@ -29,7 +29,8 @@ function SearchResults() {
                 <TextField sx={{ flexGrow: 1, borderRadius: '8px', width: '100%' }} id="hero-search" label="Search any concept, institution, domain, sub-domain etc." variant="outlined" color={"info"} />
             </Box>
             
-            <Box my={2} sx={{ width: '100%' }}>
+            <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', px: {xs: 0, md: 2}, my: {xs: 1, md: 2} }}>
+                <p style={{color: '#667'}}><i>Search results:</i></p>
                 <DataGrid
                     rows={Object.values(searchResults)}
                     columns={Object.keys(searchResults[0]).map((key) => {

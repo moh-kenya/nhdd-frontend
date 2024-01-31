@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import PersonTwoTone from '@mui/icons-material/PersonTwoTone';
 import Link from 'next/link';
+import { SearchRounded, SearchTwoTone } from '@mui/icons-material';
 
 const pages = [
     'Concepts', 
@@ -78,6 +79,12 @@ function NavBar() {
                                 <Link style={{ textDecoration: 'none', color: '#1651B6', fontSize: '1.1em' }} key={page} href={'/'+page.toLocaleLowerCase()}>{page}</Link>
                             ))}
                         </Box>
+                    </Box>
+
+                    <Box mx={2}>
+                        <Link href={'/search'} style={{color: '#667', display: 'flex', alignItems: 'center'}}>
+                            <SearchRounded />
+                        </Link>
                     </Box>
 
                     {loggedIn ? (
