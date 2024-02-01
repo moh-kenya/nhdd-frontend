@@ -2,7 +2,7 @@ const { API_BASE_URL } = require('../../../index');
 
 export default async function handler(req, res) {
     const { org, domain, resource } = req.query;
-    
+
     const domainMapping = require('../domains.json');
     const domainDetail = domainMapping.find(d => d.id === domain);
     if (domainDetail) {
@@ -27,6 +27,7 @@ export default async function handler(req, res) {
                 const data = await response.json()
                 domain_data.push(data)
             }
+            if (domain_urls.length === 1) domain_data = domain_data[0]
             domainDetail.data = domain_data
         } else {
             domainDetail.data = []
