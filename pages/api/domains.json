@@ -1,0 +1,48 @@
+[
+    {
+      "id": "diagnostic",
+      "name": "Diagnostic Health Information",
+      "apiUrl": "/orgs/WHO/sources/ICD-11-WHO/"
+    },
+    {
+      "id": "hpt",
+      "name": "Health Products and Technologies (HPT)",
+      "apiUrl": ""
+    },
+    {
+      "id": "investigations",
+      "name": "Investigations (Lab and Imaging)",
+      "apiUrl": ""
+    },
+    {
+      "id": "procedures",
+      "name": "Procedures and Services",
+      "apiUrl": ""
+    },
+    {
+      "id": "billing",
+      "name": "Billing & eClaims Management",
+      "apiUrl": ""
+    },
+    {
+      "id": "hrh",
+      "name": "Human Resources for Health (HRH)",
+      "apiUrl": ""
+    },
+    {
+      "id": "devices",
+      "name": "Medical Devices Infrastructure",
+      "apiUrl": ""
+    },
+    {
+      "id": "supplies",
+      "name": "Supplies Chain Management",
+      "apiUrl": ""
+    },
+    {
+      "id": "diasability",
+      "name": "Functioning Disability",
+      "apiUrl": ""
+    }
+  ]
+  
