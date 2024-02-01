@@ -1,15 +1,20 @@
 const { API_BASE_URL } = require('../../../index');
 
 export default async function handler(req, res) {
-    const { org, domain } = req.query;
+    const { org, domain, resource } = req.query;
+    
     const domainMapping = require('../domains.json');
     const domainDetail = domainMapping.find(d => d.id === domain);
     if (domainDetail) {
+        // if resource is not provided, return domain detail
+        if (!resource) {
+            res.status(200).json(domainDetail);
+        }
         let domain_urls = domainDetail.apiUrls
         if (domain_urls && domain_urls.length > 0) {
             let domain_data = []
             for (let i = 0; i < domain_urls.length; i++) {
-                let apiurl = domain_urls[i] + 'concepts'
+                let apiurl = domain_urls[i] + resource
                 // if req has other query params, pass them to the apiurl
                 if (req.query && Object.keys(req.query).length > 0) {
                     apiurl = apiurl + '?'
