@@ -10,7 +10,7 @@ export const searchConcepts = (searchParams) => {
         isError,
         mutate,
     } = useSWR(
-        `https://nhdd-staging-api.health.go.ke/concepts/?q=${searchParams}&verbose=false&includeRetired=false&includeInverseMappings=false`,
+        `http://41.89.92.186:8000/concepts/?q=${searchParams}&verbose=false&includeRetired=false&includeInverseMappings=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
