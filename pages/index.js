@@ -307,7 +307,7 @@ export default function Home() {
         >
           <Box>
             <img
-              src="/assets/images/knhdd.png"
+              src="/assets/images/MoHLog.png"
               alt="MoH KNHTS"
               width={"auto"}
               height={60}
