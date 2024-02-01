@@ -24,6 +24,8 @@ import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Home() {
     const router = useRouter();
     const [activeTab, setActiveTab] = useState("1");
@@ -411,21 +413,15 @@ export default function Home() {
                         justifyContent: "center",
                         gap: 3,
                     }}
-                >
-                    <Typography style={{ textDecoration: "none", color: "#777" }}>
-                        &copy; Ministry of Health
-                    </Typography>
-                    <Link style={{ textDecoration: "none", color: "#445" }} href={"/"}>
-                        Privacy Policy
-                    </Link>
-                    <Link style={{ textDecoration: "none", color: "#445" }} href={"/"}>
-                        Terms of use
-                    </Link>
-                    <Link style={{ textDecoration: "none", color: "#445" }} href={"/"}>
-                        Contact
+                  >
+                    <Link
+                      href="/domains"
+                      style={{ color: "#1651B6", textDecoration: "none" }}
+                    >
                     </Link>
                 </Box>
             </main>
         </>
     );
+
 }

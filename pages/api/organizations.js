@@ -2,7 +2,7 @@
 import useSWR from "swr";
 import { API_BASE_URL } from '../index';
 
-export const searchConcepts = (searchParams) => {
+export const getOrganizations = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
 
     const {
@@ -11,7 +11,7 @@ export const searchConcepts = (searchParams) => {
         isError,
         mutate,
     } = useSWR(
-        `${API_BASE_URL}/concepts/?q=${searchParams}&limit=1000&verbose=false&includeRetired=false&includeInverseMappings=false`,
+        `${API_BASE_URL}/orgs?limit=1000&verbose=false&includeRetired=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );

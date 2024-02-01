@@ -51,7 +51,7 @@ function NavBar() {
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                         <Link href={'/'}>
-                            <img src="/assets/images/knhdd.png" alt="MoH KNHTS" width={'auto'} height={50} />
+                            <img src="/assets/images/MoHLog.png" alt="MoH KNHTS" width={'auto'} height={50} />
                         </Link>
                     </Box>
 
@@ -70,7 +70,7 @@ function NavBar() {
                     <Box sx={{ flexGrow: 1 }}>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <Link href={'/'}>
-                                <img src="/assets/images/knhdd.png" alt="MoH KNHTS" width={'auto'} height={50} />
+                                <img src="/assets/images/MoHLog.png" alt="MoH KNHTS" width={'auto'} height={50} />
                             </Link>
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: 3 }}>
@@ -110,13 +110,13 @@ function NavBar() {
                                         <Typography textAlign="center">Login</Typography>
                                     </MenuItem>
                                     <MenuItem onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">Register</Typography>
+                                        <Typography textAlign="center">Request Account</Typography>
                                     </MenuItem>
                                 </Menu>
                             </Box>
                             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
                                 <Button sx={{ borderRadius: '3em', mr: 2, backgroundColor: '#1651B6' }} size='large' variant="contained" color="primary" href="/auth/login">Login</Button>
-                                <Button sx={{ borderRadius: '3em' }} variant="outline" size='small' color="primary" href="/auth/register">Register</Button>
+                                <Button sx={{ borderRadius: '3em' }} variant="outline" size='small' color="primary" href="/auth/register">Request Account</Button>
                             </Box>
                         </Box>
                     )}

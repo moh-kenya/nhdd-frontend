@@ -24,7 +24,7 @@ function SearchResults() {
   const columns = [
     "id",
     "display_name",
-    "type",
+    "concept_class",
     "datatype",
     "source",
     "retired",
@@ -92,6 +92,7 @@ function SearchResults() {
       <Box my={2} sx={{ width: "100%" }}>
         <DataGrid
           rows={Object.values(data)}
+          getRowId={(row) => row.uuid}
           columns={columns.map((key) => {
             return {
               field: key.toLowerCase(),
@@ -118,8 +119,9 @@ function SearchResults() {
             };
           })}
           initialState={{
-            pagination: { pageSize: 25 },
+            pagination: { paginationModel: { pageSize: 25 } },
           }}
+          pageSizeOptions={[25, 50, 100, 250]}
           onRowClick={(row) => {
             // TODO: go to the resource's page
             router.push("/" + row.row.type + "/" + row.row.id);
