@@ -24,6 +24,8 @@ import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Home() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("1");
