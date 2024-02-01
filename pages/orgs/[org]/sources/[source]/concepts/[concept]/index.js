@@ -20,14 +20,7 @@ function ConceptDetail() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {/* <div>ConceptDetail for {org}/{source}/{concept}</div> */}
-
-            {/* <details>
-                <summary>Data</summary>
-                <pre>{JSON.stringify(conceptDetail, null, 2)}</pre>
-            </details> */}
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                {/* back link */}
                 {/* --------- <HERO ---------- */}
                 <Box maxWidth={1280} sx={{ width: '100%', py: { xs: 2, md: 4 }, px: { xs: 1, md: 2 } }}>
                     <Box maxWidth={1280} sx={{ width: '100%' }}>
