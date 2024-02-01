@@ -51,7 +51,7 @@ function NavBar() {
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                         <Link href={'/'}>
-                            <img src="/assets/images/knhdd.png" alt="MoH KNHTS" width={'auto'} height={50} />
+                            <img src="/assets/images/MoHLog.png" alt="MoH KNHTS" width={'auto'} height={50} />
                         </Link>
                     </Box>
 
@@ -70,7 +70,7 @@ function NavBar() {
                     <Box sx={{ flexGrow: 1 }}>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <Link href={'/'}>
-                                <img src="/assets/images/knhdd.png" alt="MoH KNHTS" width={'auto'} height={50} />
+                                <img src="/assets/images/MoHLog.png" alt="MoH KNHTS" width={'auto'} height={50} />
                             </Link>
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: 3 }}>
