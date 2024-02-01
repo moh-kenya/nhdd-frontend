@@ -19,7 +19,7 @@ import { SearchRounded, SearchTwoTone } from '@mui/icons-material';
 const pages = [
     {name: 'Concepts', link: '/search'},
     {name: 'Domains',  link: '/domains'},
-    {name: 'Institutions',  link: '/institutions'},
+    {name: 'Institutions',  link: '/orgs/institutions'},
     {name: 'Announcements',  link: '/announcements'},
     {name: 'Resources', link: '/resources'},
 ];
