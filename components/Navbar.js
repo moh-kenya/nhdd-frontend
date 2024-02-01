@@ -17,12 +17,11 @@ import Link from 'next/link';
 import { SearchRounded, SearchTwoTone } from '@mui/icons-material';
 
 const pages = [
-    'Concepts', 
-    'Collections', 
-    'Domains', 
-    'Institutions', 
-    'Announcements', 
-    'Resources'
+    {name: 'Concepts', link: '/search'},
+    {name: 'Domains',  link: '/domains'},
+    {name: 'Institutions',  link: '/institutions'},
+    {name: 'Announcements',  link: '/announcements'},
+    {name: 'Resources', link: '/resources'},
 ];
 const settings = ['Profile', 'Help & FAQ', 'Logout'];
 
@@ -62,8 +61,8 @@ function NavBar() {
                         </IconButton>
                         <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left' }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' } }}>
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link style={{ textDecoration: 'none', color: '#1651B6' }} href={'/'+page.toLocaleLowerCase()}>{page}</Link>
+                                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                    <Link style={{ textDecoration: 'none', color: '#1651B6' }} href={page.link}>{page.name}</Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -76,7 +75,7 @@ function NavBar() {
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: 3 }}>
                             {pages.map((page) => (
-                                <Link style={{ textDecoration: 'none', color: '#1651B6', fontSize: '1.1em' }} key={page} href={'/'+page.toLocaleLowerCase()}>{page}</Link>
+                                <Link style={{ textDecoration: 'none', color: '#1651B6', fontSize: '1.1em' }} key={page.name} href={page.link}>{page.name}</Link>
                             ))}
                         </Box>
                     </Box>
