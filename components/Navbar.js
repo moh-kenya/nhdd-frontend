@@ -18,8 +18,8 @@ import { SearchRounded, SearchTwoTone } from '@mui/icons-material';
 
 const pages = [
     {name: 'Concepts', link: '/search'},
-    {name: 'Domains',  link: '/domains'},
-    {name: 'Institutions',  link: '/orgs/institutions'},
+    {name: 'Domains',  link: '/orgs/MOH-KENYA/domains'},
+    {name: 'Institutions',  link: '/orgs/MOH-KENYA/institutions'},
     {name: 'Announcements',  link: '/announcements'},
     {name: 'Resources', link: '/resources'},
 ];
