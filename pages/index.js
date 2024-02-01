@@ -32,22 +32,10 @@ export default function Home() {
 
     const [domains, setDomains] = useState([
         { id: "diagnostics", name: "Diagnostic Information", icon: "microscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
-        {
-            id: "products-technologies",
-            name: "Products & Technologies",
-            icon: "devices", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
-        },
+        { id: "products-technologies", name: "Products & Technologies", icon: "devices", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 }, },
         { id: "investigations", name: "Investigations", icon: "stethoscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
-        {
-            id: "procedures-services",
-            name: "Procedures & Services",
-            icon: "syringe", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
-        },
-        {
-            id: "billing-claims",
-            name: "Billing & eClaims Management",
-            icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 },
-        },
+        { id: "procedures-services", name: "Procedures & Services", icon: "syringe", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 }, },
+        { id: "billing-claims", name: "Billing & eClaims Management", icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 }, },
         { id: "hrh", name: "Human Resources for Health", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
         { id: "devices-infra", name: "Devices & Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
         { id: "supply-chain", name: "Supply Chain Management", icon: "medstore", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },

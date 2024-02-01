@@ -1,0 +1,99 @@
+[
+    {
+        "id": "diagnostic",
+        "name": "Diagnostic Health Information",
+        "apiUrls": [
+            "/orgs/WHO/sources/ICD-11-WHO/"
+        ],
+        "icon": "microscope",
+        "metadata": {
+            "number_of_subdomains": 15,
+            "number_of_concepts": 4553
+        }
+    },
+    {
+        "id": "hpt",
+        "name": "Health Products and Technologies (HPT)",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/medicines/",
+            "/orgs/MOH-KENYA/sources/lab-supplies/"
+        ],
+        "icon": "devices",
+        "metadata": {
+            "number_of_subdomains": 10,
+            "number_of_concepts": 5243
+        }
+    },
+    {
+        "id": "investigations",
+        "name": "Investigations (Lab and Imaging)",
+        "apiUrls": [],
+        "icon": "stethoscope",
+        "metadata": {
+            "number_of_subdomains": 23,
+            "number_of_concepts": 7231
+        }
+    },
+    {
+        "id": "procedures",
+        "name": "Procedures and Services",
+        "apiUrls": [],
+        "icon": "syringe",
+        "metadata": {
+            "number_of_subdomains": 10,
+            "number_of_concepts": 9225
+        }
+    },
+    {
+        "id": "billing",
+        "name": "Billing & eClaims Management",
+        "apiUrls": [],
+        "icon": "finance",
+        "metadata": {
+            "number_of_subdomains": 27,
+            "number_of_concepts": 1108
+        }
+    },
+    {
+        "id": "hrh",
+        "name": "Human Resources for Health (HRH)",
+        "apiUrls": [],
+        "icon": "doctor",
+        "metadata": {
+            "number_of_subdomains": 16,
+            "number_of_concepts": 5617
+        }
+    },
+    {
+        "id": "devices",
+        "name": "Medical Devices Infrastructure",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/KMHFL/"
+        ],
+        "icon": "devices",
+        "metadata": {
+            "number_of_subdomains": 14,
+            "number_of_concepts": 410
+        }
+    },
+    {
+        "id": "supplies",
+        "name": "Supplies Chain Management",
+        "apiUrls": [],
+        "icon": "medstore",
+        "metadata": {
+            "number_of_subdomains": 27,
+            "number_of_concepts": 615
+        }
+    },
+    {
+        "id": "diasability",
+        "name": "Functioning Disability",
+        "apiUrls": [],
+        "icon": "disablility",
+        "metadata": {
+            "number_of_subdomains": 7,
+            "number_of_concepts": 11
+        }
+    }
+]
