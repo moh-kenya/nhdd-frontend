@@ -32,7 +32,7 @@
     {
       "id": "devices",
       "name": "Medical Devices Infrastructure",
-      "apiUrl": ""
+      "apiUrl": "/orgs/MOH-KENYA/sources/KMHFL/"
     },
     {
       "id": "supplies",
