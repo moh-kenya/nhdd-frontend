@@ -73,8 +73,10 @@ export default function Home() {
           style={{ backgroundColor: "#1651B6" }}
           borderRadius={"8px"}
           sx={{
-            flexGrow: 1,
+            display: 'flex',
             flexDirection: "column",
+            alignItems: 'center',
+            justifyContent: 'center',
             px: { xs: "1em", md: "3em" },
             py: { xs: "2em", md: "4em" },
           }}
@@ -90,7 +92,7 @@ export default function Home() {
               marginBottom={"5px"}
               color={"#fff"}
             >
-            Kenya National Health Terminology Services
+              Kenya National Health Terminology Services
             </Typography>
             <Typography
               variant="h4"
@@ -107,7 +109,7 @@ export default function Home() {
               healthcare activities in Kenya.
             </Typography>
           </Box>
-          <Box width={"30%"} sx={{ display: "flex" }} noValidate>
+          <Box width={{ sm : "70%" , md: "30%"}} sx={{ display: "flex" }} noValidate>
             <TextField
               onChange={(e) => setSearchTerm(e.target.value)}
               sx={{
