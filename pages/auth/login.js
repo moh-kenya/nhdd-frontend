@@ -14,7 +14,7 @@ function Login() {
     <div style={{ display: 'flex', height: '100vh' }}>
       <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ backgroundColor: '#1651B6', padding: '10px', marginBottom: '20px', color: 'white' }}>
-          <h2 style={{ fontSize: '24px' }}>Welcome to the Kenya National Terminology Services</h2>
+          <h2 style={{ fontSize: '24px' }}>Kenya National Terminology Services</h2>
         </div>
         <br></br>
         <div style={{ marginBottom: '20px', textAlign: 'center' }}>

@@ -31,26 +31,32 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("1");
 
   const [domains, setDomains] = useState([
-    { id: "diagnostics", name: "Diagnostic Information", icon: "microscope" },
+    { id: "diagnostics", name: "Diagnostic Information Health", icon: "stethoscope" },
     {
       id: "products-technologies",
-      name: "Products & Technologies",
-      icon: "devices",
+      name: "Health Products and Technologies(HPT)",
+      icon: "med",
     },
-    { id: "investigations", name: "Investigations", icon: "stethoscope" },
+    { id: "investigations", name: "Investigations(Lab and Imaging)", icon: "microscope" },
     {
       id: "procedures-services",
       name: "Procedures & Services",
-      icon: "syringe",
+      icon: "surgery",
     },
     {
       id: "billing-claims",
       name: "Billing & eClaims Management",
       icon: "finance",
     },
-    { id: "hrh", name: "Human Resources for Health", icon: "doctor" },
-    { id: "devices-infra", name: "Devices & Infrastructure", icon: "devices" },
-    { id: "supply-chain", name: "Supply Chain Management", icon: "medstore" },
+    { id: "hrh", name: "Human Resources for Health (HRH)", icon: "doctor" },
+    { id: "devices-infra", name: "Medical Devices Infrastructure", icon: "devices" },
+    { id: "supply-chain", name: "Supplies Chain Management", icon: "car" },
+    {
+      id: "Functioning Disability",
+      name: "Functioning Disability",
+      icon: "disability",
+    },
+    
   ]);
 
   const handleTabChange = (event, newValue) => {
@@ -170,7 +176,7 @@ export default function Home() {
               <Box
                 sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
               >
-                <Typography variant="h5">Concept Dictionary</Typography>
+                <Typography variant="h5">Concept Domains</Typography>
                 <Box
                   sx={{
                     display: "grid",
@@ -216,8 +222,6 @@ export default function Home() {
                       href="/domains"
                       style={{ color: "#1651B6", textDecoration: "none" }}
                     >
-                      {" "}
-                      View all domains &hellip;{" "}
                     </Link>
                   </Box>
                 </Box>
@@ -309,14 +313,6 @@ export default function Home() {
             gap: 2,
           }}
         >
-          <Box>
-            <img
-              src="/assets/images/MoHLog.png"
-              alt="MoH KNHTS"
-              width={"auto"}
-              height={60}
-            />
-          </Box>
           <Box
             sx={{
               flexGrow: 1,
