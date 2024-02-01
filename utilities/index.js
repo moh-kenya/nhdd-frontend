@@ -1,5 +1,5 @@
 let debug = process.env.APP_ENV || false;
-let api_url = process.env.API_URL
+let api_url = process.env.NEXT_PUBLIC_API_URL
 console.log("api url", api_url)
 let cookie_suffix = '';
 
