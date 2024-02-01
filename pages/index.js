@@ -90,10 +90,7 @@ export default function Home() {
               marginBottom={"5px"}
               color={"#fff"}
             >
-              {" "}
-              Welcome to the <br />
-              Kenya National Health <br />
-              Data Dictionary{" "}
+            Kenya National Health Terminology Services
             </Typography>
             <Typography
               variant="h4"
@@ -110,7 +107,7 @@ export default function Home() {
               healthcare activities in Kenya.
             </Typography>
           </Box>
-          <Box width={"100%"} sx={{ display: "flex" }} noValidate>
+          <Box width={"30%"} sx={{ display: "flex" }} noValidate>
             <TextField
               onChange={(e) => setSearchTerm(e.target.value)}
               sx={{
@@ -120,7 +117,7 @@ export default function Home() {
               }}
               id="searchTerm"
               name="searchTerm"
-              label="Search any concept, institution, domain, sub-domain etc."
+              label="Search the Terminology Services"
               variant="outlined"
               color={"info"}
             />
