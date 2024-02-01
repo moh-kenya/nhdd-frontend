@@ -10,39 +10,9 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  build_and_deploy:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js 18
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: yarn install
-
-    - name: Build
-      run: yarn build
-        
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        source: .next/*
-        target: /usr/knhts/moh-knhts-web
-
   restart_next:
 
     runs-on: ubuntu-latest
-
-    needs: build_and_deploy
 
     steps:
     - name: executing remote ssh commands using password
@@ -52,5 +22,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: cd /usr/knhts/moh-knhts-web && sh deploy.sh
+        script: cd /usr/knhts/moh-knhts-web && sh deploy.sh &>/dev/null
     
