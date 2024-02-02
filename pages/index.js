@@ -31,26 +31,26 @@ export default function Home() {
     const [activeTab, setActiveTab] = useState("1");
 
     const [domains, setDomains] = useState([
-        { id: "diagnostics", name: "Diagnostic Information", icon: "microscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
+        { id: "diagnostics", name: "Diagnostic Information Health", icon: "stethoscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
         {
             id: "products-technologies",
-            name: "Products & Technologies",
-            icon: "devices", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
+            name: "Health Products and Technologies(HPT)",
+            icon: "med", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
         },
-        { id: "investigations", name: "Investigations", icon: "stethoscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
+        { id: "investigations", name: "Investigations (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
         {
             id: "procedures-services",
             name: "Procedures & Services",
-            icon: "syringe", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
+            icon: "surgery", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
         },
         {
             id: "billing-claims",
             name: "Billing & eClaims Management",
             icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 },
         },
-        { id: "hrh", name: "Human Resources for Health", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
-        { id: "devices-infra", name: "Devices & Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
-        { id: "supply-chain", name: "Supply Chain Management", icon: "medstore", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
+        { id: "hrh", name: "Human Resources for Health (HRH)", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
+        { id: "devices-infra", name: "Medical Devices Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
+        { id: "supply-chain", name: "Supplies Chain Management", icon: "car", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
     ]);
 
     const handleTabChange = (event, newValue) => {
@@ -170,7 +170,7 @@ export default function Home() {
                             <Box
                                 sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
                             >
-                                <Typography variant="h5">Concept Dictionary</Typography>
+                                <Typography variant="h5">Concept Domains</Typography>
                                 <Box
                                     sx={{
                                         display: "grid",
@@ -324,7 +324,7 @@ export default function Home() {
                 >
                     <Box>
                         <img
-                            src="/assets/images/knhdd.png"
+                            src="/assets/images/MoHLog.png"
                             alt="MoH KNHTS"
                             width={"auto"}
                             height={60}
