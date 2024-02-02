@@ -124,7 +124,7 @@ function SearchResults() {
           pageSizeOptions={[25, 50, 100, 250]}
           onRowClick={(row) => {
             // TODO: go to the resource's page
-            router.push("/" + row.row.type + "/" + row.row.id);
+            router.push({ pathname: `/orgs/${row.row.owner}/sources/${row.row.source}/concepts/${row.row.id} `});
           }}
         />
       </Box>
