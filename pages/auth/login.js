@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
+import Box from "@mui/material/Box";
+import Link from "next/link";
 
 function Login() {
   const [emailOrId, setEmailOrId] = useState('');
@@ -7,67 +8,146 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
+    if (emailOrId.trim() === '' || password.trim() === '') {
+      alert('Please fill in all the required fields.');
+      return;
+    }
     console.log(`Logging in with email/ID: ${emailOrId} and password: ${password}`);
   };
 
+  const handleForgotPassword = () => {
+    // Add logic to handle forgot password functionality (e.g., redirect to a forgot password page).
+    console.log('Forgot Password clicked');
+  };
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ backgroundColor: '#1651B6', padding: '10px', marginBottom: '20px', color: 'white' }}>
-          <h2 style={{ fontSize: '24px' }}>Kenya National Terminology Services</h2>
-        </div>
+    <div style={{ display: 'flex', minHeight: '80vh' }}>
+      {/* Login container with background image on the left */}
+      <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundImage: 'url("/assets/images/backgroung.png")', backgroundSize: 'cover' }}>
+        <Box
+          style={{
+            backgroundColor: 'rgba(22, 81, 182, 0.8)',
+            padding: '10px',
+            marginBottom: '20px',
+            color: 'white',
+            borderRadius: '10px',
+            textAlign: 'center',
+          }}
+        >
+          <br></br>
+          <h2 style={{ fontSize: '18px' }}>Sign in to the Kenya National Terminology Services</h2>
+        </Box>
         <br></br>
-        <div style={{ marginBottom: '20px', textAlign: 'center' }}>
-          <form>
-            <label style={{ display: 'block', marginBottom: '10px', fontSize: '18px' }}>
-              <span style={{ marginBottom: '5px', display: 'block' }}>Email address or ID number:</span>
-              <input
-                type="text"
-                value={emailOrId}
-                onChange={(e) => setEmailOrId(e.target.value)}
-                style={{ width: '300px', padding: '8px', fontSize: '16px' }}
-              />
-            </label>
-            <br />
-            <label style={{ display: 'block', marginBottom: '10px', fontSize: '18px' }}>
-              <span style={{ marginBottom: '5px', display: 'block' }}>Password:</span>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                style={{ width: '300px', padding: '8px', fontSize: '16px' }}
-              />
-            </label>
-            <br />
-            <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}>
-              <input
-                type="checkbox"
-                onChange={() => setShowPassword(!showPassword)}
-                style={{ marginRight: '5px' }}
-              />
-              Show Password
-            </label>
-            <br />
-            <button
-              type="button"
-              onClick={handleLogin}
-              style={{ backgroundColor: '#1651B6', color: 'white', padding: '10px', borderRadius: '5px', fontSize: '18px' }}
-            >
-              Login
-            </button>
-          </form>
-        </div>
-        <div style={{ position: 'absolute', bottom: '10px', left: '10px', fontSize: '16px' }}>
-          Don’t have an account? <a href="#">Sign up</a>
+        <div style={{ backgroundColor: 'rgba(248, 248, 248, 0.8)', margin: '10px', padding: '20px', borderRadius: '5px' }}>
+          <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+          <div style={{ height: '40px' }}></div>
+                <img
+                  src="/assets/images/login.png" 
+                  alt="Login Icon"
+                  style={{ width: '80px', height: '80px', marginRight: '10px' }}
+                />
+                <span style={{ marginBottom: '5px', display: 'block' }}></span>
+                <br></br>
+            <form>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img
+                  src="/assets/images/email.png" 
+                  alt="Email Icon"
+                  style={{ width: '40px', height: '40px', marginRight: '10px' }}
+                />
+                <input
+                  type="text"
+                  value={emailOrId}
+                  onChange={(e) => setEmailOrId(e.target.value)}
+                  placeholder="Username or email"
+                  style={{ width: '400px', padding: '8px', fontSize: '16px' }}
+                  required
+                />
+              </div>
+              <br />
+              <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '18px' }}>
+                <span style={{ marginBottom: '5px', display: 'block' }}></span>
+              </label>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img
+                  src="/assets/images/key.png" 
+                  alt="Password Icon"
+                  style={{ width: '40px', height: '40px', marginRight: '10px' }}
+                />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  style={{ width: '400px', padding: '8px', fontSize: '16px' }}
+                  required
+                />
+              </div>
+              <br />
+              <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}>
+                <input
+                  type="checkbox"
+                  onChange={() => setShowPassword(!showPassword)}
+                  style={{ marginRight: '5px' }}
+                />
+                Show Password
+              </label>
+              <div style={{ marginBottom: '10px', fontSize: '16px' }}>
+                  <a href="#" onClick={handleForgotPassword}>
+                    Forgot Password?
+                  </a>
+                </div>
+              <br />
+              
+              <button
+                type="button"
+                onClick={handleLogin}
+                style={{
+                  backgroundColor: '#1651B6',
+                  color: 'white',
+                  padding: '12px',
+                  borderRadius: '10px',
+                  fontSize: '18px',
+                  width: '200px',
+                  cursor: 'pointer',
+                  border: 'none',
+                  outline: 'none',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#34ebe5'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#1651B6'}
+              >
+                Sign in
+              </button>
+              <div style={{ marginBottom: '10px', fontSize: '16px' }}>
+                Don’t have an account? <a href="/auth/register">Request Account</a> 
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 
+      {/* Image on the right */}
       <div style={{ flex: 1, overflow: 'hidden' }}>
-        <Image
-          src={"/assets/images/pic.png"}
-          width={1000}
-          height={700}
+        <img
+          src="/assets/images/search.png"
+          alt=""
+          style={{ width: '100%', height: '80%', objectFit: 'cover' }}
         />
+{/* Guide on the bottom right */}
+<div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '10px' }}>
+  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
+    Resources
+  </div>
+  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
+    Guide
+  </div>
+  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
+    Knowledge base
+  </div>
+  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
+    Help & Guides
+  </div>
+</div>
       </div>
     </div>
   );
