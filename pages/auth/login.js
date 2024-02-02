@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import Link from "next/link";
 import { useRouter } from 'next/router';
-import { loginUser } from './api';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -15,16 +14,26 @@ function Login() {
       alert('Please fill in all the required fields.');
       return;
     }
-
-    const { success, data, error } = await loginUser(username, password);
-
-    if (success) {
-      console.log('Login successful');
-      alert('Login successful.');
-      router.push('/');
-    } else {
-      console.log('Login failed:', error);
-      alert(`Login failed. ${error}`);
+    try {
+      const response = await fetch('http://41.89.92.186:8000/users/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      if (response.ok) {
+        console.log('Login successful');
+        alert('Login successful.');
+        router.push('/');
+      } else {
+        console.log('Login failed');
+        alert('Login failed. Please check your credentials and try again.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An unexpected error occurred. Please try again later.');
     }
   };
   
