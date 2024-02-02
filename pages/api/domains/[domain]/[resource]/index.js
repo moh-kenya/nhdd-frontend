@@ -1,9 +1,9 @@
-const { API_BASE_URL } = require('../../../index');
+const { API_BASE_URL } = require('../../../../index');
 
 export default async function handler(req, res) {
     const { org, domain, resource } = req.query;
 
-    const domainMapping = require('../domains.json');
+    const domainMapping = require('../../domains.json');
     const domainDetail = domainMapping.find(d => d.id === domain);
     if (domainDetail) {
         // if resource is not provided, return domain detail

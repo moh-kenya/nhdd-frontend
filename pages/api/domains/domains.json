@@ -6,7 +6,9 @@
             "/orgs/WHO/sources/ICD-11-WHO/"
         ],
         "icon": "microscope",
-        "metadata": {}
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=chapter"
+        }
     },
     {
         "id": "hpt",
