@@ -1,27 +1,39 @@
 import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import Link from "next/link";
+import { useRouter } from 'next/router';
+import { loginUser } from './api';
 
 function Login() {
-  const [emailOrId, setEmailOrId] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
-  const handleLogin = () => {
-    if (emailOrId.trim() === '' || password.trim() === '') {
+  const handleLogin = async () => {
+    if (username.trim() === '' || password.trim() === '') {
       alert('Please fill in all the required fields.');
       return;
     }
-    console.log(`Logging in with email/ID: ${emailOrId} and password: ${password}`);
-  };
 
+    const { success, data, error } = await loginUser(username, password);
+
+    if (success) {
+      console.log('Login successful');
+      alert('Login successful.');
+      router.push('/');
+    } else {
+      console.log('Login failed:', error);
+      alert(`Login failed. ${error}`);
+    }
+  };
+  
   const handleForgotPassword = () => {
-    // Add logic to handle forgot password functionality (e.g., redirect to a forgot password page).
+    // TODO add logic to handle forgot password functionality 
     console.log('Forgot Password clicked');
   };
   return (
     <div style={{ display: 'flex', minHeight: '80vh' }}>
-      {/* Login container with background image on the left */}
       <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundImage: 'url("/assets/images/backgroung.png")', backgroundSize: 'cover' }}>
         <Box
           style={{
@@ -56,8 +68,8 @@ function Login() {
                 />
                 <input
                   type="text"
-                  value={emailOrId}
-                  onChange={(e) => setEmailOrId(e.target.value)}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   placeholder="Username or email"
                   style={{ width: '400px', padding: '8px', fontSize: '16px' }}
                   required
@@ -126,14 +138,12 @@ function Login() {
         </div>
       </div>
 
-      {/* Image on the right */}
       <div style={{ flex: 1, overflow: 'hidden' }}>
         <img
           src="/assets/images/search.png"
           alt=""
           style={{ width: '100%', height: '80%', objectFit: 'cover' }}
         />
-{/* Guide on the bottom right */}
 <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '10px' }}>
   <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
     Resources
