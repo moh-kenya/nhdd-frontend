@@ -31,14 +31,26 @@ export default function Home() {
     const [activeTab, setActiveTab] = useState("1");
 
     const [domains, setDomains] = useState([
-        { id: "diagnostics", name: "Diagnostic Information", icon: "microscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
-        { id: "products-technologies", name: "Products & Technologies", icon: "devices", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 }, },
-        { id: "investigations", name: "Investigations", icon: "stethoscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
-        { id: "procedures-services", name: "Procedures & Services", icon: "syringe", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 }, },
-        { id: "billing-claims", name: "Billing & eClaims Management", icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 }, },
-        { id: "hrh", name: "Human Resources for Health", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
-        { id: "devices-infra", name: "Devices & Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
-        { id: "supply-chain", name: "Supply Chain Management", icon: "medstore", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
+        { id: "diagnostics", name: "Diagnostic Information Health", icon: "stethoscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
+        {
+            id: "products-technologies",
+            name: "Health Products and Technologies(HPT)",
+            icon: "med", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
+        },
+        { id: "investigations", name: "Investigations (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
+        {
+            id: "procedures-services",
+            name: "Procedures & Services",
+            icon: "surgery", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
+        },
+        {
+            id: "billing-claims",
+            name: "Billing & eClaims Management",
+            icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 },
+        },
+        { id: "hrh", name: "Human Resources for Health (HRH)", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
+        { id: "devices-infra", name: "Medical Devices Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
+        { id: "supply-chain", name: "Supplies Chain Management", icon: "car", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
     ]);
 
     const handleTabChange = (event, newValue) => {
@@ -67,13 +79,13 @@ export default function Home() {
                         flexDirection: "column",
                         alignItems: 'center',
                         justifyContent: 'center',
-                        px: { xs: "1em", md: "3em" },
-                        py: { xs: "2em", md: "4em" },
+                        px: { xs: "1em", md: "0.3em" },
+                        py: { xs: "1em", md: "0.3em" },
                     }}
                 >
                     <Box
                         borderRadius={"8px"}
-                        sx={{ px: { xs: "1em", md: "3em" }, py: { xs: "1em", md: "3em" } }}
+                        sx={{ px: { xs: "1em", md: "2em" }, py: { xs: "1em", md: "2em" } }}
                     >
                         <Typography
                             variant="h3"
@@ -91,8 +103,6 @@ export default function Home() {
                             marginBottom={"5px"}
                             color={"#fff"}
                         >
-                            {" "}
-                            Welcome to the Kenya National Health Data Dictionary{" "}
                         </Typography>
                         <Typography variant="h6" color={"#fff"}>
                             The reference point for health information standards supporting
@@ -175,14 +185,15 @@ export default function Home() {
                                                 alignItems: "center",
                                                 justifyContent: "space-between",
                                                 my: { xs: "1", md: "2" },
-                                                px: 2,
-                                                py: 3,
+                                                px: 1,
+                                                py: 1,
                                                 borderRadius: "5px",
                                                 backgroundColor: "#fcfcfc",
                                                 border: "1px solid #ccc",
                                                 borderRadius: "8px",
-                                                ":hover": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#1651B6' },
-                                                ":active": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#1651B6' }
+                                                ":hover": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#FA8072' },
+                                                ":active": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#FA8072' },
+                                                color: '#1651B6',
                                             }}
                                             onClick={ev => {
                                                 ev.preventDefault()
@@ -312,7 +323,7 @@ export default function Home() {
                 >
                     <Box>
                         <img
-                            src="/assets/images/MoHLog.png"
+                            src="/assets/images/image.png"
                             alt="MoH KNHTS"
                             width={"auto"}
                             height={60}
