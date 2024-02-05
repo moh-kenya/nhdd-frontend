@@ -51,6 +51,7 @@ export default function Home() {
         { id: "hrh", name: "Human Resources for Health (HRH)", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
         { id: "devices-infra", name: "Medical Devices Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
         { id: "supply-chain", name: "Supplies Chain Management", icon: "car", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
+        { id: "functioning-disability", name: "Functioning Disability", icon: "disability", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },
     ]);
 
     const handleTabChange = (event, newValue) => {
@@ -88,7 +89,7 @@ export default function Home() {
                         sx={{ px: { xs: "1em", md: "2em" }, py: { xs: "1em", md: "2em" } }}
                     >
                         <Typography
-                            variant="h3"
+                            variant="h4"
                             sx={{ display: { xs: "none", md: "flex" } }}
                             fontWeight={"bold"}
                             marginBottom={"5px"}
@@ -183,7 +184,8 @@ export default function Home() {
                                                 display: "flex",
                                                 flexDirection: "row",
                                                 alignItems: "center",
-                                                justifyContent: "space-between",
+                                                justifyContent: "flex-start",
+                                                gap: 1,
                                                 my: { xs: "1", md: "2" },
                                                 px: 1,
                                                 py: 1,
@@ -200,20 +202,20 @@ export default function Home() {
                                                 router.push(`/orgs/MOH-KENYA/domains/${domain.id}`)
                                             }}
                                         >
-                                            <Box sx={{display: 'flex', flexDirection: 'column'}}>
-                                                <Typography variant="h6">{domain.name}</Typography>
-                                                <div style={{display: 'flex', gap: '1em'}}>
-                                                    <span style={{color: '#777', fontSize: '0.9em'}}>Subdomains: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_subdomains) }</b></span>
-                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}> | </span> */}
-                                                    <span style={{color: '#777', fontSize: '0.9em'}}>Concepts: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_concepts) }</b></span>
-                                                </div>
-                                            </Box>
-                                            <Image
+                                           <Image
                                                 src={"/assets/images/" + domain.icon + ".png"}
                                                 alt={domain.name}
                                                 width={50}
                                                 height={50}
                                             />
+                                            <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                                                <Typography variant="h6">{domain.name}</Typography>
+                                                <div style={{display: 'flex', gap: '1em'}}>
+                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}>Subdomains: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_subdomains) }</b></span> */}
+                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}> | </span> */}
+                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}>Concepts: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_concepts) }</b></span> */}
+                                                </div>
+                                            </Box>
                                         </Box>
                                     ))}
                                     <Box
@@ -259,9 +261,9 @@ export default function Home() {
                         display: "flex",
                         flexGrow: 1,
                         flexDirection: { xs: "column", md: "row" },
-                        px: { xs: "1em", md: "2em" },
-                        py: { xs: "2em", md: "3em" },
-                        gap: 3,
+                        px: { xs: "1em", md: "0.5em" },
+                        py: { xs: "2em", md: "0.5em" },
+                        gap: 1,
                     }}
                 >
                     <Box
@@ -272,11 +274,11 @@ export default function Home() {
                             gap: 2,
                         }}
                     >
-                        <Typography variant="h4" color={"#fff"}>
+                        <Typography variant="h8" color={"#fff"}>
                             {" "}
                             Can't find what you're looking for?{" "}
                         </Typography>
-                        <Typography variant="h6" color={"#fff"}>
+                        <Typography variant="h8" color={"#fff"}>
                             {" "}
                             You can submit a request for a concept to be added, or visit our{" "}
                             <Link href={"/support"} style={{ color: "skyblue" }}>
