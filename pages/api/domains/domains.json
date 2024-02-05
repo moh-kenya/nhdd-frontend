@@ -1,0 +1,75 @@
+[
+    {
+        "id": "diagnostic",
+        "name": "Diagnostic Health Information",
+        "apiUrls": [
+            "/orgs/WHO/sources/ICD-11-WHO/"
+        ],
+        "icon": "microscope",
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=chapter",
+            "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
+        }
+    },
+    {
+        "id": "hpt",
+        "name": "Health Products and Technologies (HPT)",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/medicines/",
+            "/orgs/MOH-KENYA/sources/lab-supplies/"
+        ],
+        "icon": "devices",
+        "metadata": {}
+    },
+    {
+        "id": "investigations",
+        "name": "Investigations (Lab and Imaging)",
+        "apiUrls": [],
+        "icon": "stethoscope",
+        "metadata": {}
+    },
+    {
+        "id": "procedures",
+        "name": "Procedures and Services",
+        "apiUrls": [],
+        "icon": "syringe",
+        "metadata": {}
+    },
+    {
+        "id": "billing",
+        "name": "Billing & eClaims Management",
+        "apiUrls": [],
+        "icon": "finance",
+        "metadata": {}
+    },
+    {
+        "id": "hrh",
+        "name": "Human Resources for Health (HRH)",
+        "apiUrls": [],
+        "icon": "doctor",
+        "metadata": {}
+    },
+    {
+        "id": "devices",
+        "name": "Medical Devices Infrastructure",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/KMHFL/"
+        ],
+        "icon": "devices",
+        "metadata": {}
+    },
+    {
+        "id": "supplies",
+        "name": "Supplies Chain Management",
+        "apiUrls": [],
+        "icon": "medstore",
+        "metadata": {}
+    },
+    {
+        "id": "diasability",
+        "name": "Functioning Disability",
+        "apiUrls": [],
+        "icon": "disablility",
+        "metadata": {}
+    }
+]
