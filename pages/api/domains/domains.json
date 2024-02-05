@@ -3,7 +3,7 @@
         "id": "diagnostic",
         "name": "Diagnostic Health Information",
         "apiUrls": [
-            "/orgs/WHO/sources/ICD-11-WHO/"
+            "/orgs/MOH-KENYA/sources/ICD-11-WHO/"
         ],
         "icon": "microscope",
         "metadata": {

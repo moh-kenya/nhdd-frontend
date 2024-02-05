@@ -17,9 +17,8 @@ import Link from 'next/link';
 import { SearchRounded, SearchTwoTone } from '@mui/icons-material';
 
 const pages = [
-    {name: 'Concepts', link: '/search'},
     {name: 'Domains',  link: '/orgs/MOH-KENYA/domains'},
-    {name: 'Organisation Units',  link: '/orgs/'},
+    {name: 'Organisations',  link: '/orgs'},
     {name: 'Announcements',  link: '/announcements'},
     {name: 'Resources', link: '/resources'},
 ];
@@ -51,7 +50,7 @@ function NavBar() {
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                         <Link href={'/'}>
-                            <img src="/assets/images/MoHLog.png" alt="MoH KNHTS" width={'auto'} height={50} />
+                            <img src="/assets/images/image.png" alt="MoH KNHTS" width={'auto'} height={60} />
                         </Link>
                     </Box>
 

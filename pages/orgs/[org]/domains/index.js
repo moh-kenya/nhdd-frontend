@@ -24,7 +24,7 @@ function OrgDomainsList() {
             })
         }
         return () => mounted = false
-    }, [])
+    }, [router])
 
 
     return (
@@ -56,9 +56,9 @@ function OrgDomainsList() {
                             <Link href={`/orgs/${org}/domains/${domain.id}`} style={{ textDecoration: 'none', color: '#1651B6', display: 'flex', width: '100%' }} title={domain.name}>
                                 <Typography variant="h5" m={0} align="left" fontWeight={'semibold'} color="text.primary" sx={{ width: '100%', ":hover": { color: '#1651B6', textDecoration: 'underline' } }} gutterBottom> {domain.name} </Typography>
                             </Link>
-                            {domain.apiUrls?.length > 0 ? <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
-                                <span style={{ fontWeight: '500' }}>Primary source:</span> {domain.apiUrls.map((domain_api, index2) => {
-                                    return <span key={domain_api} className='text-sky-800'>{domain_api},</span>
+                            {domain.sources_data?.filter(d=>{return d && JSON.stringify(d) != '[]'})?.length > 0 ? <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
+                                <span style={{ fontWeight: '500' }}>Source(s):</span> {domain.sources_data.map((src, index2) => {
+                                    return <span key={'i'+index2} className='text-sky-800'>{src?.name || ''}</span>
                                 })}
                             </Box> : <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
                                 <span style={{ fontWeight: '500' }}>&nbsp;</span>
