@@ -183,7 +183,8 @@ export default function Home() {
                                                 display: "flex",
                                                 flexDirection: "row",
                                                 alignItems: "center",
-                                                justifyContent: "space-between",
+                                                justifyContent: "flex-start",
+                                                gap: 1,
                                                 my: { xs: "1", md: "2" },
                                                 px: 1,
                                                 py: 1,
@@ -209,9 +210,9 @@ export default function Home() {
                                             <Box sx={{display: 'flex', flexDirection: 'column'}}>
                                                 <Typography variant="h6">{domain.name}</Typography>
                                                 <div style={{display: 'flex', gap: '1em'}}>
-                                                    <span style={{color: '#777', fontSize: '0.9em'}}>Subdomains: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_subdomains) }</b></span>
+                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}>Subdomains: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_subdomains) }</b></span> */}
                                                     {/* <span style={{color: '#777', fontSize: '0.9em'}}> | </span> */}
-                                                    <span style={{color: '#777', fontSize: '0.9em'}}>Concepts: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_concepts) }</b></span>
+                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}>Concepts: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_concepts) }</b></span> */}
                                                 </div>
                                             </Box>
                                         </Box>
