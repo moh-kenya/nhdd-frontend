@@ -200,6 +200,12 @@ export default function Home() {
                                                 router.push(`/orgs/MOH-KENYA/domains/${domain.id}`)
                                             }}
                                         >
+                                           <Image
+                                                src={"/assets/images/" + domain.icon + ".png"}
+                                                alt={domain.name}
+                                                width={50}
+                                                height={50}
+                                            />
                                             <Box sx={{display: 'flex', flexDirection: 'column'}}>
                                                 <Typography variant="h6">{domain.name}</Typography>
                                                 <div style={{display: 'flex', gap: '1em'}}>
@@ -208,12 +214,6 @@ export default function Home() {
                                                     <span style={{color: '#777', fontSize: '0.9em'}}>Concepts: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_concepts) }</b></span>
                                                 </div>
                                             </Box>
-                                            <Image
-                                                src={"/assets/images/" + domain.icon + ".png"}
-                                                alt={domain.name}
-                                                width={50}
-                                                height={50}
-                                            />
                                         </Box>
                                     ))}
                                     <Box
