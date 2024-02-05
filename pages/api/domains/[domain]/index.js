@@ -29,6 +29,9 @@ export default async function handler(req, res) {
                     let subdomain_url = API_BASE_URL + '/concepts/' + '?' + domainDetail.metadata.subdomainQueryParam
                     console.log("subdomain_url ", subdomain_url)
                     const subdomainResponse = await fetch(subdomain_url)
+                    if(subdomainResponse.status !== 200) {
+                        res.status(subdomainResponse.status).json({ message: 'Subdomains not found' });
+                    }
                     const subdomainData = await subdomainResponse.json()
                     data.subdomains = subdomainData
                 }

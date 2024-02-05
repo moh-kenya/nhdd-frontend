@@ -27,7 +27,7 @@ function ConceptDetail() {
     isLoading,
   } = getConceptDetail(org, source, concept);
 
-  console.log("---conceptDetal", conceptDetail)
+  // console.log("---conceptDetal", conceptDetail)
 
   const conceptDetail1 = {
     uuid: "231999",
@@ -456,41 +456,25 @@ function ConceptDetail() {
             {" "}
             {/* breadcrumb: org > source > domain > subdomain > concept */}
             <Link
-              href={"/"}
+              href={`orgs/${org}`}
               style={{ textDecoration: "none", color: "#1651B6" }}
               title="Org"
               className="breadcrumb-item"
             >
-              Org
+              {org}
             </Link>
             <Link
-              href={"/"}
+              href={`orgs/${org}/sources/${source}`}
               style={{ textDecoration: "none", color: "#1651B6" }}
               title="Source"
               className="breadcrumb-item"
             >
-              Source
-            </Link>
-            <Link
-              href={"/"}
-              style={{ textDecoration: "none", color: "#1651B6" }}
-              title="Domain"
-              className="breadcrumb-item"
-            >
-              Domain
-            </Link>
-            <Link
-              href={"/"}
-              style={{ textDecoration: "none", color: "#1651B6" }}
-              title="Subdomain"
-              className="breadcrumb-item"
-            >
-              Subdomain
+              {source}
             </Link>
             <span
               title="Concept ID"
               className="breadcrumb-item"
-              style={{ textDecoration: "none", color: "#1651B6" }}
+              style={{ textDecoration: "none", color: "#777" }}
             >
               {conceptDetail.id}
             </span>

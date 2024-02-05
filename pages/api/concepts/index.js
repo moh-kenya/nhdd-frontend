@@ -15,6 +15,11 @@ export default async function handler(req, res) {
     const response = await fetch(url)
     // console.log('response', response)
 
+      if (response.status !== 200) {
+          res.status(404).json({ message: 'Concepts not found' });
+          return
+      }
+
     const data = await response.json()
     // console.log('data', data)
     concepts = data

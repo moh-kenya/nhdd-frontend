@@ -24,8 +24,10 @@ export default async function handler(req, res) {
                     apiurl = apiurl.slice(0, -1)
                 }
                 const response = await fetch(API_BASE_URL + apiurl)
-                const data = await response.json()
-                domain_data.push(data)
+                if (response.status !== 200) {
+                    const data = await response.json()
+                    domain_data.push(data)
+                }
             }
             if (domain_urls.length === 1) domain_data = domain_data[0]
             domainDetail.data = domain_data
