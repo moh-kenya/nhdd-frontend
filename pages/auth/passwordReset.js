@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function ForgotPassword({ onForgotPassword, onCancel }) {
   const [newPassword, setNewPassword] = useState('');
@@ -125,7 +123,6 @@ function ForgotPassword({ onForgotPassword, onCancel }) {
         <p>
         <Link href="/">Back to Home</Link>        
             <a style={{ color: '#1651B6', textDecoration: 'underline' }}></a>
-            <FontAwesomeIcon icon={faArrowLeft} style={{ marginRight: '5px' }} />
         
         </p>
       </div>
