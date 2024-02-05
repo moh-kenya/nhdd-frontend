@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
+import Link from 'next/link';
 
 function OrgDomainsList() {
     const router = useRouter();
@@ -11,18 +12,41 @@ function OrgDomainsList() {
     const [domainData, setDomainData] = useState([]);
     const [subDomainData, setSubDomainData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingConcepts, setIsLoadingConcepts] = useState(true);
+    const [concepts, setConcepts] = useState([]);
+    const [selectedSubdomain, setSelectedSubdomain] = useState(null);
+
+    const fetchConcepts = (subdomain) => {
+        setIsLoadingConcepts(true);
+        let url = '/api/concepts?domain=' + domain;
+        if (subdomain) url = url + '&subdomain=' + subdomain;
+        fetch(url)
+            .then((d) => d.json())
+            .then((data) => {
+                if (data) {
+                    setConcepts(data);
+                    setIsLoadingConcepts(false);
+                }
+            })
+            .catch((err) => {
+                console.error('error::', err);
+                setIsLoadingConcepts(false);
+            });
+    };
 
     useEffect(() => {
         let mounted = true;
 
         if (mounted && domain) {
-            fetch('/api/domains/' + 'diagnostic')
+            fetch('/api/domains/' + domain + '?includeConcepts=true')
                 .then((d) => d.json())
                 .then((data) => {
                     if (data) {
                         setDomainData(data);
                         setSubDomainData(data.data.subdomains);
+                        setConcepts(data.data.concepts);
                         setIsLoading(false)
+                        setIsLoadingConcepts(false)
                     }
                 })
                 .catch((err) => {
@@ -33,14 +57,24 @@ function OrgDomainsList() {
         return () => (mounted = false);
     }, [router.query]);
 
-    const handleDrawerItemClick = (subdomain) => {
-        console.log('Selected Subdomain:', subdomain);
+    const onSubdomainClick = (subdomain) => {
+        // console.log('Selected Subdomain:', subdomain);
+        setSelectedSubdomain(subdomain.id);
+        fetchConcepts(subdomain.id);
     };
 
     return (
         <>
+            <Head>
+                <title>MOH KNHTS | Domain - {domain}</title>
+                <meta name="description" content="MOH KNHTS" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-            {isLoading ? <CircularProgress /> :
+            {isLoading ? <Box sx={{ width: '100%', height: '96vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <CircularProgress />
+            </Box> :
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Box sx={{ width: '100%', py: { xs: 2, md: 2 }, px: { xs: 1, md: 2 } }}>
                         <Box sx={{ bgcolor: 'white', width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -59,32 +93,53 @@ function OrgDomainsList() {
                             <Box></Box>
                         </Box>
                         <hr />
-                        <Box sx={{ display: 'flex', overflow: 'hidden' }}>
-                            {/* <Drawer variant='permanent' anchor="bottom" open hideBackdrop
-                            sx={{
-                                width: '250px',
-                                zIndex: -1,
-                                flexShrink: 0,
-                                [`& .MuiDrawer-paper`]: { width: '250px', boxSizing: 'border-box' },
-                            }}
-                        > */}
-
-                            <Box sx={{ width: { xs: '100%', sm: '300px', p: '10px 2px', borderRadius: '5px' } }} className='bg-stone-100'>
-                                <Typography variant='h5' sx={{m: '8px 5px', fontWeight: 'bold'}}>Subdomains: </Typography>
+                        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 3fr' }, gap: 2, width: '100%', py: 2 }}>
+                            <Box sx={{ p: '10px 2px', borderRadius: '5px' }} className='bg-stone-100'>
+                                <Typography variant='h5' sx={{ m: '8px 5px', fontWeight: 'bold' }}>Subdomains: </Typography>
                                 <Divider />
-                                <List sx={{backgroundColor: 'transparent'}}>
+                                <List>
                                     {subDomainData?.map((subdomain) => (
                                         <ListItem key={subdomain.id} disablePadding>
-                                            <ListItemButton onClick={() => handleDrawerItemClick(subdomain)}>
-                                                <ListItemText sx={{fontSize: '0.8em', color: 'text.primary', ":hover": {color: '#1651B6'}}} primary={subdomain.display_name} />
+                                            <ListItemButton onClick={() => onSubdomainClick(subdomain)} selected={selectedSubdomain == subdomain.id}>
+                                                <ListItemText sx={{ fontSize: '0.8em', color: 'text.primary', ":hover": { color: '#1651B6' }, "&active": { fontWeight: 'bold' } }} primary={subdomain.display_name} />
                                             </ListItemButton>
                                         </ListItem>
                                     ))}
                                 </List>
                                 <Divider />
                             </Box>
-                            {/* </Drawer> */}
-                            <Box sx={{ flexGrow: 1, backgroundColor: 'white', padding: '16px' }}>
+
+                            <Box sx={{ backgroundColor: 'white', padding: '16px' }}>
+                                {/* {JSON.stringify(concepts)} */}
+                                {isLoadingConcepts ? <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <CircularProgress />
+                                </Box> : (
+                                    <>
+                                        {concepts && concepts.length > 0 ? (<Box>
+                                            <Typography variant='h5' sx={{ m: '8px 5px', fontWeight: 'bold' }}>{selectedSubdomain && subDomainData?.find(sd => { return sd && sd.id == selectedSubdomain })?.display_name || ''} Concepts: </Typography>
+                                            <Divider />
+                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                                                {concepts.map((concept, index) => (
+                                                    <Box key={concept.id} sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', padding: '10px', margin: '5px', borderRadius: '5px', backgroundColor: 'white', boxShadow: '0 0 5px 0 rgba(0,0,0,0.1)' }}>
+                                                        <Link 
+                                                        href={concept.url}
+                                                        // href={`/orgs/${org}/domains/${domain}/concepts/${concept.id}`}
+                                                        passHref style={{textDecoration: 'none'}}>
+                                                            <Typography variant='h6' className='text-blue-800' sx={{ m: '8px 5px', fontWeight: '500', ":hover": { textDecoration: 'underline', cursor: 'pointer' } }}><small>{index + 1}.</small> {concept.display_name}</Typography>
+                                                        </Link>
+                                                        <Box sx={{ display: 'flex', gap: 2, px: { xs: 1, sm: 2 }, color: 'GrayText' }}>
+                                                            <span>ID: <b className='text-black'>{concept.id}</b></span>
+                                                            <span>UUID: <b className='text-black'>{concept.uuid}</b></span>
+                                                            <span>Class: <b className='text-black'>{concept.concept_class}</b></span>
+                                                            <span>Version: <b className='text-black'>{concept.version}</b></span>
+                                                        </Box>
+                                                        {/* <pre style={{whiteSpace: 'pre-wrap'}}>{JSON.stringify(concept,null,2)}</pre> */}
+                                                    </Box>
+                                                ))}
+                                            </Box>
+                                        </Box>) : <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}><Typography variant='h6' sx={{ m: '8px 5px', fontWeight: 'semibold' }}>No concepts found</Typography></Box>}
+                                    </>
+                                )}
                             </Box>
                         </Box>
                     </Box>
