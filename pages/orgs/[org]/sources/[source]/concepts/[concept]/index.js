@@ -27,7 +27,6 @@ function ConceptDetail() {
     isLoading,
   } = getConceptDetail(org, source, concept);
 
-  console.log("---conceptDetal", conceptDetail)
 
   const conceptDetail1 = {
     uuid: "231999",
@@ -464,7 +463,7 @@ function ConceptDetail() {
               Org
             </Link>
             <Link
-              href={"/"}
+               href={`/orgs/[orgs]/sources/${source}`}
               style={{ textDecoration: "none", color: "#1651B6" }}
               title="Source"
               className="breadcrumb-item"
