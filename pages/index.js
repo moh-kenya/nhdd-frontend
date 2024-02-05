@@ -158,7 +158,7 @@ export default function Home() {
                             <Box
                                 sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
                             >
-                                <Typography variant="h5">Concept Dictionary</Typography>
+                                <Typography variant="h5">Concept Domains</Typography>
                                 <Box
                                     sx={{
                                         display: "grid",
@@ -312,7 +312,7 @@ export default function Home() {
                 >
                     <Box>
                         <img
-                            src="/assets/images/knhdd.png"
+                            src="/assets/images/MoHLog.png"
                             alt="MoH KNHTS"
                             width={"auto"}
                             height={60}
