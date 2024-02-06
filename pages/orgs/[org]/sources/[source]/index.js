@@ -23,7 +23,7 @@ function SourceConcepts() {
   ];
   const handleClick = (params)=>{
     const rowId = params.id;
-    router.push(`/orgs/${params.row.owner}/sources/${params.row.source}/concepts/${rowId}`);
+    router.push(`/orgs/${params?.row?.owner}/sources/${params?.row?.source}/concepts/${rowId}`);
    
   }
 

@@ -38,7 +38,7 @@ function SourceList(props) {
   };
   const handleClick = (params) =>{
     const rowId = params.id;
-    router.push(`/orgs/${params.row.owner}/sources/${rowId}`);
+    router.push(`/orgs/${params?.row?.owner}/sources/${rowId}`);
   }
   const filteredData = Object.values(data).filter((row) =>
     Object.values(row).some(
