@@ -99,7 +99,7 @@ function SearchResults() {
                             headerName: key
                                 .replace(/_/g, " ") // Replace underscores with spaces
                                 .split(" ")
-                                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                .map((word) => word.toUpperCase())
                                 .join(" "),
                             width: 200,
                             valueGetter: (params) => {
