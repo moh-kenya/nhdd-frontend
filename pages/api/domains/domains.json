@@ -8,7 +8,7 @@
         "icon": "microscope",
         "metadata": {
             "subdomainQueryParam": "conceptClass=chapter",
-            "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
         }
     },
     {
@@ -72,6 +72,15 @@
         "id": "supply-chain",
         "name": "Supplies Chain Management",
         "apiUrls": [],
+        "icon": "medstore",
+        "metadata": {}
+    },
+    {
+        "id": "community-health",
+        "name": "Community Health",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/MOHD/"
+        ],
         "icon": "medstore",
         "metadata": {}
     },

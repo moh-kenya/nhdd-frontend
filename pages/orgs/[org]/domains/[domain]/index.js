@@ -18,8 +18,8 @@ function OrgDomainsList() {
 
     const fetchConcepts = (subdomain) => {
         setIsLoadingConcepts(true);
-        let url = '/api/concepts?domain=' + domain;
-        if (subdomain) url = url + '&subdomain=' + subdomain;
+        let url = '/api/concepts' //    ?domain=' + domain;
+        if (subdomain) url = url + '?subdomainurl=' + subdomain;
         fetch(url)
             .then((d) => d.json())
             .then((data) => {
@@ -56,11 +56,11 @@ function OrgDomainsList() {
 
         return () => (mounted = false);
     }, [router.query]);
-
     const onSubdomainClick = (subdomain) => {
         // console.log('Selected Subdomain:', subdomain);
-        setSelectedSubdomain(subdomain.id);
-        fetchConcepts(subdomain.id);
+        setSelectedSubdomain(subdomain.url);
+        // fetchConcepts(subdomain.id);
+        fetchConcepts(subdomain.url);
     };
 
     return (
@@ -71,6 +71,10 @@ function OrgDomainsList() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
+            {/* <pre style={{whiteSpace: 'pre-line'}}>
+                {JSON.stringify(subDomainData)}
+            </pre> */}
 
             {isLoading ? <Box sx={{ width: '100%', height: '96vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <CircularProgress />
@@ -101,7 +105,7 @@ function OrgDomainsList() {
                                     {subDomainData?.map((subdomain) => (
                                         <ListItem key={subdomain.id} disablePadding>
                                             <ListItemButton onClick={() => onSubdomainClick(subdomain)} selected={selectedSubdomain == subdomain.id}>
-                                                <ListItemText sx={{ fontSize: '0.8em', color: 'text.primary', ":hover": { color: '#1651B6' }, "&active": { fontWeight: 'bold' } }} primary={subdomain.display_name} />
+                                                <ListItemText sx={{ fontSize: '0.8em', color: 'text.primary', ":hover": { color: '#1651B6' }, "&active": { fontWeight: 'bold' } }} primary={subdomain.id + ' - ' + subdomain.display_name} />
                                             </ListItemButton>
                                         </ListItem>
                                     ))}
@@ -120,6 +124,7 @@ function OrgDomainsList() {
                                             <Divider />
                                             <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                                                 {concepts.map((concept, index) => (
+                                                    concept.type=='Concept'?
                                                     <Box key={concept.id} sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', padding: '10px', margin: '5px', borderRadius: '5px', backgroundColor: 'white', boxShadow: '0 0 5px 0 rgba(0,0,0,0.1)' }}>
                                                         <Link 
                                                         href={concept.url}
@@ -134,7 +139,7 @@ function OrgDomainsList() {
                                                             <span>Version: <b className='text-black'>{concept.version}</b></span>
                                                         </Box>
                                                         {/* <pre style={{whiteSpace: 'pre-wrap'}}>{JSON.stringify(concept,null,2)}</pre> */}
-                                                    </Box>
+                                                    </Box>:null
                                                 ))}
                                             </Box>
                                         </Box>) : <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}><Typography variant='h6' sx={{ m: '8px 5px', fontWeight: 'semibold' }}>No concepts found</Typography></Box>}
