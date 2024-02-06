@@ -26,9 +26,10 @@ function Login() {
       });
   
       if (response.ok) {
-        console.log('Login successful');
-        alert('Login successful.');
-        router.push('/');
+        router.push('/user');
+        //console.log('Login successful');
+        // alert('Login successful.');
+        
       } else {
         console.log('Login failed');
         alert('Login failed. Please check your credentials and try again.');
