@@ -141,17 +141,6 @@
                         </Box>
                     </Box>
 
-                    <Typography
-                        variant="h4"
-                        my={4}
-                        textAlign={"center"}
-                        fontWeight={"bold"}
-                        marginBottom={"1spx"}
-                    >
-                        {" "}
-                        Terminology Resources{" "}
-                    </Typography>
-
                     <Box sx={{ width: "100%", typography: "body1" }}>
                         <TabContext value={activeTab}>
                             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -170,7 +159,7 @@
                                 <Box
                                     sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
                                 >
-                                    <Typography variant="h5">Concept Domains</Typography>
+                                    <Typography variant="h4">Concept Domains</Typography>
                                     <Box
                                         sx={{
                                             display: "grid",
@@ -242,14 +231,14 @@
                                 <Box
                                     sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
                                 >
-                                    <Typography variant="h5">Sources</Typography>
+                                    <Typography variant="h4">Sources</Typography>
                                 </Box>
                             </TabPanel>
                             <TabPanel value="3">
                                 <Box
                                     sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
                                 >
-                                    <Typography variant="h5">Collections</Typography>
+                                    <Typography variant="h4">Collections</Typography>
                                 </Box>
                             </TabPanel>
                         </TabContext>
