@@ -104,6 +104,9 @@ const mockSendResetEmail = (email) => {
               </div>
             ) : (
               <div>
+                <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}>
+                  Username or email address:
+                </label>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <img
                     src="/assets/images/email.png" 
@@ -122,6 +125,9 @@ const mockSendResetEmail = (email) => {
                 <br />
                 <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '18px' }}>
                   <span style={{ marginBottom: '5px', display: 'block' }}></span>
+                </label>
+                <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}>
+                  Password:
                 </label>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <img
@@ -152,7 +158,6 @@ const mockSendResetEmail = (email) => {
                     Forgot Password?
                   </a>
                 </div>
-         {/* Show the Sign In button only if the pop-up is closed */}
          {showSignInButton && (
                 <button
                   type="button"
