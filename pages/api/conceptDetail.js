@@ -10,7 +10,7 @@ export const getConceptDetail = (org, source, id) => {
         isError,
         mutate,
     } = useSWR(
-        `${API_BASE_URL}/orgs/${org}/sources/${source}/concepts/${id}`,
+        `${API_BASE_URL}/orgs/${org}/sources/${source}/concepts/${id}/`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
