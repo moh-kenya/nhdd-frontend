@@ -14,12 +14,14 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import PersonTwoTone from '@mui/icons-material/PersonTwoTone';
 import Link from 'next/link';
+import { SearchRounded, SearchTwoTone } from '@mui/icons-material';
 
 const pages = [
+    {name: 'About', link: '/auth/about'},
     {name: 'Domains',  link: '/orgs/MOH-KENYA/domains'},
     {name: 'Organisations',  link: '/orgs'},
-    {name: 'Announcements',  link: '/announcements'},
-    {name: 'Resources', link: '/resources'},
+    {name: 'Announcements',  link: '/auth/announcements'},
+    {name: 'Resources', link: '/auth/resources'},
 ];
 const settings = ['Profile', 'Help & FAQ', 'Logout'];
 

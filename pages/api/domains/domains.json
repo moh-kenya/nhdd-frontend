@@ -1,7 +1,7 @@
 [
     {
         "id": "diagnostics",
-        "name": "Diagnostic Health Information",
+        "name": "Classification of Diseases",
         "apiUrls": [
             "/orgs/WHO/sources/ICD-11-WHO/"
         ],
