@@ -43,7 +43,10 @@ function OrgsList() {
         typeof value === "string" && value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
+  const handleClick = (params) =>{
+    const rowId = params.id;
+    router.push(`/orgs/${rowId}/sources/`);
+  }
   return (
     <>
       <Head>
@@ -91,6 +94,7 @@ function OrgsList() {
               width: 200,
             };
           })}
+          onRowClick={handleClick}
           initialState={{
             pagination: { paginationModel: { pageSize: 25 } },
           }}
