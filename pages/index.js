@@ -43,7 +43,7 @@
             { id: "investigations", name: "Investigations (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
             {
                 id: "procedures-services",
-                name: "Procedures & Services",
+                name: "Medical Procedures",
                 icon: "surgery", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
             },
             {
