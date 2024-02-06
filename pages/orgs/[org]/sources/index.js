@@ -9,10 +9,9 @@ import { Search } from "@mui/icons-material";
 
 function SourceList(props) {
   const router = useRouter();
-  const { data, isLoading, isError, mutate } = getSources();
+  const { data, isLoading, isError, mutate } = getSources(router.query.org);
   const columns = ["id", "name", "type", "url"];
   const [searchTerm, setSearchTerm] = useState("");
-
   if (isLoading) {
     return (
       <Box sx={{ pt: 0.5 }}>
@@ -39,7 +38,7 @@ function SourceList(props) {
   };
   const handleClick = (params) =>{
     const rowId = params.id;
-    router.push(`/orgs/[orgs]/sources/${rowId}`);
+    router.push(`/orgs/${params.row.owner}/sources/${rowId}`);
   }
   const filteredData = Object.values(data).filter((row) =>
     Object.values(row).some(

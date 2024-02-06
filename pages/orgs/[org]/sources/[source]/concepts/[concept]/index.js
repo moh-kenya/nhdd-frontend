@@ -148,7 +148,7 @@ function ConceptDetail() {
             {" "}
             {/* breadcrumb: org > source > domain > subdomain > concept */}
             <Link
-              href={`orgs/${org}`}
+              href={`/orgs/${org}/sources/`}
               style={{ textDecoration: "none", color: "#1651B6" }}
               title="Org"
               className="breadcrumb-item"
@@ -156,7 +156,7 @@ function ConceptDetail() {
               {org}
             </Link>
             <Link
-              href={`/orgs/[orgs]/sources/${source}`}
+              href={`/orgs/${org}/sources/${source}`}
               style={{ textDecoration: "none", color: "#1651B6" }}
               title="Source"
               className="breadcrumb-item"

@@ -6,10 +6,10 @@ import { getSourceConcepts } from "../../../../../pages/api/sources";
 
 function SourceConcepts() {
   const router = useRouter();
-  const { source } = router.query;
+  const { source, org } = router.query;
   const [isLoading, setIsLoading] = useState(true);
 
-  const { data, isError } = getSourceConcepts(source);
+  const { data, isError } = getSourceConcepts(source,org);
 
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
@@ -21,6 +21,11 @@ function SourceConcepts() {
     { field: "version_created_on", headerName: "Version Created On", width: 200 },
     { field: "version_updated_on", headerName: "Version Updated On", width: 200 },
   ];
+  const handleClick = (params)=>{
+    const rowId = params.id;
+    router.push(`/orgs/${params.row.owner}/sources/${params.row.source}/concepts/${rowId}`);
+   
+  }
 
   useEffect(() => {
     if (data?.length>0) {
@@ -63,7 +68,7 @@ function SourceConcepts() {
                 Concepts Table
               </Typography>
               <div style={{  width: "100%" }}>
-                <DataGrid rows={data} columns={columns} pageSize={10} />
+                <DataGrid rows={data} columns={columns} onRowClick ={handleClick} pageSize={10} />
               </div>
             </Box>
           </Box>
