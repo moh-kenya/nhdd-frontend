@@ -122,7 +122,7 @@
                                 }}
                                 id="searchTerm"
                                 name="searchTerm"
-                                label="Search the Terminology Services"
+                                placeholder="Search the Terminology Services"
                                 variant="outlined"
                                 color={"info"}
                             />
@@ -158,7 +158,6 @@
                                 <Box
                                     sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
                                 >
-                                    <Typography variant="h4">Concept Domains</Typography>
                                     <Box
                                         sx={{
                                             display: "grid",
