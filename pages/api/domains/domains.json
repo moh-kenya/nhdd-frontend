@@ -81,7 +81,7 @@
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/MOHD/"
         ],
-        "icon": "people",
+        "icon": "community",
         "metadata": {}
     },
     {
@@ -90,7 +90,7 @@
         "apiUrls": [
             "/orgs/WHO/sources/ICF/"
         ],
-        "icon": "disablility",
+        "icon": "disability",
         "metadata": {}
     }
 ]
