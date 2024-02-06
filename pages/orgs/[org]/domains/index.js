@@ -24,7 +24,7 @@ function OrgDomainsList() {
             })
         }
         return () => mounted = false
-    }, [router])
+    }, [router.query])
 
 
     return (

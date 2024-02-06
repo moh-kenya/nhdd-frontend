@@ -417,6 +417,8 @@ function ConceptDetail() {
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
+
+
         {/* --------- <HERO ---------- */}
         <Box
           maxWidth={1280}
@@ -509,28 +511,28 @@ function ConceptDetail() {
                 View other names / synonyms
               </button>
               <div style={{ padding: 10 }}>
-                  <h4>Synonyms</h4>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 3,
-                      my: 2,
-                    }}
-                  >
-                    {conceptDetail?.names?.map((name, index) => {
-                      return (
-                        <p key={index} style={{ margin: 0 }}>
-                          {" "}
-                          <em style={{ color: "#777", margin: "0 5px 0 0" }}>
-                            [{name.index}]
-                          </em>{" "}
-                          <b>{name.uuid}</b> {name.name}
-                        </p>
-                      );
-                    })}
-                  </div>
+                <h4>Synonyms</h4>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 3,
+                    my: 2,
+                  }}
+                >
+                  {conceptDetail?.names?.map((name, index) => {
+                    return (
+                      <p key={index} style={{ margin: 0 }}>
+                        {" "}
+                        <em style={{ color: "#777", margin: "0 5px 0 0" }}>
+                          [{name.index}]
+                        </em>{" "}
+                        <b>{name.uuid}</b> {name.name}
+                      </p>
+                    );
+                  })}
                 </div>
+              </div>
               <Dialog
                 onClose={() => setSynonymsDialogOpen(false)}
                 open={synonymsDialogOpen}
@@ -564,7 +566,7 @@ function ConceptDetail() {
 
           {/* Descriptions */}
           {conceptDetail?.descriptions &&
-          conceptDetail?.descriptions?.length > 0 ? (
+            conceptDetail?.descriptions?.length > 0 ? (
             <Box
               sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }}
             >
@@ -663,7 +665,7 @@ function ConceptDetail() {
               Attributes
             </Typography>
             {conceptDetail?.extras &&
-            Object.keys(conceptDetail?.extras).length > 0 ? (
+              Object.keys(conceptDetail?.extras).length > 0 ? (
               <Box
                 sx={{ display: "flex", flexDirection: "column", gap: 0, my: 2 }}
               >
@@ -689,10 +691,10 @@ function ConceptDetail() {
                       </span>
 
                       {typeof conceptDetail?.extras[key] == "string" ||
-                      typeof conceptDetail?.extras[key] == "number" ||
-                      typeof conceptDetail?.extras[key] == "boolean" ? (
+                        typeof conceptDetail?.extras[key] == "number" ||
+                        typeof conceptDetail?.extras[key] == "boolean" ? (
                         <span>
-                          {/* {conceptDetail?.extras[key]?.startsWith("http") ? (
+                          {conceptDetail?.extras[key]?.startsWith("http") ? (
                             <a
                               href={conceptDetail?.extras[key]}
                               target="_blank"
@@ -706,7 +708,7 @@ function ConceptDetail() {
                             </a>
                           ) : (
                             <span>{conceptDetail?.extras[key]}</span>
-                          )} */}
+                          )}
                         </span>
                       ) : (
                         <code

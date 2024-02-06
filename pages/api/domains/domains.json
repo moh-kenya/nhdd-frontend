@@ -24,16 +24,26 @@
     {
         "id": "investigations",
         "name": "Investigations (Lab and Imaging)",
-        "apiUrls": [],
+        "apiUrls": [
+            "/orgs/REGENSTREIF-INSTITUTE/sources/LOINC/"
+        ],
         "icon": "stethoscope",
-        "metadata": {}
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=labTest",
+            "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
         "id": "procedures",
         "name": "Procedures and Services",
-        "apiUrls": [],
+        "apiUrls": [
+            "/orgs/WHO/sources/ICHI/"
+        ],
         "icon": "syringe",
-        "metadata": {}
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=procedure",
+            "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
         "id": "billing",
@@ -53,7 +63,7 @@
         "id": "devices",
         "name": "Medical Devices Infrastructure",
         "apiUrls": [
-            "/orgs/MOH-KENYA/sources/KMHFL/"
+            
         ],
         "icon": "devices",
         "metadata": {}
@@ -66,9 +76,11 @@
         "metadata": {}
     },
     {
-        "id": "diasability",
+        "id": "functioning-disablility",
         "name": "Functioning Disability",
-        "apiUrls": [],
+        "apiUrls": [
+            "/orgs/WHO/sources/ICF/"
+        ],
         "icon": "disablility",
         "metadata": {}
     }
