@@ -324,9 +324,9 @@ function ConceptDetail() {
                                     <div key={index} style={{ display: "flex", alignItems: "center", gap: 3, margin: "7px 0", }} >
                                         {index + 1}. <Chip size="small" variant="filled" color="primary" label={version?.uuid} onClick={(ev) => {
                                             ev.preventDefault();
-                                            router.push(
-                                                `/orgs/${org}/sources/${source}/concepts/${concept}/${version?.uuid}`
-                                            );
+                                            // router.push(
+                                            //     `/orgs/${org}/sources/${source}/concepts/${concept}/${version?.uuid}`
+                                            // );
                                         }}
                                         />
                                     </div>
