@@ -386,17 +386,6 @@
                             }}
                             px={2}
                         >
-                            <Link
-                                style={{
-                                    fontWeight: "500",
-                                    textDecoration: "none",
-                                    color: "#334",
-                                    fontSize: "1.1em",
-                                }}
-                                href={"/"}
-                            >
-                                <GitHub />
-                            </Link>
                         </Box>
                     </Box>
                     <Box
