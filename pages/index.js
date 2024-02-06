@@ -245,7 +245,7 @@
                     </Box>
 
                     <Box
-                        style={{ backgroundColor: "#121212" }}
+                        style={{ backgroundColor: "#1651B6" }}
                         borderRadius={"8px"}
                         sx={{
                             display: "flex",
