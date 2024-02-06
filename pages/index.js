@@ -54,6 +54,7 @@
             { id: "medical-infrastructure", name: "Medical Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
             { id: "supply-chain", name: "Supplies Chain Management", icon: "car", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
             { id: "diasability", name: "Functioning Disability", icon: "disability", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },
+            { id: "/", name: "View all domains", icon: "all", "metadata": { number_of_subdomains: 299, number_of_concepts: 815 } },
         ]);
 
         const handleTabChange = (event, newValue) => {
@@ -206,22 +207,6 @@
                                                 </Box>
                                             </Box>
                                         ))}
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                flexDirection: "row",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                            }}
-                                        >
-                                            <Link
-                                                href="/orgs/MOH-KENYA/domains"
-                                                style={{ color: "#1651B6", textDecoration: "none" }}
-                                            >
-                                                {" "}
-                                                View all domains &hellip;{" "}
-                                            </Link>
-                                        </Box>
                                     </Box>
                                 </Box>
                             </TabPanel>
