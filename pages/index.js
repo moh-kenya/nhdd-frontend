@@ -31,10 +31,9 @@
     export default function Home() {
         const router = useRouter();
         const [activeTab, setActiveTab] = useState("1");
-        const [expandedContent, setExpandedContent] = useState(false);
 
         const [domains, setDomains] = useState([
-            { id: "diagnostics", name: "Diagnostic Information Health", icon: "stethoscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
+            { id: "diagnostics", name: "Classification of Diseases", icon: "stethoscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
             {
                 id: "products-technologies",
                 name: "Health Products and Technologies(HPT)",
@@ -108,24 +107,9 @@
                                 color={"#fff"}
                             >
                             </Typography>
-                            <Typography variant="" color={"#fff"}>
-        {expandedContent ? (
-            <>
-                The Ministry of Health (MoH) has taken steps to facilitate a more conducive environment for health information exchange. Systems within the sector need to communicate and interoperate, both within public and with private healthcare Health Information Services owners. This is to ensure that data is exchangeable and portable regardless of the system of origin and destination. To make this a reality, Terminology Services are an essential component as they provide a consistent, reliable set of terms for data sharing and communication. The Kenya National Health Terminology Service provides a centralized repository of terms to ensure accuracy and consistency and facilitate interoperability of data between systems.
-            </>
-        ) : (
-            <>
-                The Ministry of Health (MoH) has taken steps to facilitate a more conducive environment for health information exchange.<br></br>
-                Systems within the sector need to communicate and interoperate, both within public and with private healthcare <br></br> Health Information Services owners. This is to ensure that data is exchangeable and portable...{" "}
-                <span
-                    style={{ color: '#FFFFCC', cursor: 'pointer', fontWeight: 'bold'}}
-                    onClick={() => setExpandedContent(!expandedContent)}
-                >
-                    Read more
-                </span>
-            </>
-        )}
-    </Typography>
+                        <Typography variant="h6" color={"#fff"}>
+                            This is a platform which provides real-time electronic access to terminological resources and straightforward integration with <br></br>independent software platforms.
+                        </Typography>
                         </Box>
                         <Box width={{ sm : "70%" , md: "30%"}} sx={{ display: "flex" }} noValidate>
                             <TextField
@@ -340,14 +324,6 @@
                             gap: 2,
                         }}
                     >
-                        <Box>
-                            <img
-                                src="/assets/images/image.png"
-                                alt="MoH KNHTS"
-                                width={"auto"}
-                                height={60}
-                            />
-                        </Box>
                         <Box
                             sx={{
                                 flexGrow: 1,

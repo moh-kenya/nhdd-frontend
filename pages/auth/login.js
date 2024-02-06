@@ -7,7 +7,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [showForgotPassword, setShowForgotPassword] = useState(false); // New state
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showSignInButton, setShowSignInButton] = useState(true);
   const router = useRouter();
 
