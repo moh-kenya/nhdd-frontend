@@ -309,10 +309,9 @@ function ConceptDetail() {
                     {/* Memberships */}
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }}>
                         <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom > Memberships </Typography>
-                        <Box
-                            sx={{ display: "flex", flexDirection: "column", gap: 0, my: 2 }}
-                        >
-                            {/* TODO */}
+                        {/* TODO */}
+                        <Box sx={{ display: "flex", flexDirection: "column", gap: 0, px: 1, color: "#777", }} >
+                            <p style={{ margin: "5px 0" }}> None </p>
                         </Box>
                     </Box>
 
@@ -344,13 +343,13 @@ function ConceptDetail() {
 
                 {/* --------- <Sidebar ---------- */}
                 <Box sx={{ py: { xs: 2, md: 4 }, px: { xs: 1, md: 2 }, mt: { xs: 1, md: 3 } }} >
-                    <Typography variant="h5" m={0} align="left" fontWeight={"semibold"} gutterBottom>Related concepts</Typography>
+                    <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>Related concepts</Typography>
                     <TableContainer>
                         <Table size="small">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Code</TableCell>
-                                    <TableCell>Concept</TableCell>
+                                    <TableCell sx={{ textTransform: 'uppercase' }}>Code</TableCell>
+                                    <TableCell sx={{ textTransform: 'uppercase' }}>Concept</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -366,9 +365,9 @@ function ConceptDetail() {
                                                     <summary>Children</summary>
                                                     {concept?.entries?.map((child, index2) => {
                                                         return (
-                                                            <Box key={"c-"+index2} sx={{ ml: 2 }}>
-                                                                {index2+1}. <Link className="text-sky-700" href={`/orgs/${org}/sources/${source}/concepts/${child.id}`} style={{ textDecoration: 'none' }}>
-                                                                    {child.display_name || child.cascade_target_concept_name}
+                                                            <Box key={"c-" + index2} sx={{ ml: 2 }}>
+                                                                {index2 + 1}. <Link className="text-sky-700" href={`/orgs/${org}/sources/${source}/concepts/${child.id}`} style={{ textDecoration: 'none' }}>
+                                                                {child?.id} {child.display_name || child.cascade_target_concept_name}
                                                                 </Link>
                                                             </Box>
                                                         );
