@@ -42,19 +42,19 @@
             },
             { id: "investigations", name: "Investigations (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
             {
-                id: "procedures-services",
+                id: "procedures",
                 name: "Medical Procedures",
                 icon: "surgery", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
             },
             {
-                id: "billing-claims",
+                id: "billing",
                 name: "Billing & eClaims Management",
                 icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 },
             },
             { id: "hrh", name: "Human Resources for Health (HRH)", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
-            { id: "devices-infra", name: "Medical Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
+            { id: "medical-infrastructure", name: "Medical Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
             { id: "supply-chain", name: "Supplies Chain Management", icon: "car", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
-            { id: "functioning-disability", name: "Functioning Disability", icon: "disability", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },
+            { id: "diasability", name: "Functioning Disability", icon: "disability", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },
         ]);
 
         const handleTabChange = (event, newValue) => {

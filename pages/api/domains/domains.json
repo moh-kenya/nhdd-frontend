@@ -1,6 +1,6 @@
 [
     {
-        "id": "diagnostic",
+        "id": "diagnostics",
         "name": "Diagnostic Health Information",
         "apiUrls": [
             "/orgs/WHO/sources/ICD-11-WHO/"
@@ -12,7 +12,7 @@
         }
     },
     {
-        "id": "hpt",
+        "id": "products-technologies",
         "name": "Health Products and Technologies (HPT)",
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/medicines/",
@@ -30,7 +30,7 @@
     },
     {
         "id": "procedures",
-        "name": "Procedures and Services",
+        "name": "Medical Procedures",
         "apiUrls": [],
         "icon": "syringe",
         "metadata": {}
@@ -50,8 +50,8 @@
         "metadata": {}
     },
     {
-        "id": "devices",
-        "name": "Medical Devices Infrastructure",
+        "id": "medical-infrastructure",
+        "name": "Medical Infrastructure",
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/KMHFL/"
         ],
@@ -59,7 +59,7 @@
         "metadata": {}
     },
     {
-        "id": "supplies",
+        "id": "supply-chain",
         "name": "Supplies Chain Management",
         "apiUrls": [],
         "icon": "medstore",
