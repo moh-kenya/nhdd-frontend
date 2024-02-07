@@ -111,13 +111,19 @@ function NavBar({ session, loggedIn, user, pages }) {
                                     <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
                                         <MenuItem onClick={ev => {
                                             handleCloseUserMenu()
+                                            router.push('/user')
+                                        }}>
+                                            Dashboard
+                                        </MenuItem>
+                                        <MenuItem onClick={ev => {
+                                            handleCloseUserMenu()
                                             router.push('/auth/profile')
                                         }}>
                                             Profile
                                         </MenuItem>
                                         <MenuItem onClick={ev => {
                                             handleCloseUserMenu()
-                                            router.push('/auth/profile')
+                                            router.push('/help')
                                         }}>
                                             Help & FAQ
                                         </MenuItem>
