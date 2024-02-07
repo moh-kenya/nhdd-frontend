@@ -66,7 +66,7 @@ function OrgDomainsList() {
                     <Box maxWidth={1280} sx={{ width: '100%', p: 1, display: 'flex', flexDirection: 'column' }}>
 
                         {filteredData.map((domain, index) => {
-                            return <Box key={domain.id} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 1, my: 2, border: '1px solid #abc', p: 2, borderRadius: 3 }}>
+                            return <Box key={domain.id} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', gap: 1, my: 2, border: '1px solid #abc', p: 2, borderRadius: 3 }}>
                                 <Box sx={{ marginRight: 2 }}>
                                     <Image src={"/assets/images/" + domain.icon + ".png"} alt={domain.name} width={50} height={50}
                                     />
