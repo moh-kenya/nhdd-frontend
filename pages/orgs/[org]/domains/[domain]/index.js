@@ -76,6 +76,12 @@ function OrgDomainsList() {
                 <CircularProgress />
             </Box> :
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    {/* <hr />
+                    <details>
+                        <summary>Domain Data</summary>
+                        <pre style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(domainData, null, 2)}</pre>
+                    </details>
+                    <hr /> */}
                     <Box sx={{ width: '100%', py: 1, px: { xs: 1, md: 2 } }}>
                         <Box sx={{ bgcolor: 'white', width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
                             <button
@@ -109,7 +115,7 @@ function OrgDomainsList() {
                                 <Divider />
                             </Box>
 
-                            <Box sx={{ padding: '16px', maxHeight: {xs: 'auto', md: '75vh'}, overflowY: 'auto' }}>
+                            <Box sx={{ padding: '16px', maxHeight: { xs: 'auto', md: '75vh' }, overflowY: 'auto' }}>
                                 {/* {JSON.stringify(concepts)} */}
                                 {isLoadingConcepts ? <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                     <CircularProgress />
