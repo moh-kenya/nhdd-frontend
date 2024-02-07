@@ -49,7 +49,7 @@ function NavBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
+console.log(pathname)
     return (
         <AppBar position="static" color="default" variant="outlined">
             <Container maxWidth="xl">
@@ -85,7 +85,7 @@ function NavBar() {
                         </Box>
                     </Box>
 
-                    {pathname != '/' && <Box sx={{ display: 'flex', flexGrow: 1 }}>
+                    {pathname =='' || pathname == '/orgs/[org]/domains/[domain]' || pathname== '/orgs/[org]/sources/[source]/concepts/[concept]' && <Box sx={{ display: 'flex', flexGrow: 1 }}>
                         <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
                             <Link href={'/search'} style={{ color: '#667' }}> <SearchRounded /> </Link>
                         </Box>
