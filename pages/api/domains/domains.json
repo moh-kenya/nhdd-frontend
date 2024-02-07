@@ -23,7 +23,7 @@
     },
     {
         "id": "diagnostic-services",
-        "name": "diagnostic Services (Lab and Imaging)",
+        "name": "Diagnostic Services (Lab and Imaging)",
         "apiUrls": [
             "/orgs/REGENSTREIF-INSTITUTE/sources/LOINC/"
         ],

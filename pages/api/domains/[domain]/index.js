@@ -37,14 +37,24 @@ export default async function handler(req, res) {
                 }
                 if(req.query.includeConcepts){
                     // fetch concepts
-                    let concepts_url = API_BASE_URL + domain_urls[i] + 'concepts?limit=100'
+                    let concepts_url = API_BASE_URL + domain_urls[i] + 'concepts?limit=20&page='+(req.query.page || 1)
                     // console.log("concepts_url ", concepts_url)
                     const conceptsResponse = await fetch(concepts_url)
+                    
+                    const conceptspagecount = conceptsResponse.headers.get('pages')
+                    const conceptspagesize = conceptsResponse.headers.get('num_returned')
+                    const conceptscurrentpage = conceptsResponse.headers.get('page_number')
                     if(conceptsResponse.status !== 200) {
                         res.status(conceptsResponse.status).json({ message: 'Concepts not found' });
                     }
                     const conceptsData = await conceptsResponse.json()
                     data.concepts = conceptsData
+                    data.conceptsMeta = {
+                        pagecount: conceptspagecount,
+                        pagesize: conceptspagesize,
+                        currentpage: conceptscurrentpage
+                    
+                    }
                 }
                 domain_data.push(data)
             }
