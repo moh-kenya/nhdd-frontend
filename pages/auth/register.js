@@ -12,48 +12,71 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import { doSignup } from "@/utilities";
+import { useRouter } from 'next/router';
+import { Alert } from "@mui/material";
 
 function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const [toggle, setToggle] = useState(true)
-   const [error, setError] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [last_name, setLastname] = useState('');
+  const [company, setCompany] = useState('');
+  const [errors, setErrors] = useState({});
 
-  async function handleSubmit(e) {
+
+
+  const handleSignup = async () => {
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+    try {
+      const response = await fetch(`${API_BASE_URL}/users/signup/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, name, email, password, last_name, company })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        const responseData = await response.json();
+        throw new Error(JSON.stringify(responseData));
+      }
+    } catch (error) {
+      throw new Error(error.message || 'Signup error');
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null); // Clear previous errors when a new request starts
+    setError(null);
 
-    const formData = new FormData(e.target);
-    const first_name = formData.get('firstName')
-    const last_name = formData.get('lastName')
-    const username = formData.get('userName')
-    const company = formData.get('company')
-    const email = formData.get('email')
-    const password = formData.get("password")
-    const confirm_password = formData.get("confirmPassword")
-    if(password !== confirm_password) {
-      setError("Passwords do not match!")
-      setIsLoading(false);
-      return;
-    }
-    doSignup(first_name, last_name, company, username, email, password).then((data) => {
-      console.log("---data", data);
+    try {
+      const data = await handleSignup();
+      console.log(data)
 
-      if(data.status === true) {
+      if (data) {
         setIsLoading(false);
-        console.log("---data status part", data);
-        //handle redirection
+        router.push('/user');
       } else {
         setIsLoading(false);
-        console.log("---data error part", data);
+        const errorData = JSON.parse(error.message);
+        // setError(errorData.username[0] || errorData.email[0] || 'Signup failed. Please try again.');
+        if(errorData.username) setErrors({...errors, username: errorData.username});
+        if(errorData.email) setErrors({...errors, email: errorData.email});
+        if(errorData.password) setErrors({...errors, password: errorData.password});
       }
-    }).catch((error) => {
+    } catch (error) {
       setIsLoading(false);
-      console.log("--error", error)
-    })
-  }
-
+      setError(error.message || 'Signup error');
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -81,19 +104,23 @@ function Signup() {
                 name="firstName"
                 required
                 fullWidth
-                id="firstName"
+                id="name"
                 label="First Name"
                 autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
-                id="lastName"
+                id="last_name"
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
+                value={last_name}
+                onChange={(e) => setLastname(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -103,6 +130,9 @@ function Signup() {
                 id="company"
                 label="Company/Institution"
                 name="company"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+
               />
             </Grid>
             <Grid item xs={12}>
@@ -113,7 +143,10 @@ function Signup() {
                 label="Username"
                 name="userName"
                 autoComplete="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
+              {errors && errors?.username && <Alert severity="error">{errors?.username?.join(' ')}</Alert>}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -127,7 +160,10 @@ function Signup() {
                 InputProps={{
                   pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
                 }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
+              {errors && errors?.email && <Alert severity="error">{errors?.email?.join(' ')}</Alert>}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -138,8 +174,18 @@ function Signup() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
+              {errors && errors?.password && <Alert severity="error">{errors?.password?.join(' ')}</Alert>}
             </Grid>
+            <div>
+              <ul>
+                <li>Must be at least 8 characters long</li>
+                <li>Must contain an uppercase and a lowercase letter (A-Z, a-z)</li>
+                <li>Can contain a special character (!, %, @, #.)</li>
+              </ul>
+            </div>
             <Grid item xs={12}>
               <TextField
                 required
@@ -169,7 +215,7 @@ function Signup() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/auth/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
