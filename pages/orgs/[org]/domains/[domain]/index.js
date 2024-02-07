@@ -1,5 +1,5 @@
 import { getResource } from '@/utilities';
-import { Box, Drawer, Typography, Toolbar, Divider, List, ListItem, ListItemButton, ListItemText, AppBar } from '@mui/material';
+import { Box, Drawer, Typography, Toolbar, Divider, List, ListItem, ListItemButton, ListItemText, AppBar, Pagination, Select,MenuItem, InputLabel ,TextField,Button, Search} from '@mui/material';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +15,12 @@ function OrgDomainsList() {
     const [isLoadingConcepts, setIsLoadingConcepts] = useState(true);
     const [concepts, setConcepts] = useState([]);
     const [selectedSubdomain, setSelectedSubdomain] = useState(null);
+    const [page, setPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(5); 
+    const indexOfLastConcept = page * rowsPerPage;
+    const indexOfFirstConcept = indexOfLastConcept - rowsPerPage;
+    const [searchTerm, setSearchTerm] = React.useState("");
+    
 
     const fetchConcepts = (subdomain) => {
         setIsLoadingConcepts(true);
@@ -24,7 +30,8 @@ function OrgDomainsList() {
             .then((d) => d.json())
             .then((data) => {
                 if (data) {
-                    setConcepts(data);
+                   let  filteredConcepts = data.filter(concept => concept.type === 'Concept')
+                    setConcepts(filteredConcepts);
                     setIsLoadingConcepts(false);
                 }
             })
@@ -33,7 +40,21 @@ function OrgDomainsList() {
                 setIsLoadingConcepts(false);
             });
     };
-
+    const onSubdomainClick = (subdomain) => {
+        setSelectedSubdomain(subdomain.url);
+        fetchConcepts(subdomain.url);
+    };
+    const handlePerPageChange = (event) => {
+        const perPageValue = parseInt(event.target.value, 10);
+        setRowsPerPage(perPageValue);
+        setPage(1); 
+    };
+    const filteredData = Object.values(concepts).filter((row) =>
+    Object.values(row).some(
+      (value) =>
+        typeof value === "string" && value.toLowerCase().includes(searchTerm.toLowerCase())
+    ));
+    let currentConcepts = filteredData.slice(indexOfFirstConcept, indexOfLastConcept);
     useEffect(() => {
         let mounted = true;
 
@@ -44,7 +65,8 @@ function OrgDomainsList() {
                     if (data) {
                         setDomainData(data);
                         setSubDomainData(data.data.subdomains);
-                        setConcepts(data.data.concepts);
+                        let  filteredConcepts = data?.data?.concepts.filter(concept => concept.type === 'Concept')
+                        setConcepts(filteredConcepts);
                         setIsLoading(false)
                         setIsLoadingConcepts(false)
                     }
@@ -56,13 +78,6 @@ function OrgDomainsList() {
 
         return () => (mounted = false);
     }, [router.query]);
-    const onSubdomainClick = (subdomain) => {
-        // console.log('Selected Subdomain:', subdomain);
-        setSelectedSubdomain(subdomain.url);
-        // fetchConcepts(subdomain.id);
-        fetchConcepts(subdomain.url);
-    };
-
     return (
         <>
             <Head>
@@ -96,7 +111,10 @@ function OrgDomainsList() {
                             <Typography variant="h4" m={0} align="left" fontWeight={'bold'} color="text.primary" gutterBottom>
                                 {domainData?.name}
                             </Typography>
-                            <Box></Box>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <TextField id="outlined-basic" label="Filter Concepts" size='small' variant="outlined" sx={{ width: '100%', maxWidth: 500 }}   onChange={(e) => setSearchTerm(e.target.value)}/>
+                            {/* <Button variant="outlined" size='large' color='inherit' sx={{ ml: 1 }}> <Search /> </Button> */}
+                            </Box>
                         </Box>
                         <hr />
                         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 3fr' }, gap: 2, width: '100%', py: 1 }}>
@@ -121,12 +139,11 @@ function OrgDomainsList() {
                                     <CircularProgress />
                                 </Box> : (
                                     <>
-
-                                        {concepts && concepts.length > 0 ? (<Box>
+                                        {filteredData && filteredData.length > 0 ? (<Box>
                                             <Typography variant='h5' sx={{ m: '8px 5px', fontWeight: 'bold' }}>{selectedSubdomain && subDomainData?.find(sd => { return sd && sd.id == selectedSubdomain })?.display_name || ''} Concepts: </Typography>
                                             <Divider />
                                             <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                                                {concepts.map((concept, index) => (
+                                                {currentConcepts.map((concept, index) => (
                                                     concept.type == 'Concept' ?
                                                         <Box key={concept.id} sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', padding: '10px', margin: '5px', borderRadius: '5px', backgroundColor: 'white', boxShadow: '0 0 5px 0 rgba(0,0,0,0.1)' }}>
                                                             <Link
@@ -144,8 +161,30 @@ function OrgDomainsList() {
                                                             {/* <pre style={{whiteSpace: 'pre-wrap'}}>{JSON.stringify(concept,null,2)}</pre> */}
                                                         </Box> : null
                                                 ))}
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                                <Pagination count={Math.ceil(filteredData.length / rowsPerPage)} page={page} onChange={(event, value) => setPage(value)} />
+                                                <InputLabel id="rows-per-page-label">Rows per page</InputLabel>
+                                                <Box sx={{ minWidth: '120px' }}>
+                                                    <Select
+                                                        value={rowsPerPage}
+                                                        onChange={handlePerPageChange}
+                                                        displayEmpty
+                                                        inputProps={{ 'aria-label': 'Items per page' }}
+                                                        sx={{ padding: '0.5px', fontSize: '0.85em' }} 
+                                                    >
+                                                        <MenuItem value={5}>5</MenuItem>
+                                                        <MenuItem value={10}>10</MenuItem>
+                                                        <MenuItem value={20}>20</MenuItem>
+                                                        <MenuItem value={50}>50</MenuItem>
+                                                        <MenuItem value={100}>100</MenuItem>
+                                                    </Select>
+                                                </Box>
                                             </Box>
-                                        </Box>) : <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}><Typography variant='h6' sx={{ m: '8px 5px', fontWeight: 'semibold' }}>No concepts found</Typography></Box>}
+                                                
+                                                
+                                            </Box>
+                                        </Box>)
+                                         : <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}><Typography variant='h6' sx={{ m: '8px 5px', fontWeight: 'semibold' }}>No concepts found</Typography></Box>}
                                     </>
                                 )}
                             </Box>

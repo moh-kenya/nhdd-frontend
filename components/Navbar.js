@@ -49,7 +49,6 @@ function NavBar({ session, loggedIn, user, pages }) {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
     return (
         <AppBar position="static" color="default" variant="outlined" elevation={0}>
             <Container maxWidth="xl">
@@ -84,17 +83,16 @@ function NavBar({ session, loggedIn, user, pages }) {
                             ))}
                         </Box>
                     </Box>
-
-                    {pathname != '/' && <Box sx={{ display: 'flex', flexGrow: 1 }}>
-                        <Box sx={{ display: { sm: 'flex', md: 'none' }, alignItems: 'center' }}>
+                    {!['/'].includes(pathname) && <Box sx={{ display: 'flex', flexGrow: 1 }}>
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
                             <Link href={'/search'} style={{ color: '#667' }}> <SearchRounded /> </Link>
                         </Box>
-                        <Box sx={{ display: { sm: 'none', md: 'flex' }, alignItems: 'center' }}>
-                            <TextField id="search" label="Search" variant="standard" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-                            <Button variant="outlined" color="primary" size='small' sx={{ display: { xs: 'none', md: 'flex' }, borderRadius: '3em', ml: 1 }} onClick={ev => {
-                                router.push('/search?q=' + searchQuery)
-                            }}><SearchRounded /></Button>
-                        </Box>
+                            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+                                <TextField id="search" label="Global Search" variant="standard" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                                <Button variant="outlined" color="primary" size='small' sx={{ display: { xs: 'none', md: 'flex' }, borderRadius: '3em', ml: 1 }} onClick={ev=>{
+                                    router.push('/search?q='+searchQuery)
+                                }}><SearchRounded /></Button>
+                            </Box>
                     </Box>}
 
                     {(loggedIn && user) ? (

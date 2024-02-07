@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, TextField, Button, Skeleton, Stack, Alert, AlertTitle } from "@mui/material";
+import { Box, TextField, Button, Skeleton, Stack, Alert, AlertTitle, Typography,SearchTwoTone } from "@mui/material";
 import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -55,34 +55,22 @@ function OrgsList() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box width={"100%"} sx={{ display: "flex" }}>
-        <TextField
-          onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{
-            flexGrow: 1,
-            backgroundColor: "#fcfcfc",
-            borderRadius: "8px",
-          }}
-          id="searchTerm"
-          name="searchTerm"
-          label="Search Organisation Units"
-          variant="outlined"
-          color={"info"}
-        />
-        <Button
-          onClick={handleSearch}
-          sx={{
-            borderRadius: "8px",
-            marginLeft: "10px",
-            backgroundColor: "#fff",
-            color: "#333",
-          }}
-          variant="contained"
-          color="primary"
-        >
-          <Search />
-        </Button>
-      </Box>
+      <Box maxWidth={1280} sx={{ width: '100%', py: { xs: 2, md: 2 }, px: { xs: 1, md: 2 } }}>
+                  
+                </Box>
+                <Box sx={{ width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+                <button style={{ background: 'transparent', width: 'auto', border: 0, color: '#777', padding: 0 }} onClick={ev => {
+                            ev.preventDefault()
+                            router.back()
+                        }}> &larr; Back</button>
+                    <Typography variant="h4" m={0} align="left" fontWeight={'bold'} color="text.primary" gutterBottom> Organisation Units </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <TextField id="outlined-basic" label="Filter Organisation Units" size='small' variant="outlined" sx={{ width: '100%', maxWidth: 500 }}   onChange={(e) => setSearchTerm(e.target.value)}/>
+                            <Button onClick={handleSearch} sx={{  borderRadius: "8px",  marginLeft: "10px",  backgroundColor: "#fff",  color: "#333",}}variant="contained"color="primary">
+                            <Search />
+                          </Button>   
+                        </Box>
+                  </Box>
       <Box my={2} sx={{ width: "100%" }}>
         <DataGrid
           rows={filteredData}
@@ -98,7 +86,7 @@ function OrgsList() {
           initialState={{
             pagination: { paginationModel: { pageSize: 25 } },
           }}
-          pageSizeOptions={[25, 50, 100, 250]}
+          pageSizeOptions={[25, 50, 100]}
         />
       </Box>
     </>
