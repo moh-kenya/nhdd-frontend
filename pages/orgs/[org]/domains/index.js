@@ -53,8 +53,7 @@ function OrgDomainsList() {
                 </Box>
                 <Box maxWidth={1280} sx={{ width: '100%', p: 1, display: 'flex', flexDirection: 'column' }}>
                     {orgDomains.map((domain, index) => {
-                        return <Box key={domain.id} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 1, my: 2, border: '1px solid #abc', p: 2, borderRadius: 3 }}>
-
+                        return (<Box key={domain.id} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 1, my: 2, border: '1px solid #abc', p: 2, borderRadius: 3 }}>
                             <Box sx={{ marginRight: 2 }}>
                                 <Image
                                     src={"/assets/images/" + domain.icon + ".png"}
@@ -64,21 +63,22 @@ function OrgDomainsList() {
                                 />
                             </Box>
 
-                            <Link href={`/orgs/${org}/domains/${domain.id}`} style={{ textDecoration: 'none', color: '#1651B6', display: 'flex', alignItems: 'center' }} title={domain.name}>
-                                <Typography variant="h5" m={0} align="left" fontWeight={'semibold'} color="text.primary" sx={{ ":hover": { color: '#1651B6', textDecoration: 'underline' } }} gutterBottom> {domain.name} </Typography>
-                            </Link>
-
-                            {domain.sources_data?.filter(d => { return d && JSON.stringify(d) != '[]' })?.length > 0 ?
-                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
-                                    <span style={{ fontWeight: '500' }}>Source(s):</span> {domain.sources_data.map((src, index2) => {
-                                        return <span key={'i' + index2} className='text-sky-800'>{src?.name || ''}</span>
-                                    })}
-                                </Box> :
-                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
-                                    <span style={{ fontWeight: '500' }}>&nbsp;</span>
-                                </Box>
-                            }
-                        </Box>
+                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                <Link href={`/orgs/${org}/domains/${domain.id}`} style={{ textDecoration: 'none', color: '#1651B6', display: 'flex', alignItems: 'center' }} title={domain.name}>
+                                    <Typography variant="h5" m={0} align="left" fontWeight={'semibold'} color="text.primary" sx={{ ":hover": { color: '#1651B6', textDecoration: 'underline' } }} gutterBottom> {domain.name} </Typography>
+                                </Link>
+                                {domain.sources_data?.filter(d => { return d && JSON.stringify(d) != '[]' })?.length > 0 ?
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
+                                        <span style={{ fontWeight: '500' }}>Source(s):</span> {domain.sources_data.map((src, index2) => {
+                                            return <span key={'i' + index2} className='text-sky-800'>{src?.name || ''}</span>
+                                        })}
+                                    </Box> :
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
+                                        <span style={{ fontWeight: '500' }}>&nbsp;</span>
+                                    </Box>
+                                }
+                            </Box>
+                        </Box>)
                     })}
                 </Box>
 
