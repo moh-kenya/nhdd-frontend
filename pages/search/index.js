@@ -3,6 +3,7 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import CircularProgress from '@mui/material/CircularProgress';
 import { useSearchParams } from "next/navigation";
 import { searchConcepts } from "../api/search";
 import { useState } from "react";
@@ -34,9 +35,8 @@ function SearchResults() {
 
     if (isLoading) {
         return (
-            <Box sx={{ pt: 0.5 }}>
-                <Skeleton />
-                <Skeleton width="60%" />
+            <Box sx={{ width: '100%', height: '96vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <CircularProgress />
             </Box>
         );
     }
