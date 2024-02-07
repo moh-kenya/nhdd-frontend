@@ -55,9 +55,14 @@
     {
         "id": "hrh",
         "name": "Human Resources for Health (HRH)",
-        "apiUrls": [],
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/HRH/"
+        ],
         "icon": "doctor",
-        "metadata": {}
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
         "id": "health-infrastructure",
