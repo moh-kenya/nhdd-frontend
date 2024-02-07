@@ -1,5 +1,5 @@
 import { getResource } from '@/utilities';
-import { Box, Drawer, Typography, Toolbar, Divider, List, ListItem, ListItemButton, ListItemText, AppBar, Pagination, Select, MenuItem, InputLabel, TextField, Button, Search } from '@mui/material';
+import { Box, Drawer, Typography, Toolbar, Divider, List, ListItem, ListItemButton, ListItemText, AppBar, Pagination, Select, MenuItem, InputLabel, TextField, Button, Search, Menu } from '@mui/material';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -23,29 +23,43 @@ function OrgDomainsList() {
     const indexOfFirstConcept = indexOfLastConcept - rowsPerPage;
     const [searchTerm, setSearchTerm] = React.useState("");
 
+  const [subdomainMenuAnchor, setSubdomainMenuAnchor] = React.useState(null);
+  const subdomainMenuOpen = Boolean(subdomainMenuAnchor);
 
-    const fetchConcepts = (subdomain, page) => {
+
+    const fetchConcepts = (subdomain) => {
         setIsLoadingConcepts(true);
+        setIsLoading(true);
         let url = '/api/concepts' //    ?domain=' + domain;
-        if (subdomain) url = url + '?subdomainurl=' + subdomain;
+        if (subdomain) url = url + '?subdomainurl=' + subdomain + '&page=' + page;
         fetch(url)
             .then((d) => d.json())
             .then((data) => {
                 if (data) {
-                    let filteredConcepts = data.filter(concept => concept.type === 'Concept')
+                    let filteredConcepts = data?.concepts?.filter(concept => concept.type === 'Concept')
                     setConcepts(filteredConcepts);
+                    setCurrentConcepts(filteredConcepts);
                     setIsLoadingConcepts(false);
+
+                    setTotalPages(data?.data?.conceptsMeta?.pagecount ?? 1);
+                    setRowsPerPage(data?.data?.conceptsMeta?.pagesize ?? 20);
+                    setPage(data?.data?.conceptsMeta?.currentpage ?? 1);
                 }
             })
             .catch((err) => {
                 console.error('error::', err);
                 setIsLoadingConcepts(false);
             });
+            setIsLoading(false);
     };
     const onSubdomainClick = (subdomain) => {
+        setPage(1);
+        setRowsPerPage(20);
+        setTotalPages(1);
         setSelectedSubdomain(subdomain.url);
         fetchConcepts(subdomain.url, 1);
     };
+
     const handlePerPageChange = (event) => {
         const perPageValue = parseInt(event.target.value, 10);
         setRowsPerPage(perPageValue);
@@ -134,7 +148,8 @@ function OrgDomainsList() {
                         </Box>
                         <hr />
                         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 3fr' }, gap: 2, width: '100%', py: 1 }}>
-                            <Box sx={{ p: '10px 2px', borderRadius: '5px' }} className='bg-stone-100'>
+                            {/* Desktop (sidebar) */}
+                            <Box sx={{ p: '10px 2px', borderRadius: '5px', display: { xs: 'none', sm: 'block' } }} className='bg-stone-100'>
                                 <Typography variant='h5' sx={{ m: '8px 5px', fontWeight: 'bold' }}>Subdomains: </Typography>
                                 <Divider />
                                 <List sx={{ maxHeight: { xs: 'auto', md: '70vh' }, overflowY: 'auto' }}>
@@ -147,6 +162,31 @@ function OrgDomainsList() {
                                     ))}
                                 </List>
                                 <Divider />
+                            </Box>
+                            {/* Mobile (dropdown) */}
+                            <Box sx={{ display: { xs: 'block', sm: 'none' }, p: '10px 2px', borderRadius: '5px', width: '100%' }} className='bg-stone-100'>
+                                <Typography variant='h6' sx={{ m: '4px 3px', fontWeight: 'bold' }}>Subdomains: </Typography>
+                                <List
+                                    component="nav"
+                                    aria-label="Subdomains"
+                                    sx={{ bgcolor: 'background.paper' }}
+                                >
+                                    <ListItemButton id="lock-button" aria-haspopup="listbox" aria-controls="subdomains-menu" aria-label="when device is locked" aria-expanded={subdomainMenuOpen ? 'true' : undefined} onClick={ev=>{
+                                        setSubdomainMenuAnchor(ev.currentTarget);
+                                    }}>
+                                        <ListItemText primary="Select a subdomain:" secondary={subDomainData?.find(sd=>sd.url===selectedSubdomain)?.display_name || ''} />
+                                    </ListItemButton>
+                                </List>
+                                <Menu id="subdomains-menu" subdomainMenuAnchor={subdomainMenuAnchor} open={subdomainMenuOpen} onClose={ev=>{
+                                    setSubdomainMenuAnchor(null);
+                                }} MenuListProps={{ 'aria-labelledby': 'lock-button', role: 'listbox' }} >
+                                    {subDomainData?.map((subdomain) => (
+                                        <MenuItem key={subdomain.id} selected={selectedSubdomain == subdomain.id} onClick={() => {
+                                            onSubdomainClick(subdomain);
+                                            setSubdomainMenuAnchor(null);
+                                        }}> {subdomain.display_name} </MenuItem>
+                                    ))}
+                                </Menu>
                             </Box>
 
                             <Box sx={{ padding: '16px', maxHeight: { xs: 'auto', md: '75vh' }, overflowY: 'auto' }}>

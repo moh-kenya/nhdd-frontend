@@ -2,7 +2,8 @@ const { API_BASE_URL } = require('../../index');
 
 export default async function handler(req, res) {
 
-    let concepts = []
+    let return_data = {}
+    return_data.concepts = []
 
 
     let url = API_BASE_URL + '/concepts'
@@ -62,15 +63,24 @@ export default async function handler(req, res) {
         /////
     }
     // if subdomain is set, get the flag to append to the domain/'concepts' endpoint
-    if(req.query.subdomainurl){
-        url = API_BASE_URL + req.query.subdomainurl + "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false&limit=100"
+    if (req.query.subdomainurl) {
+        url = API_BASE_URL + req.query.subdomainurl + "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false&limit=20&page=" + (req.query.page ?? 1)
         const response_ = await fetch(url)
-        if(response_.status !== 200){
+        if (response_.status !== 200) {
             console.error(response_)
             res.status(404).json({ message: 'Concepts not found' });
         }
+        const conceptspagecount = response_.headers.get('pages') ?? 1
+        const conceptspagesize = response_.headers.get('num_returned') ?? 20
+        const conceptscurrentpage = response_.headers.get('page_number') ?? 1
         const data = await response_.json()
-        concepts = data?.entry?.entries || []
+        return_data.concepts = data?.entry?.entries || []
+        return_data.conceptsMeta = {
+            pagecount: conceptspagecount,
+            pagesize: conceptspagesize,
+            currentpage: conceptscurrentpage
+        
+        }
     } else {
         // get all concepts
         const response = await fetch(url)
@@ -78,11 +88,18 @@ export default async function handler(req, res) {
             res.status(404).json({ message: 'Concepts not found' });
             return
         }
+        const conceptspagecount = response.headers.get('pages') ?? 1
+        const conceptspagesize = response.headers.get('num_returned') ?? 20
+        const conceptscurrentpage = response.headers.get('page_number') ?? 1
         const data = await response.json()
-        // console.log('data', data)
-        concepts = data
+        
+        return_data.concepts = data
+        return_data.conceptsMeta = {
+            pagecount: conceptspagecount,
+            pagesize: conceptspagesize,
+            currentpage: conceptscurrentpage
+        }
     }
 
-
-    res.status(200).json(concepts);
+    res.status(200).json(return_data);
 }

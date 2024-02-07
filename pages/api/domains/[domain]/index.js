@@ -53,7 +53,6 @@ export default async function handler(req, res) {
                         pagecount: conceptspagecount,
                         pagesize: conceptspagesize,
                         currentpage: conceptscurrentpage
-                    
                     }
                 }
                 domain_data.push(data)
