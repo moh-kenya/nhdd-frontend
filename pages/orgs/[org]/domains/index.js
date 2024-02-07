@@ -38,8 +38,7 @@ function OrgDomainsList() {
     Object.values(row).some(
       (value) =>
         typeof value === "string" && value.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-        );
+    ));
     return (
         <>
             <Head>
@@ -57,7 +56,7 @@ function OrgDomainsList() {
                         }}> &larr; Back</button>
                         <Typography variant="h3" m={0} align="left" fontWeight={'bold'} color="text.primary" gutterBottom> Domains </Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <TextField id="outlined-basic" label="Search domains" size='small' variant="outlined" sx={{ width: '100%', maxWidth: 500 }}   onChange={(e) => setSearchTerm(e.target.value)}/>
+                            <TextField id="outlined-basic" label="Filter Domains" size='small' variant="outlined" sx={{ width: '100%', maxWidth: 500 }}   onChange={(e) => setSearchTerm(e.target.value)}/>
                             <Button variant="outlined" size='large' color='inherit' sx={{ ml: 1 }}> <SearchTwoTone /> </Button>
                         </Box>
                     </Box>
@@ -65,6 +64,7 @@ function OrgDomainsList() {
                 </Box>
                 {!isLoading ?
                 <Box maxWidth={1280} sx={{ width: '100%', p: 1, display: 'flex', flexDirection: 'column' }}>
+
                     {filteredData.map((domain, index) => {
                         return <Box key={domain.id} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 1, my: 2, border: '1px solid #abc', p: 2, borderRadius: 3 }}>
 

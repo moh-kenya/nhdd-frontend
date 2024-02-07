@@ -49,7 +49,6 @@ function NavBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-console.log(pathname)
     return (
         <AppBar position="static" color="default" variant="outlined">
             <Container maxWidth="xl">
@@ -85,12 +84,12 @@ console.log(pathname)
                         </Box>
                     </Box>
 
-                    {pathname =='' || pathname == '/orgs/[org]/domains/[domain]' || pathname== '/orgs/[org]/sources/[source]/concepts/[concept]' && <Box sx={{ display: 'flex', flexGrow: 1 }}>
+                    {!['/'].includes(pathname) && <Box sx={{ display: 'flex', flexGrow: 1 }}>
                         <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
                             <Link href={'/search'} style={{ color: '#667' }}> <SearchRounded /> </Link>
                         </Box>
                             <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
-                                <TextField id="search" label="Search" variant="standard" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                                <TextField id="search" label="Global Search" variant="standard" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
                                 <Button variant="outlined" color="primary" size='small' sx={{ display: { xs: 'none', md: 'flex' }, borderRadius: '3em', ml: 1 }} onClick={ev=>{
                                     router.push('/search?q='+searchQuery)
                                 }}><SearchRounded /></Button>
