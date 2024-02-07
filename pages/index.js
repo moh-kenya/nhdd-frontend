@@ -33,16 +33,16 @@
         const [activeTab, setActiveTab] = useState("1");
 
         const [domains, setDomains] = useState([
-            { id: "diagnostics", name: "Classification of Diseases", icon: "stethoscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
+            { id: "Classification-of-diseases", name: "Classification of Diseases", icon: "stethoscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
             {
                 id: "products-technologies",
                 name: "Health Products and Technologies(HPT)",
                 icon: "med", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
             },
-            { id: "investigations", name: "Investigations (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
+            { id: "diogonistic-services", name: "Diogonistic Services (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
             {
                 id: "procedures",
-                name: "Medical Procedures",
+                name: "Health Procedures",
                 icon: "surgery", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
             },
             {
@@ -51,9 +51,9 @@
                 icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 },
             },
             { id: "hrh", name: "Human Resources for Health (HRH)", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
-            { id: "medical-infrastructure", name: "Medical Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
+            { id: "health-infrastructure", name: "Health Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
             { id: "supply-chain", name: "Supplies Chain Management", icon: "car", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
-            { id: "diasability", name: "Functioning Disability", icon: "disability", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },
+            { id: "diasability", name: "Functioning Disability", icon: "disability", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },          
             { id: "/", name: "View all domains", icon: "all", "metadata": { number_of_subdomains: 299, number_of_concepts: 815 } },
         ]);
 
