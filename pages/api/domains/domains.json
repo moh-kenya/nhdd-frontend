@@ -22,8 +22,8 @@
         "metadata": {}
     },
     {
-        "id": "diogonistic-services",
-        "name": "Diogonistic Services (Lab and Imaging)",
+        "id": "diagnostic-services",
+        "name": "diagnostic Services (Lab and Imaging)",
         "apiUrls": [
             "/orgs/REGENSTREIF-INSTITUTE/sources/LOINC/"
         ],

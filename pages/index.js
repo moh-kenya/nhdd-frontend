@@ -39,7 +39,7 @@
                 name: "Health Products and Technologies(HPT)",
                 icon: "med", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
             },
-            { id: "diogonistic-services", name: "Diogonistic Services (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
+            { id: "diagnostic-services", name: "diagnostic Services (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
             {
                 id: "procedures",
                 name: "Health Procedures",
