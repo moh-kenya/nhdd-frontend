@@ -1,6 +1,6 @@
 [
     {
-        "id": "diagnostics",
+        "id": "Classification-of-diseases",
         "name": "Classification of Diseases",
         "apiUrls": [
             "/orgs/WHO/sources/ICD-11-WHO/"
@@ -22,8 +22,8 @@
         "metadata": {}
     },
     {
-        "id": "investigations",
-        "name": "Investigations (Lab and Imaging)",
+        "id": "diogonistic-services",
+        "name": "Diogonistic Services (Lab and Imaging)",
         "apiUrls": [
             "/orgs/REGENSTREIF-INSTITUTE/sources/LOINC/"
         ],
@@ -35,7 +35,7 @@
     },
     {
         "id": "procedures",
-        "name": "Procedures and Services",
+        "name": "Health Procedures",
         "apiUrls": [
             "/orgs/WHO/sources/ICHI/"
         ],
@@ -60,8 +60,8 @@
         "metadata": {}
     },
     {
-        "id": "medical-infrastructure",
-        "name": "Medical Infrastructure",
+        "id": "health-infrastructure",
+        "name": "Health Infrastructure",
         "apiUrls": [
             
         ],
@@ -91,6 +91,6 @@
             "/orgs/WHO/sources/ICF/"
         ],
         "icon": "disability",
-        "metadata": {}
+        "metadata": {}  
     }
 ]

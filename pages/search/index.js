@@ -121,7 +121,7 @@ function SearchResults() {
                     initialState={{
                         pagination: { paginationModel: { pageSize: 25 } },
                     }}
-                    pageSizeOptions={[25, 50, 100, 250]}
+                    pageSizeOptions={[25, 50, 100]}
                     onRowClick={(row) => {
                         // TODO: go to the resource's page
                         router.push({ pathname: `/orgs/${row.row.owner}/sources/${row.row.source}/concepts/${row.row.id} ` });
