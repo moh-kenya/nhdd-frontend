@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 import { useRouter } from 'next/router';
+import { Alert } from "@mui/material";
 
 function Signup() {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,8 +24,9 @@ function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [last_name , setLastname] = useState('');
-  const [company , setCompany] = useState(''); 
+  const [last_name, setLastname] = useState('');
+  const [company, setCompany] = useState('');
+  const [errors, setErrors] = useState({});
 
 
 
@@ -36,8 +38,8 @@ function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, name, email, password, last_name, company})
-      });  
+        body: JSON.stringify({ username, name, email, password, last_name, company })
+      });
       if (response.ok) {
         const data = await response.json();
         return data;
@@ -49,30 +51,33 @@ function Signup() {
       throw new Error(error.message || 'Signup error');
     }
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-  
+
     try {
       const data = await handleSignup();
       console.log(data)
-  
+
       if (data) {
         setIsLoading(false);
         router.push('/user');
       } else {
         setIsLoading(false);
         const errorData = JSON.parse(error.message);
-        setError(errorData.username[0] || errorData.email[0] || 'Signup failed. Please try again.');
+        // setError(errorData.username[0] || errorData.email[0] || 'Signup failed. Please try again.');
+        if(errorData.username) setErrors({...errors, username: errorData.username});
+        if(errorData.email) setErrors({...errors, email: errorData.email});
+        if(errorData.password) setErrors({...errors, password: errorData.password});
       }
     } catch (error) {
       setIsLoading(false);
       setError(error.message || 'Signup error');
     }
   };
-  
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -127,7 +132,7 @@ function Signup() {
                 name="company"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                
+
               />
             </Grid>
             <Grid item xs={12}>
@@ -141,6 +146,7 @@ function Signup() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
+              {errors && errors?.username && <Alert severity="error">{errors?.username?.join(' ')}</Alert>}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -157,6 +163,7 @@ function Signup() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {errors && errors?.email && <Alert severity="error">{errors?.email?.join(' ')}</Alert>}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -170,14 +177,15 @@ function Signup() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {errors && errors?.password && <Alert severity="error">{errors?.password?.join(' ')}</Alert>}
             </Grid>
             <div>
-            <ul>
-          <li>Must be at least 8 characters long</li>
-          <li>Must contain an uppercase and a lowercase letter (A-Z, a-z)</li>
-          <li>Can contain a special character (!, %, @, #.)</li>
-          </ul>
-          </div>
+              <ul>
+                <li>Must be at least 8 characters long</li>
+                <li>Must contain an uppercase and a lowercase letter (A-Z, a-z)</li>
+                <li>Can contain a special character (!, %, @, #.)</li>
+              </ul>
+            </div>
             <Grid item xs={12}>
               <TextField
                 required
