@@ -70,7 +70,10 @@
             "/orgs/MOH-KENYA/sources/DHI/"   
         ],
         "icon": "hospital",
-        "metadata": {}
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
         "id": "supply-chain",
