@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Alert, AlertTitle, Box, CircularProgress, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
-import { getSourceConcepts } from "../../../../../pages/api/sources";
+import { getCollectionConcepts } from "../../../../api/collections";
 import Head from "next/head";
 
-function SourceConcepts() {
+function CollectionConcepts() {
     const router = useRouter();
-    const { source, org } = router.query;
+    const { collection, org } = router.query;
     const [isLoading, setIsLoading] = useState(true);
     const [total_pages, setTotalPages] = useState(1);
     const [rows_per_page, setRowsPerPage] = useState(50);
@@ -17,29 +17,28 @@ function SourceConcepts() {
     const [isError, setIsError] = useState(false);
     const [error, setError] = useState(null);
 
-    // const { data, isError } = getSourceConcepts(source, org);
+    // const { data, isError } = getCollectionConcepts(collection, org);
 
     const columns = [
         { field: "id", headerName: "ID", width: 100 },
         { field: "display_name", headerName: "Display Name", width: 200 },
         { field: "concept_class", headerName: "Concept Class", width: 150 },
         { field: "datatype", headerName: "Datatype", width: 150 },
-        { field: "source", headerName: "Source", width: 150 },
+        { field: "collection", headerName: "Collection", width: 150 },
         { field: "retired", headerName: "Retired", width: 100 },
         { field: "version_created_on", headerName: "Version Created On", width: 200 },
         { field: "version_updated_on", headerName: "Version Updated On", width: 200 },
     ];
     const handleClick = (params) => {
         const rowId = params.id;
-
+        // router.push(`/orgs/${params?.row?.owner}/collections/${params?.row?.collection}/concepts/${rowId}`);
         router.push(params.row.url);
-        // router.push(`/orgs/${params?.row?.owner}/sources/${params?.row?.source}/concepts/${rowId}`);
 
     }
 
     const fetchConcepts = () => {
         setIsLoading(true);
-        let url = `${API_BASE_URL}/orgs/${org}/sources/${source}/concepts/?limit=${rows_per_page}&page=${page}&verbose=false&includeRetired=false`
+        let url = `${API_BASE_URL}/orgs/${org}/collections/${collection}/concepts/?limit=${rows_per_page}&page=${page}&verbose=false&includeRetired=false`
         fetch(url)
             .then((d) => {
                 const conceptspagecount = d.headers.get('pages') ?? 1
@@ -79,7 +78,7 @@ function SourceConcepts() {
     return (
         <>
             <Head>
-                <title>MOH KNHTS | Source - {source}</title>
+                <title>MOH KNHTS | Collection - {collection}</title>
                 <meta name="description" content="MOH KNHTS" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
@@ -107,7 +106,7 @@ function SourceConcepts() {
                                 &larr; Back
                             </button>
                             <Typography variant="h5" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>
-                                Source: {source}
+                                Collection: {collection}
                             </Typography>
                             <Box></Box>
                         </Box>
@@ -115,6 +114,7 @@ function SourceConcepts() {
                         <Box sx={{ flexGrow: 1, backgroundColor: "white", padding: "16px" }}>
                             <Typography variant="h6" gutterBottom> Concepts Table </Typography>
                             <div style={{ width: "100%" }}>
+                                {/* {JSON.stringify(data)} */}
                                 <TableContainer>
                                     <Table>
                                         <TableHead>
@@ -124,7 +124,7 @@ function SourceConcepts() {
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Display Name</TableCell>
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Concept Class</TableCell>
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Datatype</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Source</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Collection</TableCell>
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Retired</TableCell>
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Version Created On</TableCell>
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Version Updated On</TableCell>
@@ -140,7 +140,7 @@ function SourceConcepts() {
                                                     <TableCell>{row.display_name}</TableCell>
                                                     <TableCell>{row.concept_class}</TableCell>
                                                     <TableCell>{row.datatype}</TableCell>
-                                                    <TableCell>{row.source}</TableCell>
+                                                    <TableCell>{row.collection}</TableCell>
                                                     <TableCell>{row.retired}</TableCell>
                                                     <TableCell>{row.version_created_on}</TableCell>
                                                     <TableCell>{row.version_updated_on}</TableCell>
@@ -167,4 +167,4 @@ function SourceConcepts() {
     );
 }
 
-export default SourceConcepts;
+export default CollectionConcepts;

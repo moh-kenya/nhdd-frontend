@@ -2,7 +2,7 @@
 import useSWR from "swr";
 import { API_BASE_URL } from '../index';
 
-export const getSources = (org) => {
+export const getCollections = (org) => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
 
     const {
@@ -11,7 +11,7 @@ export const getSources = (org) => {
         isError,
         mutate,
     } = useSWR(
-        `${API_BASE_URL}/orgs/${org}/sources/?limit=100&verbose=false&includeRetired=false`,
+        `${API_BASE_URL}/orgs/${org}/collections/?limit=100&verbose=false&includeRetired=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
@@ -20,7 +20,7 @@ export const getSources = (org) => {
         data, isLoading, isError, mutate
     }
 }
-export const getSourceConcepts = (sourceName, org, page = 1) => {
+export const getCollectionConcepts = (collection, org, page = 1) => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
     const {
         data,
@@ -28,7 +28,7 @@ export const getSourceConcepts = (sourceName, org, page = 1) => {
         isError,
     } = useSWR(
         //LIVE
-        `${API_BASE_URL}/orgs/${org}/sources/${sourceName}/concepts/?limit=20&page=${page}&verbose=false&includeRetired=false`,
+        `${API_BASE_URL}/orgs/${org}/collections/${collection}/concepts/?limit=20&page=${page}&verbose=false&includeRetired=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
