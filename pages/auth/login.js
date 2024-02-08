@@ -107,7 +107,7 @@ function Login() {
         if (mtd) {
             doGetSession().then((session) => {
                 if (session) {
-                    router.push('/user/', undefined, { unstable_skipClientCache: true })
+                    router.push('/auth/profile', undefined, { unstable_skipClientCache: true })
                 }
             })
             setLoading(false)
