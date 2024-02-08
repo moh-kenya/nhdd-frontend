@@ -149,6 +149,9 @@ function OrgDomainsList() {
                         <hr />
                         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 3fr' }, gap: 2, width: '100%', py: 1 }}>
                             {/* Desktop (sidebar) */}
+                            {subDomainData?.length > 0 ?( 
+
+                            <Box>
                             <Box sx={{ p: '10px 2px', borderRadius: '5px', display: { xs: 'none', sm: 'block' } }} className='bg-stone-100'>
                                 <Typography variant='h5' sx={{ m: '8px 5px', fontWeight: 'bold' }}>Subdomains: </Typography>
                                 <Divider />
@@ -188,6 +191,10 @@ function OrgDomainsList() {
                                     ))}
                                 </Menu>
                             </Box>
+                            </Box>) : (
+                                <Box sx={{ p: '10px 2px', borderRadius: '5px', display: { xs: 'none', sm: 'block' } }} className='bg-stone-100'> 
+                                </Box>
+                            )}
 
                             <Box sx={{ padding: '16px', maxHeight: { xs: 'auto', md: '75vh' }, overflowY: 'auto' }}>
                                 {isLoadingConcepts ? <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
