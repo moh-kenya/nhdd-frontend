@@ -9,10 +9,9 @@ import { Search } from "@mui/icons-material";
 
 function SourceList(props) {
   const router = useRouter();
-  const { data, isLoading, isError, mutate } = getSources();
+  const { data, isLoading, isError, mutate } = getSources(router.query.org);
   const columns = ["id", "name", "type", "url"];
   const [searchTerm, setSearchTerm] = useState("");
-
   if (isLoading) {
     return (
       <Box sx={{ pt: 0.5 }}>
@@ -39,7 +38,7 @@ function SourceList(props) {
   };
   const handleClick = (params) =>{
     const rowId = params.id;
-    router.push(`/orgs/[orgs]/sources/${rowId}`);
+    router.push(`/orgs/${params?.row?.owner}/sources/${rowId}`);
   }
   const filteredData = Object.values(data).filter((row) =>
     Object.values(row).some(
@@ -57,50 +56,13 @@ function SourceList(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box width={"100%"} sx={{ display: "flex" }}>
-        <TextField
-          onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{
-            flexGrow: 1,
-            backgroundColor: "#fcfcfc",
-            borderRadius: "8px",
-          }}
-          id="searchTerm"
-          name="searchTerm"
-          label="Search Sources"
-          variant="outlined"
-          color={"info"}
-        />
-        <Button
-          onClick={handleSearch}
-          sx={{
-            borderRadius: "8px",
-            marginLeft: "10px",
-            backgroundColor: "#fff",
-            color: "#333",
-          }}
-          variant="contained"
-          color="primary"
-        >
+        <TextField onChange={(e) => setSearchTerm(e.target.value)}sx={{  flexGrow: 1,  backgroundColor: "#fcfcfc",  borderRadius: "8px",}}id="searchTerm"name="searchTerm"label="Search Sources"variant="outlined"color={"info"}/>
+        <Button  onClick={handleSearch}  sx={{    borderRadius: "8px",    marginLeft: "10px",    backgroundColor: "#fff",    color: "#333",  }}  variant="contained"  color="primary">
           <Search />
         </Button>
       </Box>
       <Box my={2} sx={{ width: "100%" }}>
-        <DataGrid
-          rows={filteredData}
-          getRowId={(row) => row.id}
-          columns={columns.map((key) => {
-            return {
-              field: key.toLowerCase(),
-              headerName: key.charAt(0).toUpperCase() + key.slice(1),
-              width: 200,
-            };
-          })}
-          onRowClick={handleClick}
-          initialState={{
-            pagination: { paginationModel: { pageSize: 25 } },
-          }}
-          pageSizeOptions={[25, 50, 100, 250]}
-        />
+        <DataGrid  rows={filteredData}  getRowId={(row) => row.id}  columns={columns.map((key) => {    return {      field: key.toLowerCase(),      headerName: key.charAt(0).toUpperCase() + key.slice(1),      width: 200,    };  })}  onRowClick={handleClick}  initialState={{    pagination: { paginationModel: { pageSize: 25 } },  }}  pageSizeOptions={[25, 50, 100]}/>
       </Box>
     </>
   );

@@ -229,3 +229,12 @@ body {
 .bg-pink-800 { background-color: rgb(157 23 77); } .text-pink-800 { color: rgb(157 23 77); } .border-pink-800 { border-color: rgb(157 23 77) !important; }
 .bg-pink-900 { background-color: rgb(131 24 67); } .text-pink-900 { color: rgb(131 24 67); } .border-pink-900 { border-color: rgb(131 24 67) !important; }
 /* TW colors> */
+
+
+.MuiDataGrid-columnHeaderTitle {
+  font-weight: 600;
+}
+
+.MuiDataGrid-columnHeaders {
+  background-color: #f2f2f2;
+}

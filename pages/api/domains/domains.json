@@ -1,75 +1,103 @@
 [
     {
-        "id": "diagnostic",
-        "name": "Diagnostic Health Information",
+        "id": "Classification-of-diseases",
+        "name": "Classification of Diseases",
         "apiUrls": [
-            "/orgs/MOH-KENYA/sources/ICD-11-WHO/"
+            "/orgs/WHO/sources/ICD-11-WHO/"
         ],
-        "icon": "microscope",
+        "icon": "tabs",
         "metadata": {
             "subdomainQueryParam": "conceptClass=chapter",
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
+        }
+    },
+    {
+        "id": "products-technologies",
+        "name": "Health Products and Technologies (HPT)",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/PPB/"
+        ],
+        "icon": "microscope2",
+        "metadata": {}
+    },
+    {
+        "id": "diagnostic-services",
+        "name": "Diagnostic Services (Lab and Imaging)",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/NPHL/"
+        ],
+        "icon": "xray",
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
             "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
         }
     },
     {
-        "id": "hpt",
-        "name": "Health Products and Technologies (HPT)",
-        "apiUrls": [
-            "/orgs/MOH-KENYA/sources/medicines/",
-            "/orgs/MOH-KENYA/sources/lab-supplies/"
-        ],
-        "icon": "devices",
-        "metadata": {}
-    },
-    {
-        "id": "investigations",
-        "name": "Investigations (Lab and Imaging)",
-        "apiUrls": [],
-        "icon": "stethoscope",
-        "metadata": {}
-    },
-    {
         "id": "procedures",
-        "name": "Procedures and Services",
-        "apiUrls": [],
-        "icon": "syringe",
-        "metadata": {}
+        "name": "Health Procedures",
+        "apiUrls": [
+            "/orgs/WHO/sources/ICHI/"
+        ],
+        "icon": "syring",
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=procedure",
+            "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
         "id": "billing",
         "name": "Billing & eClaims Management",
         "apiUrls": [],
-        "icon": "finance",
+        "icon": "bill",
         "metadata": {}
     },
     {
         "id": "hrh",
         "name": "Human Resources for Health (HRH)",
-        "apiUrls": [],
-        "icon": "doctor",
-        "metadata": {}
-    },
-    {
-        "id": "devices",
-        "name": "Medical Devices Infrastructure",
         "apiUrls": [
-            "/orgs/MOH-KENYA/sources/KMHFL/"
+            "/orgs/MOH-KENYA/sources/HRH/"
         ],
-        "icon": "devices",
-        "metadata": {}
+        "icon": "hr",
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
-        "id": "supplies",
+        "id": "health-infrastructure",
+        "name": "Health Infrastructure",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/DHI/"   
+        ],
+        "icon": "hospital",
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
+        }
+    },
+    {
+        "id": "supply-chain",
         "name": "Supplies Chain Management",
         "apiUrls": [],
-        "icon": "medstore",
+        "icon": "supply",
         "metadata": {}
     },
     {
-        "id": "diasability",
-        "name": "Functioning Disability",
-        "apiUrls": [],
-        "icon": "disablility",
+        "id": "community-health",
+        "name": "Community Health",
+        "apiUrls": [
+            "/orgs/MOH-KENYA/sources/MOHD/"
+        ],
+        "icon": "communit",
         "metadata": {}
+    },
+    {
+        "id": "functioning-disablility",
+        "name": "Functioning Disability",
+        "apiUrls": [
+            "/orgs/WHO/sources/ICF/"
+        ],
+        "icon": "disab",
+        "metadata": {}  
     }
 ]

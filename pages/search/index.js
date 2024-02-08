@@ -3,6 +3,7 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import CircularProgress from '@mui/material/CircularProgress';
 import { useSearchParams } from "next/navigation";
 import { searchConcepts } from "../api/search";
 import { useState } from "react";
@@ -34,9 +35,8 @@ function SearchResults() {
 
     if (isLoading) {
         return (
-            <Box sx={{ pt: 0.5 }}>
-                <Skeleton />
-                <Skeleton width="60%" />
+            <Box sx={{ width: '100%', height: '96vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <CircularProgress />
             </Box>
         );
     }
@@ -99,7 +99,7 @@ function SearchResults() {
                             headerName: key
                                 .replace(/_/g, " ") // Replace underscores with spaces
                                 .split(" ")
-                                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                .map((word) => word.toUpperCase())
                                 .join(" "),
                             width: 200,
                             valueGetter: (params) => {
@@ -121,7 +121,7 @@ function SearchResults() {
                     initialState={{
                         pagination: { paginationModel: { pageSize: 25 } },
                     }}
-                    pageSizeOptions={[25, 50, 100, 250]}
+                    pageSizeOptions={[25, 50, 100]}
                     onRowClick={(row) => {
                         // TODO: go to the resource's page
                         router.push({ pathname: `/orgs/${row.row.owner}/sources/${row.row.source}/concepts/${row.row.id} ` });

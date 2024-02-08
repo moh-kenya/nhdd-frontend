@@ -14,19 +14,26 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import PersonTwoTone from '@mui/icons-material/PersonTwoTone';
 import Link from 'next/link';
+import { ArrowDropDown, SearchRounded, SearchTwoTone } from '@mui/icons-material';
+import { TextField } from '@mui/material';
+import { useRouter } from 'next/router';
+import { doLogout } from '@/utilities';
 
-const pages = [
-    {name: 'Domains',  link: '/orgs/MOH-KENYA/domains'},
-    {name: 'Organisations',  link: '/orgs'},
-    {name: 'Announcements',  link: '/announcements'},
-    {name: 'Resources', link: '/resources'},
-];
-const settings = ['Profile', 'Help & FAQ', 'Logout'];
 
-function NavBar() {
+function NavBar({ session, loggedIn, user, pages }) {
+    // const pages = [
+    //     { name: 'About', link: '/auth/about' },
+    //     { name: 'Domains', link: '/orgs/MOH-KENYA/domains' },
+    //     { name: 'Organisations', link: '/orgs' },
+    //     { name: 'Announcements', link: '/auth/announcements' },
+    //     { name: 'Resources', link: '/auth/resources' },
+    // ];
+    const settings = ['Profile', 'Help & FAQ', 'Logout'];
+    const router = useRouter();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [loggedIn, setLoggedIn] = React.useState(false);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [searchQuery, setSearchQuery] = React.useState('');
+    const pathname = router.pathname;
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -42,14 +49,13 @@ function NavBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
     return (
-        <AppBar position="static" color="default" variant="outlined">
+        <AppBar position="static" color="default" variant="outlined" elevation={0}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                         <Link href={'/'}>
-                            <img src="/assets/images/image.png" alt="MoH KNHTS" width={'auto'} height={60} />
+                            <img src="/assets/images/logo.png" alt="MoH KNHTS" width={'auto'} height={60} />
                         </Link>
                     </Box>
 
@@ -68,7 +74,7 @@ function NavBar() {
                     <Box sx={{ flexGrow: 1 }}>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <Link href={'/'}>
-                                <img src="/assets/images/MoHLog.png" alt="MoH KNHTS" width={'auto'} height={50} />
+                                <img src="/assets/images/logo.png" alt="MoH KNHTS" width={'auto'} height={40} />
                             </Link>
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: 3 }}>
@@ -77,19 +83,60 @@ function NavBar() {
                             ))}
                         </Box>
                     </Box>
+                    {!['/'].includes(pathname) && <Box sx={{ display: 'flex', flexGrow: 1 }}>
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+                            <Link href={'/search'} style={{ color: '#667' }}> <SearchRounded /> </Link>
+                        </Box>
+                            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+                                <TextField id="search" label="Global Search" variant="standard" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                                <Button variant="outlined" color="primary" size='small' sx={{ display: { xs: 'none', md: 'flex' }, borderRadius: '3em', ml: 1 }} onClick={ev=>{
+                                    router.push('/search?q='+searchQuery)
+                                }}><SearchRounded /></Button>
+                            </Box>
+                    </Box>}
 
-                    {loggedIn ? (
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}> <PersonTwoTone /> </IconButton>
-                            </Tooltip>
-                            <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Link href={'/'+setting.toLocaleLowerCase()}>{setting}</Link>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
+                    {(loggedIn && user) ? (
+                        <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: {xs: 0, md: 1}, border: '1px solid #ccc', color: 'black', py: 1, px: 1, borderRadius: '8px' }}>
+                            <Button onClick={ev => {
+                                if (anchorElUser) {
+                                    handleCloseUserMenu()
+                                } else {
+                                    handleOpenUserMenu(ev)
+                                }
+                            }} sx={{ display: 'flex', color: 'black', justifyContent: 'space-between', py: 0, px: {xs: 0, md: 1} }}>
+                                <Box sx={{ display: 'flex' }}>
+                                    <PersonTwoTone />
+                                    <Typography variant="p" sx={{ pl: 1, display: { xs: 'none', md: 'block' } }}>{user.username}</Typography>
+
+                                    <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
+                                        <MenuItem onClick={ev => {
+                                            handleCloseUserMenu()
+                                            router.push('/user')
+                                        }}>
+                                            Dashboard
+                                        </MenuItem>
+                                        <MenuItem onClick={ev => {
+                                            handleCloseUserMenu()
+                                            router.push('/auth/profile')
+                                        }}>
+                                            Profile
+                                        </MenuItem>
+                                        <MenuItem onClick={ev => {
+                                            handleCloseUserMenu()
+                                            router.push('/help')
+                                        }}>
+                                            Help & FAQ
+                                        </MenuItem>
+                                        <MenuItem onClick={ev => {
+                                            handleCloseUserMenu()
+                                            doLogout()
+                                        }}>
+                                            Logout
+                                        </MenuItem>
+                                    </Menu>
+                                </Box>
+                                <ArrowDropDown />
+                            </Button>
                         </Box>
                     ) : (
                         <Box sx={{ flexGrow: 0 }}>
