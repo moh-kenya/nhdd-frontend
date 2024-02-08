@@ -33,27 +33,27 @@
         const [activeTab, setActiveTab] = useState("1");
 
         const [domains, setDomains] = useState([
-            { id: "Classification-of-diseases", name: "Classification of Diseases", icon: "stethoscope", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
+            { id: "Classification-of-diseases", name: "Classification of Diseases", icon: "tabs", "metadata": { number_of_subdomains: 15, number_of_concepts: 4553 } },
             {
                 id: "products-technologies",
                 name: "Health Products and Technologies(HPT)",
-                icon: "med", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
+                icon: "microscope2", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
             },
-            { id: "diagnostic-services", name: "Diagnostic Services (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
+            { id: "diagnostic-services", name: "Diagnostic Services (Lab and Imaging)", icon: "xray", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
             {
                 id: "procedures",
                 name: "Health Procedures",
-                icon: "surgery", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
+                icon: "syring", "metadata": { number_of_subdomains: 10, number_of_concepts: 9225 },
             },
             {
                 id: "billing",
                 name: "Billing & eClaims Management",
-                icon: "finance", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 },
+                icon: "bill", "metadata": { number_of_subdomains: 27, number_of_concepts: 1108 },
             },
-            { id: "hrh", name: "Human Resources for Health (HRH)", icon: "doctor", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
-            { id: "health-infrastructure", name: "Health Infrastructure", icon: "devices", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
-            { id: "supply-chain", name: "Supplies Chain Management", icon: "car", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
-            { id: "diasability", name: "Functioning Disability", icon: "disability", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },          
+            { id: "hrh", name: "Human Resources for Health (HRH)", icon: "hr", "metadata": { number_of_subdomains: 16, number_of_concepts: 5617 } },
+            { id: "health-infrastructure", name: "Health Infrastructure", icon: "hospital", "metadata": { number_of_subdomains: 14, number_of_concepts: 410 } },
+            { id: "supply-chain", name: "Supplies Chain Management", icon: "supply", "metadata": { number_of_subdomains: 27, number_of_concepts: 615 } },
+            { id: "diasability", name: "Functioning Disability", icon: "disab", "metadata": { number_of_subdomains: 29, number_of_concepts: 115 } },          
             { id: "/", name: "View all domains", icon: "all", "metadata": { number_of_subdomains: 299, number_of_concepts: 815 } },
         ]);
 
@@ -335,7 +335,7 @@
                                     color: "#334",
                                     fontSize: "1.1em",
                                 }}
-                                href={"/"}
+                                href={"/auth/knowledgebase"}
                             >
                                 Knowledge base
                             </Link>
@@ -346,7 +346,7 @@
                                     color: "#334",
                                     fontSize: "1.1em",
                                 }}
-                                href={"/"}
+                                href={"/auth/helpGuide"}
                             >
                                 Help &amp; guides
                             </Link>
