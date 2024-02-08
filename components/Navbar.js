@@ -55,7 +55,7 @@ function NavBar({ session, loggedIn, user, pages }) {
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                         <Link href={'/'}>
-                            <img src="/assets/images/logo.png" alt="MoH KNHTS" width={'auto'} height={60} />
+                            <img src="/assets/images/logo.png" alt="MoH KNHTS" width={'auto'} height={50} />
                         </Link>
                     </Box>
 
@@ -77,17 +77,17 @@ function NavBar({ session, loggedIn, user, pages }) {
                                 <img src="/assets/images/logo.png" alt="MoH KNHTS" width={'auto'} height={40} />
                             </Link>
                         </Box>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: 3 }}>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: {md: 1, lg: 3} }}>
                             {pages.map((page) => (
-                                <Link style={{ textDecoration: 'none', color: '#1651B6', fontSize: '1.1em' }} key={page.name} href={page.link}>{page.name}</Link>
+                                <Link style={{ textDecoration: 'none', color: '#1651B6', fontSize: {md: '0.7em', lg: '0.9em'} }} key={page.name} href={page.link}>{page.name}</Link>
                             ))}
                         </Box>
                     </Box>
                     {!['/'].includes(pathname) && <Box sx={{ display: 'flex', flexGrow: 1 }}>
-                        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+                        <Box sx={{ display: { xs: 'flex', lg: 'none' }, alignItems: 'center' }}>
                             <Link href={'/search'} style={{ color: '#667' }}> <SearchRounded /> </Link>
                         </Box>
-                            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+                            <Box sx={{ display: { md: 'none', lg: 'flex' }, alignItems: 'center', px: 2 }}>
                                 <TextField id="search" label="Global Search" variant="standard" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
                                 <Button variant="outlined" color="primary" size='small' sx={{ display: { xs: 'none', md: 'flex' }, borderRadius: '3em', ml: 1 }} onClick={ev=>{
                                     router.push('/search?q='+searchQuery)
@@ -106,7 +106,7 @@ function NavBar({ session, loggedIn, user, pages }) {
                             }} sx={{ display: 'flex', color: 'black', justifyContent: 'space-between', py: 0, px: {xs: 0, md: 1} }}>
                                 <Box sx={{ display: 'flex' }}>
                                     <PersonTwoTone />
-                                    <Typography variant="p" sx={{ pl: 1, display: { xs: 'none', md: 'block' } }}>{user.username}</Typography>
+                                    <Typography variant="p" sx={{ display: { xs: 'none', md: 'block', lineHeight: 'inherit' } }}>{user.username}</Typography>
 
                                     <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
                                         <MenuItem onClick={ev => {
