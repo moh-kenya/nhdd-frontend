@@ -48,7 +48,7 @@ export default function App({ Component, pageProps }) {
                 <NavBar loggedIn={isLoggedIn} session={session} user={user} pages={pages} />
                 {/* TODO: breadcrumbs */}
             </Box>
-            <Component {...pageProps} />
+            <Component user={user} {...pageProps} />
         </>
     );
 }
