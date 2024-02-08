@@ -281,7 +281,7 @@ function Login() {
                             <a href="/auth/knowledgebase">Knowledge base</a>
                         </div>
                         <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                            <a href="/auth/helpGuide">Help & Guides</a>
+                            <a href="/help">Help & Guides</a>
                         </div>
                     </div>
                 </div>

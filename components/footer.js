@@ -65,7 +65,7 @@ export default function Footer() {
                             color: "#334",
                             fontSize: "1.1em",
                         }}
-                        href={"/auth/helpGuide"}
+                        href={"/help"}
                     >
                         Help &amp; guides
                     </Link>
