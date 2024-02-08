@@ -275,10 +275,10 @@ function Login() {
                     />
                     <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '10px' }}>
                         <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                            <a href="/auth/resources">Resources</a>
+                            <a href="/resources">Resources</a>
                         </div>
                         <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                            <a href="/auth/knowledgebase">Knowledge base</a>
+                            <a href="/knowledgebase">Knowledge base</a>
                         </div>
                         <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
                             <a href="/help">Help & Guides</a>

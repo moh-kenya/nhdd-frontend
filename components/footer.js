@@ -32,7 +32,7 @@ export default function Footer() {
                             color: "#334",
                             fontSize: "1.1em",
                         }}
-                        href={"/auth/resources"}
+                        href={"/resources"}
                     >
                         Resources
                     </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
                             color: "#334",
                             fontSize: "1.1em",
                         }}
-                        href={"/"}
+                        href={"/about"}
                     >
                         About
                     </Link>
@@ -54,7 +54,7 @@ export default function Footer() {
                             color: "#334",
                             fontSize: "1.1em",
                         }}
-                        href={"/auth/knowledgebase"}
+                        href={"/knowledgebase"}
                     >
                         Knowledge base
                     </Link>

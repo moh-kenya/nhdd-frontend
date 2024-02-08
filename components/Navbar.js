@@ -22,11 +22,11 @@ import { doLogout } from '@/utilities';
 
 function NavBar({ session, loggedIn, user, pages }) {
     // const pages = [
-    //     { name: 'About', link: '/auth/about' },
+    //     { name: 'About', link: '/about' },
     //     { name: 'Domains', link: '/orgs/MOH-KENYA/domains' },
     //     { name: 'Organisations', link: '/orgs' },
-    //     { name: 'Announcements', link: '/auth/announcements' },
-    //     { name: 'Resources', link: '/auth/resources' },
+    //     { name: 'Announcements', link: '/announcements' },
+    //     { name: 'Resources', link: '/resources' },
     // ];
     const settings = ['Profile', 'Help & FAQ', 'Logout'];
     const router = useRouter();

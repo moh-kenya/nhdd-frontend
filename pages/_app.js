@@ -12,11 +12,11 @@ export default function App({ Component, pageProps }) {
     const [user, setUser] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(true)
     const pages = [
-        { name: 'About', link: '/auth/about', protected: false },
+        { name: 'About', link: '/about', protected: false },
         { name: 'Domains', link: '/orgs/MOH-KENYA/domains', protected: false },
         { name: 'Organisations', link: '/orgs', protected: false },
-        { name: 'Announcements', link: '/auth/announcements', protected: false },
-        { name: 'Resources', link: '/auth/resources', protected: false },
+        { name: 'Announcements', link: '/announcements', protected: false },
+        { name: 'Resources', link: '/resources', protected: false },
     ]
 
     useEffect(() => {
