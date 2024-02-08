@@ -37,9 +37,9 @@
             {
                 id: "products-technologies",
                 name: "Health Products and Technologies(HPT)",
-                icon: "med", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
+                icon: "microscope2", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
             },
-            { id: "diagnostic-services", name: "Diagnostic Services (Lab and Imaging)", icon: "microscope2", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
+            { id: "diagnostic-services", name: "Diagnostic Services (Lab and Imaging)", icon: "xray", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
             {
                 id: "procedures",
                 name: "Health Procedures",
