@@ -131,7 +131,7 @@ function CollectionConcepts() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {data.map((row, index) => (
+                                            {data && data?.length > 0 ? data.map((row, index) => (
                                                 <TableRow key={row.id} onClick={() => handleClick({ id: row.id, row: row })}>
                                                     <TableCell>
                                                         {page > 1 ? ((page - 1) * rows_per_page) + (index + 1) : (index + 1)}
@@ -145,7 +145,7 @@ function CollectionConcepts() {
                                                     <TableCell>{row.version_created_on}</TableCell>
                                                     <TableCell>{row.version_updated_on}</TableCell>
                                                 </TableRow>
-                                            ))}
+                                            )) : <TableRow><TableCell colSpan={9}>No data</TableCell></TableRow>}
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
