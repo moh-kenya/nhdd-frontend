@@ -80,7 +80,7 @@ function SearchResults() {
                     }}
                     id="searchTerm"
                     name="searchTerm"
-                    label="Search any concept, institution, domain, sub-domain etc."
+                    label="Filter Searched Concepts"
                     variant="outlined"
                     color={"info"}
                 />
