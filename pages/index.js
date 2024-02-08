@@ -316,7 +316,7 @@ export default function Home() {
                         <Typography variant="h6" color={"#fff"}>
                             {" "}
                             You can submit a request for a concept to be added, or visit our{" "}
-                            <Link href={"/support"} style={{ color: "skyblue" }}>
+                            <Link href={"/help"} style={{ color: "skyblue" }}>
                                 help &amp; support page
                             </Link>{" "}
                         </Typography>
