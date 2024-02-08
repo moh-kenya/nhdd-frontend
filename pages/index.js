@@ -151,7 +151,9 @@
                                     variant="standard"
                                     aria-label="lab API tabs example"
                                 >
-                                    <Tab label="Concept Domains" value="1" />                            
+                                    <Tab label="Concept Domains" value="1" /> 
+                                    <Tab label="Sources" value="2" />
+                                    <Tab label="Collections" value="3" />                           
                                 </TabList>
                             </Box>
                             <TabPanel value="1">
