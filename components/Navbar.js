@@ -21,13 +21,7 @@ import { doLogout } from '@/utilities';
 
 
 function NavBar({ session, loggedIn, user, pages }) {
-    // const pages = [
-    //     { name: 'About', link: '/about' },
-    //     { name: 'Domains', link: '/orgs/MOH-KENYA/domains' },
-    //     { name: 'Organisations', link: '/orgs' },
-    //     { name: 'Announcements', link: '/announcements' },
-    //     { name: 'Resources', link: '/resources' },
-    // ];
+    
     const settings = ['Profile', 'Help & FAQ', 'Logout'];
     const router = useRouter();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -51,11 +45,11 @@ function NavBar({ session, loggedIn, user, pages }) {
     };
     return (
         <AppBar position="static" color="default" variant="outlined" elevation={0}>
-            <Container maxWidth="xl">
+            <Container maxWidth="2xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                         <Link href={'/'}>
-                            <img src="/assets/images/logo.png" alt="MoH KNHTS" width={'auto'} height={50} />
+                            <img src="/assets/images/logo.png" alt="MoH KNHTS" width={'auto'} height={65} />
                         </Link>
                     </Box>
 

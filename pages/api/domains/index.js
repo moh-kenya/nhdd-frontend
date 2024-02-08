@@ -13,6 +13,8 @@ export default async function handler(req, res) {
             let domain_data = []
             for (let i = 0; i < domain_urls.length; i++) {
                 let apiurl = domain_urls[i]
+                let queries = req.query
+                queries.includeSummary = 'true'
                 // if req has other query params, pass them to the apiurl
                 if (req.query && Object.keys(req.query).length > 0) {
                     apiurl = apiurl + '?'
@@ -21,16 +23,16 @@ export default async function handler(req, res) {
                     }
                     apiurl = apiurl.slice(0, -1)
                 }
+                console.log('api:: ', API_BASE_URL + apiurl)
                 const response = await fetch(API_BASE_URL + apiurl)
-                // console.log(domain.name, API_BASE_URL + apiurl, response.status)
-                if(response.status !== 200) {
-                    continue
-                }
+                if (response.status !== 200) { continue; }
                 const data = await response.json()
-                if(data && data != []) domain_data.push(data)
+                if (data && data != []) domain_data.push(data)
             }
             if (domain_urls.length === 1) domain_data = domain_data[0]
-            if(domain_data && domain_data != []) domain.sources_data.push(domain_data)
+            if (domain_data && JSON.stringify(domain_data) != '[]') {
+                domain.sources_data.push(domain_data)
+            }
         } else {
             domain.sources_data = []
         }
