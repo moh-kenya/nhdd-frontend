@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import { Button, Select, MenuItem, TextField, Typography, InputLabel, FormControl, IconButton } from '@mui/material';
+import {Stack, Button, Select, MenuItem, TextField, Typography, InputLabel, FormControl, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 function RequestConcept() {
   const [sections, setSections] = useState([]);
@@ -125,14 +126,13 @@ function RequestConcept() {
 
           </Box>
         ))}
-            
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '20%', marginTop: 2 }}>
-          <Button variant="contained" color="primary" size="large">
-            Submit
-          </Button>
-          <Button variant="contained" color="primary" size="large">
-            Cancel
-          </Button>
+        <Box>
+          <Stack direction="row" spacing={10}  marginLeft={10} >
+            <Button variant="contained"  endIcon={<SendIcon size='small' />}>Submit</Button>
+            <Button variant="contained" href="" color='error'>
+                Cancel
+            </Button>
+          </Stack>
         </Box>
       </Box>
     </div>
