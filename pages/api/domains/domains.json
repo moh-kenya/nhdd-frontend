@@ -15,8 +15,7 @@
         "id": "products-technologies",
         "name": "Health Products and Technologies (HPT)",
         "apiUrls": [
-            "/orgs/MOH-KENYA/sources/medicines/",
-            "/orgs/MOH-KENYA/sources/lab-supplies/"
+            "/orgs/MOH-KENYA/sources/PPB/"
         ],
         "icon": "microscope2",
         "metadata": {}
@@ -68,7 +67,7 @@
         "id": "health-infrastructure",
         "name": "Health Infrastructure",
         "apiUrls": [
-            
+            "/orgs/MOH-KENYA/sources/DHI/"   
         ],
         "icon": "hospital",
         "metadata": {}
