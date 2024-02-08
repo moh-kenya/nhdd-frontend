@@ -26,8 +26,8 @@ export default async function handler(req, res) {
 
                 if(domainDetail?.metadata?.subdomainQueryParam){
                     // fetch subdomains
-                    let subdomain_url = API_BASE_URL + '/concepts/' + '?' + domainDetail.metadata.subdomainQueryParam
-                    // console.log("subdomain_url ", subdomain_url)
+                    let subdomain_url = API_BASE_URL  + domain_urls[i] + 'concepts/' + '?' + domainDetail.metadata.subdomainQueryParam
+                    console.log("subdomain_url ", subdomain_url)
                     const subdomainResponse = await fetch(subdomain_url)
                     if(subdomainResponse.status !== 200) {
                         res.status(subdomainResponse.status).json({ message: 'Subdomains not found' });
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
                 }
                 if(req.query.includeConcepts){
                     // fetch concepts
-                    let concepts_url = API_BASE_URL + domain_urls[i] + 'concepts?limit=20&page='+(req.query.page || 1)
+                    let concepts_url = API_BASE_URL + domain_urls[i] + 'concepts/?limit=100&page='+(req.query.page || 1)
                     // console.log("concepts_url ", concepts_url)
                     const conceptsResponse = await fetch(concepts_url)
                     

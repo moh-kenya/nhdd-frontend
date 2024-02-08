@@ -25,11 +25,11 @@
         "id": "diagnostic-services",
         "name": "Diagnostic Services (Lab and Imaging)",
         "apiUrls": [
-            "/orgs/REGENSTREIF-INSTITUTE/sources/LOINC/"
+            "/orgs/MOH-KENYA/sources/NPHL/"
         ],
         "icon": "stethoscope",
         "metadata": {
-            "subdomainQueryParam": "conceptClass=labTest",
+            "subdomainQueryParam": "conceptClass=Subdomain",
             "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
         }
     },

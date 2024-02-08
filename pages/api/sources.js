@@ -20,7 +20,7 @@ export const getSources = (org) => {
         data, isLoading, isError, mutate
     }
 }
-export const getSourceConcepts = (sourceName,org) => {
+export const getSourceConcepts = (sourceName, org, page = 1) => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
     const {
         data,
@@ -28,12 +28,12 @@ export const getSourceConcepts = (sourceName,org) => {
         isError,
     } = useSWR(
         //LIVE
-        `${API_BASE_URL}/orgs/${org}/sources/${sourceName}/concepts/?limit=100&verbose=false&includeRetired=false`,
+        `${API_BASE_URL}/orgs/${org}/sources/${sourceName}/concepts/?limit=20&page=${page}&verbose=false&includeRetired=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
 
     return {
-        data, isLoading:false, isError
+        data, isLoading: false, isError
     }
 }
