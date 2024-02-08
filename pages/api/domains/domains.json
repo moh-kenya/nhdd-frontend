@@ -98,6 +98,9 @@
             "/orgs/WHO/sources/ICF/"
         ],
         "icon": "disab",
-        "metadata": {}  
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
+        }
     }
 ]
