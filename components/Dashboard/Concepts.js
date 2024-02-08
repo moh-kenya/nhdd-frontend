@@ -8,10 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 
-// Could use the API to expose this
-const API_BASE_URL  = 'http://41.89.92.186:8000/users/'
-
-// Get Data
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -19,7 +15,7 @@ function preventDefault(event) {
 export default function Orders() {
   const [data, setData] = useState([])
   useEffect(()=>{
-    fetch(API_BASE_URL).then((res)=>{
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`).then((res)=>{
         return res.json()
     })
     .then((data)=>{

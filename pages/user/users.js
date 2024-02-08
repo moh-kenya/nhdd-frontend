@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
+import { API_BASE_URL } from '../index';
 
-const API_BASE_URL  = 'http://41.89.92.186:8000/users'
 
 
 export default function Home() {
     const [data, setData] = useState([])
     useEffect(()=>{
-        fetch(API_BASE_URL).then((res)=>{
+        fetch(`${API_BASE_URL}/users`).then((res)=>{
             return res.json()
         })
         .then((data)=>{
