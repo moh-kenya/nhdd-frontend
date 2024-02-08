@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function HelpGuide() {
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "//code.tidio.co/edrcjdaok4t7ssu5wqepxnr97r4jhco5.js";
+        script.async = true;
+        document.body.appendChild(script);
+        return () => {
+            document.body.removeChild(script);
+        }
+    }, []);
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
             <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '80px' }}>
@@ -16,20 +26,16 @@ function HelpGuide() {
             </div>
             <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '10px' }}>
                 <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Resources
+                    <a href="/auth/resources">Resources</a>
                 </div>
                 <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Guide
+                    <a href="/auth/knowledgebase">Knowledge base</a>
                 </div>
                 <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Knowledge base
-                </div>
-                <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Help & Guides
+                    <a href="/auth/helpGuide">Help & Guides</a>
                 </div>
             </div>
         </div>
-
     );
 }
 

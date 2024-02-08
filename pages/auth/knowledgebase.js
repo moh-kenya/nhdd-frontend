@@ -16,16 +16,13 @@ function knowledgeBase() {
             </div>
             <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '10px' }}>
                 <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Resources
+                    <a href="/auth/resources">Resources</a>
                 </div>
                 <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Guide
+                    <a href="/auth/knowledgebase">Knowledge base</a>
                 </div>
                 <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Knowledge base
-                </div>
-                <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px' }}>
-                    Help & Guides
+                    <a href="/auth/helpGuide">Help & Guides</a>
                 </div>
             </div>
         </div>
