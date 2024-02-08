@@ -29,8 +29,7 @@ export default function Orders() {
         <TableHead>
           <TableRow>
             <TableCell>User Name</TableCell>
-            <TableCell>Username</TableCell>
-            <TableCell>Url</TableCell>
+            <TableCell>URL</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -11,9 +11,9 @@ export default function Chart() {
 
     return(
         <React.Fragment>
-            <Title>Today</Title>
+            <Title>Admin Dashboard</Title>
               <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
-                <TextField />
+                ...
               </div>
         </React.Fragment>
     )

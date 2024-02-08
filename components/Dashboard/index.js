@@ -163,7 +163,7 @@ export default function Dashboard() {
                     flexDirection: 'column',
                     height: 240,
                   }}>
-                            {/* <Chart /> */}
+                            <Chart />
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={4} lg={3}>
