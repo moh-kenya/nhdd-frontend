@@ -117,15 +117,15 @@ function SourceConcepts() {
                                     <Table>
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell>#</TableCell>
-                                                <TableCell>ID</TableCell>
-                                                <TableCell>Display Name</TableCell>
-                                                <TableCell>Concept Class</TableCell>
-                                                <TableCell>Datatype</TableCell>
-                                                <TableCell>Source</TableCell>
-                                                <TableCell>Retired</TableCell>
-                                                <TableCell>Version Created On</TableCell>
-                                                <TableCell>Version Updated On</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>#</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>ID</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Display Name</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Concept Class</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Datatype</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Source</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Retired</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Version Created On</TableCell>
+                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Version Updated On</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
