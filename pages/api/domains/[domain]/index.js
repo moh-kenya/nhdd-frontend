@@ -37,8 +37,8 @@ export default async function handler(req, res) {
                 }
                 if(req.query.includeConcepts){
                     // fetch concepts
-                    let concepts_url = API_BASE_URL + domain_urls[i] + 'concepts/?limit=100&page='+(req.query.page || 1)
-                    // console.log("concepts_url ", concepts_url)
+                    let concepts_url = API_BASE_URL + domain_urls[i] + 'concepts/?limit=25&page='+(req.query.page || 1)
+                    console.log("concepts_url ", concepts_url)
                     const conceptsResponse = await fetch(concepts_url)
                     
                     const conceptspagecount = conceptsResponse.headers.get('pages')

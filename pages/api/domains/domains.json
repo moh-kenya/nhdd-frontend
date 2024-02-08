@@ -1,9 +1,9 @@
 [
     {
-        "id": "Classification-of-diseases",
+        "id": "classification-of-diseases",
         "name": "Classification of Diseases",
         "apiUrls": [
-            "/orgs/WHO/sources/ICD-11-WHO/"
+            "/orgs/WHO/sources/ICD-11/"
         ],
         "icon": "tabs",
         "metadata": {

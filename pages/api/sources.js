@@ -11,7 +11,7 @@ export const getSources = (org) => {
         isError,
         mutate,
     } = useSWR(
-        `${API_BASE_URL}/orgs/${org}/sources/?limit=100&verbose=false&includeRetired=false`,
+        `${API_BASE_URL}/orgs/${org}/sources/?limit=25&verbose=false&includeRetired=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
@@ -28,7 +28,7 @@ export const getSourceConcepts = (sourceName, org, page = 1) => {
         isError,
     } = useSWR(
         //LIVE
-        `${API_BASE_URL}/orgs/${org}/sources/${sourceName}/concepts/?limit=20&page=${page}&verbose=false&includeRetired=false`,
+        `${API_BASE_URL}/orgs/${org}/sources/${sourceName}/concepts/?limit=25&page=${page}&verbose=false&includeRetired=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
