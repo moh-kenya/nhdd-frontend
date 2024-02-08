@@ -1,4 +1,4 @@
-import { Box, TextField, Button, Skeleton, Stack, Alert, AlertTitle } from "@mui/material";
+import { Box, TextField, Button, Skeleton, Stack, Alert, AlertTitle,Typography } from "@mui/material";
 import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
@@ -17,8 +17,7 @@ function SearchResults() {
     const { data, isLoading, isError, mutate } = searchConcepts(search);
 
     const handleSearch = (event) => {
-        event.preventDefault();
-        router.push(`/search/?q=${searchTerm}`);
+       event.preventDefault();
         mutate();
     };
 
@@ -52,6 +51,14 @@ function SearchResults() {
         );
     }
 
+    const filteredData = Object.values(data).filter((row) =>
+    Object.values(row).some(
+      (value) =>
+        typeof value === "string" && value.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  ) 
+
+
     return (
         <>
             <Head>
@@ -60,6 +67,9 @@ function SearchResults() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <Box>
+            <Typography variant="h5" m={0} align="left" fontWeight={'bold'} color="text.primary" gutterBottom> Search results for {search}  </Typography>
+            </Box>
             <Box width={"100%"} sx={{ display: "flex" }}>
                 <TextField
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -91,7 +101,7 @@ function SearchResults() {
 
             <Box my={2} sx={{ width: "100%" }}>
                 <DataGrid
-                    rows={Object.values(data)}
+                    rows={Object.values(filteredData)}
                     getRowId={(row) => row.uuid}
                     columns={columns.map((key) => {
                         return {
