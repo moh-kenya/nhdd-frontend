@@ -4,12 +4,12 @@ import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { getSources } from "@/pages/api/sources";
+import { getCollections } from "@/pages/api/collections";
 import { Search } from "@mui/icons-material";
 
-function SourceList(props) {
+function CollectionList(props) {
   const router = useRouter();
-  const { data, isLoading, isError, mutate } = getSources(router.query.org);
+  const { data, isLoading, isError, mutate } = getCollections(router.query.org);
   const columns = ["id", "name", "type", "url"];
   const [searchTerm, setSearchTerm] = useState("");
   if (isLoading) {
@@ -38,7 +38,7 @@ function SourceList(props) {
   };
   const handleClick = (params) =>{
     const rowId = params.id;
-    router.push(`/orgs/${params?.row?.owner}/sources/${rowId}`);
+    router.push(`/orgs/${params?.row?.owner}/collections/${rowId}`);
   }
   const filteredData = Object.values(data).filter((row) =>
     Object.values(row).some(
@@ -50,13 +50,13 @@ function SourceList(props) {
   return (
     <>
       <Head>
-        <title>MOH KNHTS | Sources</title>
+        <title>MOH KNHTS | Collections</title>
         <meta name="description" content="MOH KNHTS" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box width={"100%"} sx={{ display: "flex" }}>
-        <TextField onChange={(e) => setSearchTerm(e.target.value)}sx={{  flexGrow: 1,  backgroundColor: "#fcfcfc",  borderRadius: "8px",}}id="searchTerm"name="searchTerm"label="Search Sources"variant="outlined"color={"info"}/>
+        <TextField onChange={(e) => setSearchTerm(e.target.value)}sx={{  flexGrow: 1,  backgroundColor: "#fcfcfc",  borderRadius: "8px",}}id="searchTerm"name="searchTerm"label="Search Collections"variant="outlined"color={"info"}/>
         <Button  onClick={handleSearch}  sx={{    borderRadius: "8px",    marginLeft: "10px",    backgroundColor: "#fff",    color: "#333",  }}  variant="contained"  color="primary">
           <Search />
         </Button>
@@ -68,4 +68,4 @@ function SourceList(props) {
   );
 }
 
-export default SourceList;
+export default CollectionList;
