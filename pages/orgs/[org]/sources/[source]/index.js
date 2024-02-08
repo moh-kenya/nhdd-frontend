@@ -117,7 +117,7 @@ function SourceConcepts() {
                                     <Table>
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>#</TableCell>
+                                                {/* <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>#</TableCell> */}
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>ID</TableCell>
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Display Name</TableCell>
                                                 <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Concept Class</TableCell>
@@ -131,7 +131,9 @@ function SourceConcepts() {
                                         <TableBody>
                                             {data.map((row, index) => (
                                                 <TableRow key={row.id} onClick={() => handleClick({ id: row.id, row: row })}>
-                                                    <TableCell>{index + 1}</TableCell>
+                                                    <TableCell>
+                                                        {page > 1 ? ((page - 1) * rows_per_page) + (index + 1) : (index + 1)}
+                                                    </TableCell>
                                                     <TableCell>{row.id}</TableCell>
                                                     <TableCell>{row.display_name}</TableCell>
                                                     <TableCell>{row.concept_class}</TableCell>

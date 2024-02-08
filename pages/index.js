@@ -7,6 +7,12 @@ import {
     Button,
     CircularProgress,
     IconButton,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
     Tabs,
     TextField,
     Toolbar,
@@ -33,8 +39,12 @@ export default function Home() {
     const router = useRouter();
     const [activeTab, setActiveTab] = useState("1");
 
-    const [domains, setDomains] = useState([]);
     const [loadingDomains, setLoadingDomains] = useState(true);
+    const [domains, setDomains] = useState([]);
+
+    const [loadingCollections, setLoadingCollections] = useState(true);
+    const [sources, setSources] = useState([]);
+    const [collections, setCollections] = useState([]);
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
@@ -50,7 +60,17 @@ export default function Home() {
         fetch(`/api/domains`)
             .then((res) => res.json())
             .then((data) => {
+                let srcs = []
                 setDomains([...data, { id: "/", name: "View all domains", icon: "all" }]);
+                data.forEach((domain) => {
+                    let domain_sources = Array.from(domain?.apiUrls, d => {
+                        let d_ = d.split('/').filter(f => f)
+                        let src = d_[d_.length - 3] + '/' + d_[d_.length - 1]
+                        return src
+                    })
+                    srcs = srcs.concat(domain_sources)
+                });
+                setSources([...new Set(srcs)]);
                 setLoadingDomains(false);
             })
             .catch((err) => {
@@ -58,9 +78,23 @@ export default function Home() {
                 setLoadingDomains(false);
             });
     }
+    const fetchCollections = () => {
+        setLoadingCollections(true);
+        fetch(`${API_BASE_URL}/collections/`)
+            .then((res) => res.json())
+            .then((data) => {
+                setCollections(data);
+                setLoadingCollections(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoadingCollections(false);
+            });
+    }
 
     useEffect(() => {
         fetchDomains()
+        fetchCollections()
     }, []);
 
     return (
@@ -195,17 +229,59 @@ export default function Home() {
                             </Box>
                         </TabPanel>
                         <TabPanel value="2">
-                            <Box
-                                sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
-                            >
+                            <Box sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }} >
                                 <Typography variant="h4">Sources</Typography>
+                                <TableContainer>
+                                    <Table>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell sx={{ fontWeight: 'bold' }}>ORGANIZATION</TableCell>
+                                                <TableCell sx={{ fontWeight: 'bold' }}>SOURCE</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {sources.map((source, index) => (
+                                                <TableRow key={index} sx={{ ":hover": { color: '#1651B6', cursor: 'pointer' } }} onClick={e => router.push(`/orgs/${source?.split('/')[0]}/sources/${source?.split('/')[1]}`)}>
+                                                    <TableCell>{source?.split('/')[0]}</TableCell>
+                                                    <TableCell>{source?.split('/')[1]}</TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
                             </Box>
                         </TabPanel>
                         <TabPanel value="3">
-                            <Box
-                                sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
-                            >
+                            <Box sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }} >
                                 <Typography variant="h4">Collections</Typography>
+                                <TableContainer>
+                                    <Table>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell sx={{ fontWeight: 'bold' }}>ID</TableCell>
+                                                <TableCell sx={{ fontWeight: 'bold' }}>Name</TableCell>
+                                                <TableCell sx={{ fontWeight: 'bold' }}>Owner</TableCell>
+                                                <TableCell sx={{ fontWeight: 'bold' }}>Collection Type</TableCell>
+                                                <TableCell sx={{ fontWeight: 'bold' }}>Created at</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {collections.map((coll, index) => (
+                                                <TableRow key={index} sx={{ 
+                                                    // ":hover": { color: '#1651B6', cursor: 'pointer' }
+                                                 }} onClick={e => {
+                                                    // router.push(`/`)
+                                                }}>
+                                                    <TableCell>{coll.id}</TableCell>
+                                                    <TableCell>{coll.name}</TableCell>
+                                                    <TableCell>{coll.owner}</TableCell>
+                                                    <TableCell>{coll.collection_type}</TableCell>
+                                                    <TableCell>{new Date(coll.created_at).toLocaleString()}</TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
                             </Box>
                         </TabPanel>
                     </TabContext>
