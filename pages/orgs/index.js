@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { getOrganizations } from "@/pages/api/organizations";
 import { Search } from "@mui/icons-material";
+import Footer from '@/components/footer';
 
 function OrgsList() {
   const router = useRouter();
@@ -89,6 +90,8 @@ function OrgsList() {
           pageSizeOptions={[25, 50, 100]}
         />
       </Box>
+      <br></br>
+      <Footer />
     </>
   );
 }
