@@ -211,7 +211,7 @@ function OrgDomainsList() {
                                                             <Link
                                                                 href={concept.url}
                                                                 passHref style={{ textDecoration: 'none' }}>
-                                                                <Typography variant='h6' className='text-blue-800' sx={{ m: '8px 5px', fontWeight: '500', ":hover": { textDecoration: 'underline', cursor: 'pointer' } }}><small>{index + 1}.</small> {concept.display_name}</Typography>
+                                                                <Typography variant='h6' className='text-blue-800' sx={{ m: '8px 5px', fontWeight: '500', ":hover": { textDecoration: 'underline', cursor: 'pointer' } }}><small>{page > 1 ? ((page -1 )* rowsPerPage)+(index+1): (index + 1)}.</small> {concept.display_name}</Typography>
                                                             </Link>
                                                             <Box sx={{ display: 'flex', gap: 2, px: { xs: 1, sm: 2 }, color: 'GrayText', fontSize: '0.85em' }}>
                                                                 <span>ID: <b className='text-black'>{concept.id}</b></span>
