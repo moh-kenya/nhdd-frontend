@@ -1,170 +1,390 @@
-import React, { useEffect, useState } from "react";
-import { Alert, AlertTitle, Box, CircularProgress, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import React from "react";
 import { useRouter } from "next/router";
-import { getSourceConcepts } from "../../../../../pages/api/sources";
 import Head from "next/head";
+import {
+    Box,
+    Button,
+    Chip,
+    Dialog,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+    Skeleton
+} from "@mui/material";
+import Link from "next/link";
+import { getConceptDetail, getConceptVersions, getConceptRelated } from '../../../../../../api/conceptDetail'
 
-function SourceConcepts() {
+function ConceptDetail() {
     const router = useRouter();
-    const { source, org } = router.query;
-    const [isLoading, setIsLoading] = useState(true);
-    const [total_pages, setTotalPages] = useState(1);
-    const [rows_per_page, setRowsPerPage] = useState(50);
-    const [page, setPage] = useState(1);
-    const [data, setData] = useState([]);
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-    const [isError, setIsError] = useState(false);
-    const [error, setError] = useState(null);
+    const { org, source, concept } = router.query;
+    const {
+        data: conceptDetail,
+        isError,
+        isLoading,
+    } = getConceptDetail(org, source, concept);
+    const {
+        data: conceptVersions,
+        isError: versionfetchError,
+        isLoading: versionfetchLoading,
+    } = getConceptVersions(org, source, concept); // TODONE: get concept versions
+    const {
+        data: conceptRelated,
+        isError: relatedfetchError,
+        isLoading: relatedfetchLoading,
+    } = getConceptRelated(org, source, concept); // TODONE: get concept relatives
 
-    // const { data, isError } = getSourceConcepts(source, org);
+    const childConcepts = []; // TODO: get child concepts
+    const parentConcepts = []; // TODO: get parent concepts
 
-    const columns = [
-        { field: "id", headerName: "ID", width: 100 },
-        { field: "display_name", headerName: "Display Name", width: 200 },
-        { field: "concept_class", headerName: "Concept Class", width: 150 },
-        { field: "datatype", headerName: "Datatype", width: 150 },
-        { field: "source", headerName: "Source", width: 150 },
-        { field: "retired", headerName: "Retired", width: 100 },
-        { field: "version_created_on", headerName: "Version Created On", width: 200 },
-        { field: "version_updated_on", headerName: "Version Updated On", width: 200 },
-    ];
-    const handleClick = (params) => {
-        const rowId = params.id;
+    const [synonymsDialogOpen, setSynonymsDialogOpen] = React.useState(false);
+    const [descriptionsDialogOpen, setDescriptionsDialogOpen] =
+        React.useState(false);
 
-        router.push(params.row.url);
-        // router.push(`/orgs/${params?.row?.owner}/sources/${params?.row?.source}/concepts/${rowId}`);
-
+    if (isLoading) {
+        return (
+            <Box sx={{ pt: 0.5 }}>
+                <Skeleton />
+                <Skeleton width="60%" />
+            </Box>
+        );
     }
 
-    const fetchConcepts = () => {
-        setIsLoading(true);
-        let url = `${API_BASE_URL}/orgs/${org}/sources/${source}/concepts/?limit=${rows_per_page}&page=${page}&verbose=false&includeRetired=false`
-        fetch(url)
-            .then((d) => {
-                const conceptspagecount = d.headers.get('pages') ?? 1
-                const conceptspagesize = d.headers.get('num_returned') ?? 20
-                const conceptscurrentpage = d.headers.get('page_number') ?? 1
-                setTotalPages(conceptspagecount ?? 1);
-                setRowsPerPage(conceptspagesize ?? 20);
-                setPage(conceptscurrentpage ?? 1);
-
-                // console.log('pages:', conceptspagecount, 'size:', conceptspagesize, 'current:', conceptscurrentpage);
-                return d.json()
-            })
-            .then((data) => {
-                if (data) {
-                    setData(data);
-
-                }
-            })
-            .catch((err) => {
-                setIsError(true);
-                setError(err.message);
-                console.error('error::', err);
-            });
-        setIsLoading(false);
-    };
-
-    useEffect(() => {
-        let mounted = true
-        if (mounted) {
-            fetchConcepts();
-        }
-        return () => {
-            mounted = false
-        }
-    }, [router.query, page]);
+    if (isError) {
+        return (
+            <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    Error fetching data, please retry.
+                </Alert>
+            </Stack>
+        );
+    }
 
     return (
         <>
             <Head>
-                <title>MOH KNHTS | Source - {source}</title>
+                <title>
+                    MOH KNHTS | {org}/{source}/{concept}
+                </title>
                 <meta name="description" content="MOH KNHTS" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {isLoading ? (
-                <CircularProgress />
-            ) : isError ? (
-                <Stack sx={{ width: "100%" }} spacing={2}>
-                    <Alert severity="error">
-                        <AlertTitle>Error</AlertTitle>
-                        {error ?? "Error fetching data, please retry."}
-                    </Alert>
-                </Stack>
-            ) : data ? (
-                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", maxWidth: { xs: '100%', md: '99vw' } }}>
-                    <Box sx={{ width: "100%", py: { xs: 2, md: 2 }, px: { xs: 1, md: 2 } }}>
-                        <Box sx={{ bgcolor: "white", width: "100%", display: "flex", flexDirection: { xs: "column", md: "row" }, flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" }}>
+
+            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "2fr 1fr" }, gap: 2, }}>
+                {/* --------- <Main ---------- */}
+                <Box sx={{ py: { xs: 2, md: 4 }, px: { xs: 1, md: 2 } }} >
+                    <Box maxWidth={1280} sx={{ width: "100%" }}>
+                        <button
+                            style={{ background: "transparent", width: "auto", border: 0, color: "#777", padding: 0, }}
+                            onClick={(ev) => {
+                                ev.preventDefault();
+                                router.back();
+                            }}
+                        > {" "} &larr; Back </button>
+                    </Box>
+                    <Box
+                        className="breadcrumb-container"
+                        sx={{ my: { xs: 1, md: 2 }, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1, color: "#3d6393", fontSize: "0.9em", }}
+                    >
+                        {" "}
+                        {/* breadcrumb: org > source > domain > subdomain > concept */}
+                        <Link href={`/orgs/${org}/sources/`} style={{ textDecoration: "none", color: "#1651B6" }} title="Org" className="breadcrumb-item"> {org} </Link>
+                        <Link href={`/orgs/${org}/sources/${source}`} style={{ textDecoration: "none", color: "#1651B6" }} title="Source" className="breadcrumb-item"> {source} </Link>
+                        <span title="Concept ID" className="breadcrumb-item" style={{ textDecoration: "none", color: "#777" }}> {conceptDetail.id} </span>
+                    </Box>
+
+                    {/* Names */}
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 2 }}>
+                        <Typography variant="h5" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>
+                            <span style={{ color: "#3d6393" }}>{conceptDetail.id}</span>{" "}
+                            {conceptDetail.display_name}{" "}
+                        </Typography>
+                        <div>
                             <button
-                                style={{ background: "transparent", width: "auto", border: 0, color: "#777", padding: 0 }}
                                 onClick={(ev) => {
                                     ev.preventDefault();
-                                    router.back();
+                                    setSynonymsDialogOpen(true);
                                 }}
-                            >
-                                &larr; Back
+                                style={{ background: "transparent", width: "auto", border: 0, color: "#1651B6", padding: 0, }} >
+                                View other names / synonyms
                             </button>
-                            <Typography variant="h5" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>
-                                Source: {source}
-                            </Typography>
-                            <Box></Box>
-                        </Box>
-                        <hr />
-                        <Box sx={{ flexGrow: 1, backgroundColor: "white", padding: "16px" }}>
-                            <Typography variant="h6" gutterBottom> Concepts Table </Typography>
-                            <div style={{ width: "100%" }}>
-                                <TableContainer>
-                                    <Table>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>#</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>ID</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Display Name</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Concept Class</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Datatype</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Source</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Retired</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Version Created On</TableCell>
-                                                <TableCell sx={{fontWeight: 'bold', textTransform: 'uppercase'}}>Version Updated On</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {data.map((row, index) => (
-                                                <TableRow key={row.id} onClick={() => handleClick({ id: row.id, row: row })}>
-                                                    <TableCell>
-                                                        {page > 1 ? ((page - 1) * rows_per_page) + (index + 1) : (index + 1)}
+                            <Dialog onClose={() => setSynonymsDialogOpen(false)} open={synonymsDialogOpen}>
+                                <div style={{ padding: 10 }}>
+                                    <h4>Synonyms</h4>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: 3, my: 2, }}>
+                                        {conceptDetail?.names?.map((name, index) => {
+                                            return (
+                                                <p key={index} style={{ margin: 0 }}>
+                                                    {" "}
+                                                    <em style={{ color: "#777", margin: "0 5px 0 0" }}>
+                                                        [{name.index}]
+                                                    </em>{" "}
+                                                    <b>{name.uuid}</b> {name.name}
+                                                </p>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </Dialog>
+                        </div>
+                    </Box>
+
+                    {/* Descriptions */}
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }}>
+                        <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>
+                            Description
+                        </Typography>
+                        {conceptDetail?.descriptions &&
+                            conceptDetail?.descriptions?.length > 0 ? (
+                            <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }} >
+                                {(
+                                    [
+                                        conceptDetail.descriptions.filter(
+                                            (c) => c?.locale == conceptDetail.display_locale
+                                        )[0],
+                                    ] || [conceptDetail.descriptions[0]]
+                                )?.map((description, index) => {
+                                    return (
+                                        <p key={index} style={{ margin: 0 }}>
+                                            {" "}
+                                            <em style={{ color: "#777", margin: "0 5px 0 0" }}>
+                                                [{description.locale}]
+                                            </em>{" "}
+                                            {description.description}
+                                        </p>
+                                    );
+                                })}
+                                <div style={{ marginTop: "4px" }}>
+                                    <button onClick={(ev) => { ev.preventDefault(); setDescriptionsDialogOpen(true); }} style={{ background: "transparent", width: "auto", border: 0, color: "#1651B6", padding: 0, }} >
+                                        View other descriptions
+                                    </button>
+                                    <Dialog onClose={() => setDescriptionsDialogOpen(false)} open={descriptionsDialogOpen} >
+                                        <div style={{ padding: 10 }}>
+                                            <h4>Descriptions</h4>
+                                            <div
+                                                style={{ display: "flex", flexDirection: "column", gap: 0, my: 2, }}
+                                            >
+                                                {conceptDetail?.descriptions?.map(
+                                                    (description, index) => {
+                                                        return (
+                                                            <p key={index} style={{ margin: "10px 0" }}>
+                                                                {" "}
+                                                                <em style={{ color: "#777", margin: "0 5px 0 0" }} > [{description.locale}] </em>{" "}
+                                                                <b>{description.uuid}</b>{" "}
+                                                                {description.description}
+                                                            </p>
+                                                        );
+                                                    }
+                                                )}
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </div>
+                            </Box>
+                        ) : (
+                            <Box sx={{ display: "flex", flexDirection: "column", gap: 0, px: 1, color: "#777", }} >
+                                <p style={{ margin: "5px 0" }}> None </p>
+                            </Box>
+                        )}
+                    </Box>
+
+                    {/* Attributes */}
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }}>
+                        <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>
+                            Attributes
+                        </Typography>
+                        {conceptDetail?.extras &&
+                            Object.keys(conceptDetail?.extras).length > 0 ? (
+                            <Box sx={{ display: "flex", flexDirection: "column", gap: 1, my: 2 }} >
+                                {Object.keys(conceptDetail?.extras).map((key, index) => {
+                                    return (
+                                        <div key={index} style={{ margin: 0, display: "grid", gridTemplateColumns: "auto 1fr", gap: "0.5em", }}>
+                                            <span style={{ textTransform: "capitalize", marginRight: "1em", fontWeight: "500", }}
+                                            >
+                                                {key.split("_").join(" ")}:{" "}
+                                            </span>
+
+                                            {typeof conceptDetail?.extras[key] == "string" ||
+                                                typeof conceptDetail?.extras[key] == "number" ||
+                                                typeof conceptDetail?.extras[key] == "boolean" ? (
+                                                <span>
+                                                    {conceptDetail?.extras[key]?.startsWith("http") ? (
+                                                        <a href={conceptDetail?.extras[key]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#1651B6", }}>
+                                                            {conceptDetail?.extras[key]}
+                                                        </a>
+                                                    ) : (
+                                                        <span>{conceptDetail?.extras[key]}</span>
+                                                    )}
+                                                </span>
+                                            ) : (
+                                                <code style={{ fontSize: "0.9em", whiteSpace: "break-spaces", display: "block", backgroundColor: "#f2efe9", padding: "1em", borderRadius: "5px", margin: "1em 0", }}>
+                                                    {JSON.stringify(conceptDetail?.extras[key], null, 2)}
+                                                </code>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </Box>
+                        ) : (
+                            <Box
+                                sx={{ display: "flex", flexDirection: "column", gap: 0, px: 1, color: "#777", }}>
+                                <p style={{ margin: "5px 0" }}> None </p>
+                            </Box>
+                        )}
+                    </Box>
+
+                    {/* Relationships */}
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }}>
+                        <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom> Relationships / Associated </Typography>
+                        {conceptDetail?.mappings && conceptDetail?.mappings.length > 0 ? (
+                            <TableContainer>
+                                <Table size="small" sx={{ border: "1px solid #ccc" }}>
+                                    <TableHead>
+                                        <TableRow sx={{ bgcolor: "InfoBackground" }}>
+                                            <TableCell sx={{ fontWeight: "600" }}>
+                                                Relationship
+                                            </TableCell>
+                                            <TableCell sx={{ fontWeight: "600" }}>Code</TableCell>
+                                            <TableCell sx={{ fontWeight: "600" }}>Name</TableCell>
+                                            <TableCell sx={{ fontWeight: "600" }}>Source</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {conceptDetail?.mappings.map((entry, index) => {
+                                            return (
+                                                <TableRow key={index}>
+                                                    <TableCell>{entry.map_type}</TableCell>
+                                                    <TableCell
+                                                        onClick={(ev) => {
+                                                            // go to concept page
+                                                            ev.preventDefault();
+                                                            router.push(
+                                                                `/orgs/${org}/sources/${source}/concepts/${entry.to_concept_code}`
+                                                            );
+                                                        }}
+                                                        sx={{ color: "#1651B6" }}
+                                                    >
+                                                        {entry.to_concept_code}
                                                     </TableCell>
-                                                    <TableCell>{row.id}</TableCell>
-                                                    <TableCell>{row.display_name}</TableCell>
-                                                    <TableCell>{row.concept_class}</TableCell>
-                                                    <TableCell>{row.datatype}</TableCell>
-                                                    <TableCell>{row.source}</TableCell>
-                                                    <TableCell>{row.retired}</TableCell>
-                                                    <TableCell>{row.version_created_on}</TableCell>
-                                                    <TableCell>{row.version_updated_on}</TableCell>
+                                                    <TableCell
+                                                        onClick={(ev) => {
+                                                            // go to concept page
+                                                            ev.preventDefault();
+                                                            router.push(
+                                                                `/orgs/${org}/sources/${source}/concepts/${entry.to_concept_code}`
+                                                            );
+                                                        }}
+                                                        sx={{ color: "#1651B6" }}
+                                                    >
+                                                        {entry.cascade_target_concept_name}
+                                                    </TableCell>
+                                                    <TableCell
+                                                        onClick={(ev) => {
+                                                            // go to source page
+                                                            ev.preventDefault();
+                                                            router.push(`/orgs/${org}/sources/${source}`);
+                                                        }}
+                                                    >
+                                                        {entry.cascade_target_source_name}
+                                                    </TableCell>
                                                 </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                                <Pagination
-                                    count={parseInt(total_pages)}
-                                    page={parseInt(page)}
-                                    onChange={(event, value) => {
-                                        if (value === page) return;
-                                        setPage(value);
-                                        // fetchConcepts(pg);
-                                    }}
-                                />
-                            </div>
+                                            );
+                                        })}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        ) : (
+                            <Box
+                                sx={{ display: "flex", flexDirection: "column", gap: 0, px: 1, color: "#777", }}>
+                                <p style={{ margin: "5px 0" }}> None </p>
+                            </Box>
+                        )}
+                    </Box>
+
+                    {/* Memberships */}
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }}>
+                        <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom > Memberships </Typography>
+                        {/* TODO */}
+                        <Box sx={{ display: "flex", flexDirection: "column", gap: 0, px: 1, color: "#777", }} >
+                            <p style={{ margin: "5px 0" }}> None </p>
                         </Box>
                     </Box>
+
+                    {/* Versions */}
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 0, my: 3 }}>
+                        <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom> Concept versions </Typography>
+                        {conceptVersions?.length > 0 ? (
+                            conceptVersions?.map((version, index) => {
+                                return (
+                                    <div key={index} style={{ display: "flex", alignItems: "center", gap: 3, margin: "7px 0", }} >
+                                        {index + 1}. <Chip size="small" variant="filled" color="primary" label={version?.uuid} onClick={(ev) => {
+                                            ev.preventDefault();
+                                            // router.push(
+                                            //     `/orgs/${org}/sources/${source}/concepts/${concept}/${version?.uuid}`
+                                            // );
+                                        }}
+                                        />
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <Box sx={{ display: "flex", flexDirection: "column", gap: 0, px: 1, color: "#777", }} >
+                                <p style={{ margin: "5px 0" }}> None </p>
+                            </Box>
+                        )}
+                    </Box>
                 </Box>
-            ) : null}
+                {/* --------- Main/> --------- */}
+
+                {/* --------- <Sidebar ---------- */}
+                <Box sx={{ py: { xs: 2, md: 4 }, px: { xs: 1, md: 2 }, mt: { xs: 1, md: 3 } }} >
+                    <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>Related concepts</Typography>
+                    <TableContainer>
+                        <Table size="small">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell sx={{ textTransform: 'uppercase' }}>Code</TableCell>
+                                    <TableCell sx={{ textTransform: 'uppercase' }}>Concept</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {conceptRelated?.entry?.entries?.filter(c => c?.type?.toLocaleLowerCase() == 'concept')?.map((concept, index) => {
+                                    return (
+                                        <TableRow key={index}>
+                                            <TableCell>{concept.id}</TableCell>
+                                            <TableCell>
+                                                <Link href={`/orgs/${org}/sources/${source}/concepts/${concept.id}`} style={{ textDecoration: 'none' }}>
+                                                    {concept.display_name || concept.cascade_target_concept_name}
+                                                </Link>
+                                                {concept?.entries?.length > 0 && <details>
+                                                    <summary>Children</summary>
+                                                    {concept?.entries?.map((child, index2) => {
+                                                        return (
+                                                            <Box key={"c-" + index2} sx={{ ml: 2 }}>
+                                                                {index2 + 1}. <Link className="text-sky-700" href={`/orgs/${org}/sources/${source}/concepts/${child.id}`} style={{ textDecoration: 'none' }}>
+                                                                {child?.id} {child.display_name || child.cascade_target_concept_name}
+                                                                </Link>
+                                                            </Box>
+                                                        );
+                                                    })}
+                                                </details>}
+                                            </TableCell>
+                                        </TableRow>
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
+                {/* --------- Sidebar/> ---------- */}
+            </Box>
         </>
     );
 }
 
-export default SourceConcepts;
+export default ConceptDetail;
