@@ -80,7 +80,7 @@ export default function Home() {
     }
     const fetchCollections = () => {
         setLoadingCollections(true);
-        fetch(`${API_BASE_URL}/collections/`)
+        fetch(`${API_BASE_URL}/collections/?limit=20`)
             .then((res) => res.json())
             .then((data) => {
                 setCollections(data);
@@ -270,7 +270,7 @@ export default function Home() {
                                                 <TableRow key={index} sx={{ 
                                                     // ":hover": { color: '#1651B6', cursor: 'pointer' }
                                                  }} onClick={e => {
-                                                    // router.push(`/`)
+                                                    router.push(coll.url)
                                                 }}>
                                                     <TableCell>{coll.id}</TableCell>
                                                     <TableCell>{coll.name}</TableCell>
