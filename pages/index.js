@@ -39,7 +39,7 @@
                 name: "Health Products and Technologies(HPT)",
                 icon: "med", "metadata": { number_of_subdomains: 10, number_of_concepts: 5243 },
             },
-            { id: "diagnostic-services", name: "diagnostic Services (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
+            { id: "diagnostic-services", name: "Diagnostic Services (Lab and Imaging)", icon: "microscope", "metadata": { number_of_subdomains: 23, number_of_concepts: 7231 } },
             {
                 id: "procedures",
                 name: "Health Procedures",
@@ -151,7 +151,9 @@
                                     variant="standard"
                                     aria-label="lab API tabs example"
                                 >
-                                    <Tab label="Concept Domains" value="1" />                            
+                                    <Tab label="Concept Domains" value="1" /> 
+                                    <Tab label="Sources" value="2" />
+                                    <Tab label="Collections" value="3" />                           
                                 </TabList>
                             </Box>
                             <TabPanel value="1">

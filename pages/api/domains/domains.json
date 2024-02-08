@@ -5,7 +5,7 @@
         "apiUrls": [
             "/orgs/WHO/sources/ICD-11-WHO/"
         ],
-        "icon": "microscope",
+        "icon": "tabs",
         "metadata": {
             "subdomainQueryParam": "conceptClass=chapter",
             "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
@@ -18,7 +18,7 @@
             "/orgs/MOH-KENYA/sources/medicines/",
             "/orgs/MOH-KENYA/sources/lab-supplies/"
         ],
-        "icon": "devices",
+        "icon": "microscope2",
         "metadata": {}
     },
     {
@@ -27,7 +27,7 @@
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/NPHL/"
         ],
-        "icon": "stethoscope",
+        "icon": "xray",
         "metadata": {
             "subdomainQueryParam": "conceptClass=Subdomain",
             "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
@@ -39,7 +39,7 @@
         "apiUrls": [
             "/orgs/WHO/sources/ICHI/"
         ],
-        "icon": "syringe",
+        "icon": "syring",
         "metadata": {
             "subdomainQueryParam": "conceptClass=procedure",
             "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
@@ -49,7 +49,7 @@
         "id": "billing",
         "name": "Billing & eClaims Management",
         "apiUrls": [],
-        "icon": "finance",
+        "icon": "bill",
         "metadata": {}
     },
     {
@@ -58,7 +58,7 @@
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/HRH/"
         ],
-        "icon": "doctor",
+        "icon": "hr",
         "metadata": {
             "subdomainQueryParam": "conceptClass=Subdomain",
             "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
@@ -70,14 +70,14 @@
         "apiUrls": [
             
         ],
-        "icon": "devices",
+        "icon": "hospital",
         "metadata": {}
     },
     {
         "id": "supply-chain",
         "name": "Supplies Chain Management",
         "apiUrls": [],
-        "icon": "medstore",
+        "icon": "supply",
         "metadata": {}
     },
     {
@@ -86,7 +86,7 @@
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/MOHD/"
         ],
-        "icon": "community",
+        "icon": "communit",
         "metadata": {}
     },
     {
@@ -95,7 +95,7 @@
         "apiUrls": [
             "/orgs/WHO/sources/ICF/"
         ],
-        "icon": "disability",
+        "icon": "disab",
         "metadata": {}  
     }
 ]
