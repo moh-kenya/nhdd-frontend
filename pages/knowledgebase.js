@@ -47,7 +47,13 @@ const FAQItem = ({ faq }) => {
                 }}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <div style={{ marginRight: '10px', backgroundColor: '#f2f2f2', padding: '10px', borderRadius: '5px' }}>
+                <div style={{ 
+                    width: 'calc(100% - 30px)', // Set a fixed width for the question div
+                    marginRight: '10px', 
+                    backgroundColor: '#f2f2f2', 
+                    padding: '10px', 
+                    borderRadius: '5px' 
+                }}>
                     <strong>{faq.question}</strong>
                 </div>
                 <div>{isOpen ? '▼' : '►'}</div>
@@ -56,7 +62,6 @@ const FAQItem = ({ faq }) => {
         </div>
     );
 };
-
 
 
 function KnowledgeBase() {
