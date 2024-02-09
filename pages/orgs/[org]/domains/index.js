@@ -81,9 +81,9 @@ function OrgDomainsList() {
                                                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
                                                     <span className='text-stone-500'>Source(s):</span> <span style={{ fontWeight: '500', color: 'black' }}>{domain.sources_data[0]?.short_code || '-'}</span>
                                                 </Box>
-                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
+                                                {/* <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
                                                     <span className='text-stone-500'>Mappings:</span> <span style={{ fontWeight: '500', color: 'black' }}>{new Intl.NumberFormat().format(domain.sources_data[0]?.summary?.active_mappings) || 0}</span>
-                                                </Box>
+                                                </Box> */}
                                                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
                                                     <span className='text-stone-500'>Concepts:</span> <span style={{ fontWeight: '500', color: 'black' }}>{new Intl.NumberFormat().format(domain.sources_data[0]?.summary?.active_concepts) || 0}</span>
                                                 </Box>
