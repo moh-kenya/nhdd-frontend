@@ -168,7 +168,7 @@ export default function Home() {
                                     {domains.map((domain) => (
                                         <Box
                                             key={domain.id}
-                                            sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", gap: 1, my: { xs: "1", md: "2" }, px: 1, py: 1, borderRadius: "5px", backgroundColor: "#fcfcfc", border: "1px solid #ccc", borderRadius: "8px", ":hover": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#FA8072' }, ":active": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#FA8072' }, color: '#1651B6' }}
+                                            sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", gap: 1, my: { xs: "1", md: "2" }, px: 1, py: 1, borderRadius: "5px", backgroundColor: "#fcfcfc", border: "1px solid #ccc", borderRadius: "8px", ":hover": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#18C90D' }, ":active": { backgroundColor: "#f0f0f0", cursor: 'pointer', color: '#18C90D' }, color: '#1651B6' }}
                                             onClick={ev => {
                                                 ev.preventDefault()
                                                 router.push(`/orgs/MOH-KENYA/domains/${domain.id}`)
