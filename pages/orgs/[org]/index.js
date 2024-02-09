@@ -3,9 +3,9 @@ import React, { useEffect } from 'react'
 
 function ConceptsList() {
   const router = useRouter()
-  const {org, source} = router.query
+  const {org} = router.query
   useEffect(() => {
-    router.push(`/orgs/${org}/sources/${source}`)
+    router.push(`/orgs/${org}/sources`)
   }, [])
   return (
     <div>Loading...</div>
