@@ -5,6 +5,7 @@ import NavBar from '@/components/Navbar';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { doGetSession } from '@/utilities';
+import Link from 'next/link';
 
 export default function App({ Component, pageProps }) {
     const router = useRouter()
@@ -18,6 +19,13 @@ export default function App({ Component, pageProps }) {
         { name: 'Announcements', link: '/announcements', protected: false },
         { name: 'Resources', link: '/resources', protected: false },
     ]
+    const paths = router.asPath.split('/')?.filter(l => {
+        // return ![null, '', 'orgs', 'domains', 'sources', 'concepts'].includes(l)
+        return l !== ''
+    })?.map(p => {
+        // remove square brackets
+        return p.replace('[', '').replace(']', '')
+    })
 
     useEffect(() => {
         let mtd = true
@@ -46,7 +54,21 @@ export default function App({ Component, pageProps }) {
         <>
             <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }} marginBottom={2}>
                 <NavBar loggedIn={isLoggedIn} session={session} user={user} pages={pages} />
-                {/* TODO: breadcrumbs */}
+                <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
+                    {/* TODO: breadcrumbs */}
+                    {router.pathname === '/' ? null : <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 }}>
+                        <Link style={{ textDecoration: 'none', color: '#1651B6' }} href="/">Home</Link> <i style={{ margin: '0 1em' }}>/</i>
+                        {paths.map((path, index) => {
+                            return <Box key={index} sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+                                <Link
+                                    style={{ textDecoration: 'none', color: '#1651B6' }}
+                                    href={`/${paths.slice(0, index + 1).join('/')}`}
+                                >{path.split('?')[0]} </Link>
+                                {(index !== (paths?.length - 1)) && <i style={{ margin: '0 0.5em' }}>/</i>}
+                            </Box>
+                        })}
+                    </Box>}
+                </Box>
             </Box>
             <Component user={user} {...pageProps} />
         </>

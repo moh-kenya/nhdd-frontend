@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Alert, AlertTitle, Box, CircularProgress, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Alert, AlertTitle, Box, CircularProgress, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TextField, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
 import { getSourceConcepts } from "../../../../../pages/api/sources";
 import Head from "next/head";
+import { SearchRounded } from "@mui/icons-material";
 
 function SourceConcepts() {
     const router = useRouter();
@@ -16,6 +17,7 @@ function SourceConcepts() {
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
     const [isError, setIsError] = useState(false);
     const [error, setError] = useState(null);
+    const [searchTerm, setSearchTerm] = React.useState("");
 
     // const { data, isError } = getSourceConcepts(source, org);
 
@@ -35,6 +37,10 @@ function SourceConcepts() {
         router.push(params.row.url);
         // router.push(`/orgs/${params?.row?.owner}/sources/${params?.row?.source}/concepts/${rowId}`);
 
+    }
+    const filterConcepts = (term) => {
+        const search_url = `/search?q=${term}&owner=${org}&source=${source}`;
+        router.push(search_url);
     }
 
     const fetchConcepts = () => {
@@ -109,7 +115,15 @@ function SourceConcepts() {
                             <Typography variant="h5" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>
                                 Source: {source}
                             </Typography>
-                            <Box></Box>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                <TextField id="outlined-basic" label="Search source" size='small' variant="outlined" sx={{ width: '100%', maxWidth: 500 }} onChange={(e) => {
+                                    let term = e.target.value;
+                                    setSearchTerm(term);
+                                }} />
+                                <Button variant="outlined" size='large' color='inherit' sx={{ ml: 1 }} onClick={ev => {
+                                    filterConcepts(searchTerm);
+                                }}> <SearchRounded /> </Button>
+                            </Box>
                         </Box>
                         <hr />
                         <Box sx={{ flexGrow: 1, backgroundColor: "white", padding: "16px" }}>

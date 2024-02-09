@@ -342,7 +342,7 @@ function ConceptDetail() {
                 {/* --------- Main/> --------- */}
 
                 {/* --------- <Sidebar ---------- */}
-                <Box sx={{ py: { xs: 2, md: 4 }, px: { xs: 1, md: 2 }, mt: { xs: 1, md: 3 } }} >
+                <Box sx={{ py: { xs: 2, md: 4 }, px: { xs: 1, md: 2 }, mt: { xs: 1, md: 3 }, borderTop: { xs: '1px solid #ccc', md: 'none' }, borderLeft: { xs: 'none', md: '1px solid #ccc' } }} >
                     <Typography variant="h6" m={0} align="left" fontWeight={"bold"} color="text.primary" gutterBottom>Related concepts</Typography>
                     <TableContainer>
                         <Table size="small">
@@ -367,7 +367,7 @@ function ConceptDetail() {
                                                         return (
                                                             <Box key={"c-" + index2} sx={{ ml: 2 }}>
                                                                 {index2 + 1}. <Link className="text-sky-700" href={`/orgs/${org}/sources/${source}/concepts/${child.id}`} style={{ textDecoration: 'none' }}>
-                                                                {child?.id} {child.display_name || child.cascade_target_concept_name}
+                                                                    {child?.id} {child.display_name || child.cascade_target_concept_name}
                                                                 </Link>
                                                             </Box>
                                                         );

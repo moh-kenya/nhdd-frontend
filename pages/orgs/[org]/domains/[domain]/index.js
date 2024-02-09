@@ -69,15 +69,6 @@ function OrgDomainsList() {
     };
 
     const filterConcepts = (term) => {
-        // setSearchTerm(term);
-        // const filteredData = Object.values(concepts).filter((row) =>
-        //     Object.values(row).some(
-        //         (value) =>
-        //             typeof value === "string" && value.toLowerCase().includes(searchTerm.toLowerCase())
-        //     ));
-        // let filtered_concepts = filteredData.slice(indexOfFirstConcept, indexOfLastConcept);
-        // setCurrentConcepts(filtered_concepts);
-
         // go to /search?q=searchTerm&owner=org
         const search_url = `/search?q=${term}&owner=${domainData?.data?.owner}&source=${domainData?.data?.id}`;
         router.push(search_url);
@@ -140,16 +131,10 @@ function OrgDomainsList() {
                             <Typography variant="h4" m={0} align="left" fontWeight={'bold'} color="text.primary" gutterBottom>
                                 {domainData?.name}
                             </Typography>
-                            {/* {JSON.stringify(domainData)} */}
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <TextField id="outlined-basic" label="Search domain" size='small' variant="outlined" sx={{ width: '100%', maxWidth: 500 }} onChange={(e) => {
                                     let term = e.target.value;
                                     setSearchTerm(term);
-                                    // if (term.length > 2) {
-                                    //     filterConcepts(term);
-                                    // } else {
-                                    //     setCurrentConcepts(concepts);
-                                    // }
                                 }} />
                                 <Button variant="outlined" size='large' color='inherit' sx={{ ml: 1 }} onClick={ev => {
                                     filterConcepts(searchTerm);
