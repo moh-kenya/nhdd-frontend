@@ -48,7 +48,7 @@ function RequestConcept() {
           margin: 'auto',
         }}
       >
-        <TextField label="Concept ID" variant="outlined" margin="normal" fullWidth required={true}/>
+      <TextField label="Concept Name" variant="outlined" margin="normal" fullWidth required={true} />
         <FormControl variant="outlined" fullWidth margin="normal" required={true}>
           <InputLabel id="concept-class-label">Concept Class</InputLabel>
           <Select labelId="concept-class-label" label="Concept Class">
@@ -56,8 +56,7 @@ function RequestConcept() {
             <MenuItem value="concept2">Concept Class 2</MenuItem>
             <MenuItem value="concept3">Concept Class 3</MenuItem>
           </Select>
-        </FormControl>
-        <TextField label="Concept Name" variant="outlined" margin="normal" fullWidth required={true} />
+        </FormControl>        
         <FormControl variant="outlined" fullWidth margin="normal" required={true}>
           <InputLabel id="concept-datatype-label">DataType </InputLabel>
           <Select labelId="concept-datatype-label"          

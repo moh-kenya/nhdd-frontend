@@ -48,13 +48,13 @@ const FAQItem = ({ faq }) => {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div style={{ 
-                    width: 'calc(100% - 30px)', // Set a fixed width for the question div
+                    width: 'calc(100% - 30px)',
                     marginRight: '10px', 
                     backgroundColor: '#f2f2f2', 
                     padding: '10px', 
                     borderRadius: '5px' 
                 }}>
-                    <strong>{faq.question}</strong>
+                    <strong style={{ fontSize: '18px' }}>{faq.question}</strong> 
                 </div>
                 <div>{isOpen ? '▼' : '►'}</div>
             </div>
@@ -73,14 +73,14 @@ function KnowledgeBase() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <div style={{ display: 'flex', flexDirection: 'column'}}>
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '80px' }}>
+                    <div style={{ backgroundColor: 'white', padding: '10px', borderRadius: '80px' }}>
                         <div style={{ textAlign: 'center' }}>
                             <img
                                 src="/assets/images/faq.png"
                                 alt="F.A.Q Icon"
-                                style={{ width: '100px', height: '100px', marginBottom: '20px' }}
+                                style={{ width: '100px', height: '80px', marginBottom: '2px' }}
                             />
                             <h1>Knowledge Base</h1>
                             <h4>Click on each question to view response.</h4>
