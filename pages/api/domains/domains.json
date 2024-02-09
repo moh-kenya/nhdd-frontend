@@ -18,7 +18,10 @@
             "/orgs/MOH-KENYA/sources/PPB/"
         ],
         "icon": "microscope2",
-        "metadata": {}
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
+            "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
         "id": "diagnostic-services",
