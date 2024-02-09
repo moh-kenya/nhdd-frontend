@@ -110,62 +110,26 @@ export default function Home() {
                 <Box
                     style={{ backgroundColor: "#1651B6" }}
                     borderRadius={"8px"}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: "column",
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        px: { xs: "1em", md: "0.3em" },
-                        py: { xs: "1em", md: "0.3em" },
-                    }}
+                    sx={{ display: 'flex', flexDirection: "column", alignItems: 'center', justifyContent: 'center', px: { xs: "1em", md: "0.3em" }, py: { xs: "1em", md: "0.3em" } }}
                 >
                     <Box
                         borderRadius={"8px"}
                         sx={{ px: { xs: "1em", md: "2em" }, py: { xs: "1em", md: "1em" } }}
                     >
-                        <Typography
-                            variant="h3"
-                            sx={{ display: { xs: "none", md: "flex" } }}
-                            fontWeight={"bold"}
-                            marginBottom={"1px"}
-                            color={"#fff"}
-                        >
+                        <Typography variant="h3" sx={{ display: { xs: "none", md: "flex" } }} fontWeight={"bold"} marginBottom={"1px"} color={"#fff"}>
                             Kenya National Health Terminology Services
                         </Typography>
-                        <Typography
-                            variant="h4"
-                            sx={{ display: { xs: "flex", md: "none" } }}
-                            fontWeight={"bold"}
-                            marginBottom={"5px"}
-                            color={"#fff"}
-                        >
+                        <Typography variant="h4" sx={{ display: { xs: "flex", md: "none" } }} fontWeight={"bold"} marginBottom={"5px"} color={"#fff"}>
                         </Typography>
                         <Typography variant="h6" color={"#fff"}>
                             This is a platform which provides real-time electronic access to terminological resources and straightforward integration with <br></br>independent software platforms.
                         </Typography>
                     </Box>
                     <Box width={{ sm: "70%", md: "30%" }} sx={{ display: "flex" }} noValidate>
-                        <TextField
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            sx={{
-                                flexGrow: 1,
-                                backgroundColor: "#fcfcfc",
-                                borderRadius: "8px",
-                            }}
-                            id="searchTerm"
-                            name="searchTerm"
-                            placeholder="Search the Terminology Services"
-                            variant="outlined"
-                            color={"info"}
-                        />
+                        <TextField onChange={(e) => setSearchTerm(e.target.value)} sx={{ flexGrow: 1, backgroundColor: "#fcfcfc", borderRadius: "8px", }} id="searchTerm" name="searchTerm" placeholder="Search the Terminology Services" variant="outlined" color={"info"} />
                         <Button
                             onClick={handleSearch}
-                            sx={{
-                                borderRadius: "8px",
-                                marginLeft: "10px",
-                                backgroundColor: "#fff",
-                                color: "#333",
-                            }}
+                            sx={{ borderRadius: "8px", marginLeft: "10px", backgroundColor: "#fff", color: "#333" }}
                             variant="contained"
                             color="primary"
                         >
@@ -316,7 +280,7 @@ export default function Home() {
                         <Typography variant="h6" color={"#fff"}>
                             {" "}
                             You can submit a request for a concept to be added, or visit our{" "}
-                            <Link href={"/support"} style={{ color: "skyblue" }}>
+                            <Link href={"/help"} style={{ color: "skyblue" }}>
                                 help &amp; support page
                             </Link>{" "}
                         </Typography>

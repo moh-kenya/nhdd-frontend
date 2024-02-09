@@ -10,7 +10,7 @@ function SourceConcepts() {
     const { source, org } = router.query;
     const [isLoading, setIsLoading] = useState(true);
     const [total_pages, setTotalPages] = useState(1);
-    const [rows_per_page, setRowsPerPage] = useState(50);
+    const [rows_per_page, setRowsPerPage] = useState(25);
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -43,10 +43,10 @@ function SourceConcepts() {
         fetch(url)
             .then((d) => {
                 const conceptspagecount = d.headers.get('pages') ?? 1
-                const conceptspagesize = d.headers.get('num_returned') ?? 20
+                const conceptspagesize = d.headers.get('num_returned') ?? 25
                 const conceptscurrentpage = d.headers.get('page_number') ?? 1
                 setTotalPages(conceptspagecount ?? 1);
-                setRowsPerPage(conceptspagesize ?? 20);
+                setRowsPerPage(conceptspagesize ?? 25);
                 setPage(conceptscurrentpage ?? 1);
 
                 // console.log('pages:', conceptspagecount, 'size:', conceptspagesize, 'current:', conceptscurrentpage);

@@ -13,8 +13,10 @@ function SearchResults() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const search = searchParams.get("q");
+    const owner = searchParams.get("owner") ?? null;
+    const source = searchParams.get("source") ?? null;
     const [searchTerm, setSearchTerm] = useState("");
-    const { data, isLoading, isError, mutate } = searchConcepts(search);
+    const { data, isLoading, isError, mutate } = searchConcepts(search, owner, source);
 
     const handleSearch = (event) => {
        event.preventDefault();
@@ -68,7 +70,7 @@ function SearchResults() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Box>
-            <Typography variant="h5" m={0} align="left" fontWeight={'bold'} color="text.primary" gutterBottom> Search results for {search}  </Typography>
+            <Typography variant="h5" m={0} align="left" fontWeight={'bold'} color="text.primary" gutterBottom> Search results for {search} {(owner && source) && ` in ${owner}/${source}` } </Typography>
             </Box>
             <Box width={"100%"} sx={{ display: "flex" }}>
                 <TextField
