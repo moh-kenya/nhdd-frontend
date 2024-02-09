@@ -72,9 +72,11 @@ function NavBar({ session, loggedIn, user, pages }) {
                             </Link>
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: {md: 1, lg: 3} }}>
-                            {pages.map((page) => (
-                                <Link style={{ textDecoration: 'none', color: '#1651B6', fontSize: {md: '0.7em', lg: '0.9em'} }} key={page.name} href={page.link}>{page.name}</Link>
-                            ))}
+                            {pages.map((page) => {
+                                let active = (page.link.toLocaleLowerCase() == router.asPath?.toLocaleLowerCase())// || router.asPath?.toLocaleLowerCase().includes(page.link?.toLocaleLowerCase())
+                                return (
+                                <Link style={{ textDecoration: 'none', color: (active ? '#333' : '#1651B6'), fontSize: {md: '0.7em', lg: '0.9em'}, borderBottom: `2px solid ${(active ? '#333': 'transparent')}` }} key={page.name} href={page.link}>{page.name}</Link>
+                            )})}
                         </Box>
                     </Box>
                     {!['/'].includes(pathname) && <Box sx={{ display: 'flex', flexGrow: 1 }}>

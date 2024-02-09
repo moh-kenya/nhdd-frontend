@@ -62,7 +62,7 @@ function CollectionList(props) {
         </Button>
       </Box>
       <Box my={2} sx={{ width: "100%" }}>
-        <DataGrid  rows={filteredData}  getRowId={(row) => row.id}  columns={columns.map((key) => {    return {      field: key.toLowerCase(),      headerName: key.charAt(0).toUpperCase() + key.slice(1),      width: 200,    };  })}  onRowClick={handleClick}  initialState={{    pagination: { paginationModel: { pageSize: 25 } },  }}  pageSizeOptions={[25, 50, 100]}/>
+        <DataGrid  rows={filteredData}  getRowId={(row) => row.id}  columns={columns.map((key) => {    return {      field: key.toLowerCase(),      headerName: key.toUpperCase(),      width: 200,    };  })}  onRowClick={handleClick}  initialState={{    pagination: { paginationModel: { pageSize: 25 } },  }}  pageSizeOptions={[25, 50, 100]}/>
       </Box>
     </>
   );

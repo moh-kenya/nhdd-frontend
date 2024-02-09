@@ -79,7 +79,7 @@ function OrgsList() {
           columns={columns.map((key) => {
             return {
               field: key.toLowerCase(),
-              headerName: key.charAt(0).toUpperCase() + key.slice(1),
+              headerName: key.toUpperCase(),
               width: 200,
             };
           })}
