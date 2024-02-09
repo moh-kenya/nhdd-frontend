@@ -32,9 +32,9 @@ export default function Footer() {
                             color: "#334",
                             fontSize: "1.1em",
                         }}
-                        href={"/resources"}
+                        href={"/about"}
                     >
-                        Resources
+                        About
                     </Link>
                     <Link
                         style={{
@@ -43,9 +43,9 @@ export default function Footer() {
                             color: "#334",
                             fontSize: "1.1em",
                         }}
-                        href={"/about"}
+                        href={"/resources"}
                     >
-                        About
+                        Resources
                     </Link>
                     <Link
                         style={{

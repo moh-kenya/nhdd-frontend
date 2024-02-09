@@ -5,7 +5,7 @@
         "apiUrls": [
             "/orgs/WHO/sources/ICD-11/"
         ],
-        "icon": "tabs",
+        "icon": "stethoscope",
         "metadata": {
             "subdomainQueryParam": "conceptClass=chapter",
             "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
@@ -17,7 +17,7 @@
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/PPB/"
         ],
-        "icon": "microscope2",
+        "icon": "xray",
         "metadata": {
             "subdomainQueryParam": "conceptClass=Subdomain",
             "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
@@ -29,7 +29,7 @@
         "apiUrls": [
             "/orgs/MOH-KENYA/sources/NPHL/"
         ],
-        "icon": "xray",
+        "icon": "microscope2",
         "metadata": {
             "subdomainQueryParam": "conceptClass=Subdomain",
             "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
