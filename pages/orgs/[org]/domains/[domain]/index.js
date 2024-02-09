@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Link from 'next/link';
-import { SearchRounded } from '@mui/icons-material';
+import { ArrowRight, ArrowRightAlt, SearchRounded } from '@mui/icons-material';
 
 function OrgDomainsList() {
     const router = useRouter();
@@ -82,8 +82,13 @@ function OrgDomainsList() {
                     setDomainData(data);
                     setSubDomainData(data.data.subdomains);
                     let filteredConcepts = data?.data?.concepts.filter(concept => concept.type === 'Concept')
-                    setConcepts(filteredConcepts);
-                    setCurrentConcepts(filteredConcepts);
+                    if(data?.data?.subdomains && data?.data?.subdomains.length > 0) {
+                        setSelectedSubdomain(data?.data?.subdomains[0]?.url);
+                        fetchConcepts(data?.data?.subdomains[0]?.url);
+                    } else {
+                        setConcepts(filteredConcepts);
+                        setCurrentConcepts(filteredConcepts);
+                    }
                     setTotalPages(data?.data?.conceptsMeta?.pagecount ?? 1);
                     setRowsPerPage(data?.data?.conceptsMeta?.pagesize ?? 20);
                     setPage(data?.data?.conceptsMeta?.currentpage ?? 1);
@@ -147,14 +152,15 @@ function OrgDomainsList() {
                             {subDomainData?.length > 0 ? (
 
                                 <Box>
-                                    <Box sx={{ p: '10px 2px', borderRadius: '5px', display: { xs: 'none', sm: 'block' } }} className='bg-stone-100'>
+                                    <Box sx={{ p: '8px 2px', borderRadius: '5px', display: { xs: 'none', sm: 'block' } }} className='bg-stone-100'>
                                         <Typography variant='h5' sx={{ m: '8px 5px', fontWeight: 'bold' }}>Subdomains: </Typography>
                                         <Divider />
                                         <List sx={{ maxHeight: { xs: 'auto', md: '70vh' }, overflowY: 'auto' }}>
                                             {subDomainData?.map((subdomain) => (
                                                 <ListItem key={subdomain.id} disablePadding>
-                                                    <ListItemButton onClick={() => onSubdomainClick(subdomain)} selected={selectedSubdomain == subdomain.id}>
-                                                        <ListItemText sx={{ fontSize: '0.8em', color: 'text.primary', ":hover": { color: '#1651B6' }, "&active": { fontWeight: 'bold' } }} primary={subdomain.display_name} />
+                                                    <ListItemButton onClick={() => onSubdomainClick(subdomain)} selected={selectedSubdomain == subdomain.url} sx={{ border: (selectedSubdomain == subdomain.url ? '2px solid skyblue' : '2px solid transparent') }}>
+                                                        <ListItemText sx={{ fontSize: '0.75em', color: 'text.primary', ":hover": { color: '#1651B6' }, fontWeight: (selectedSubdomain == subdomain.url ? 'bold' : '500') }} primary={subdomain.display_name} />
+                                                        {selectedSubdomain == subdomain.url && <ArrowRightAlt />}
                                                     </ListItemButton>
                                                 </ListItem>
                                             ))}
@@ -221,8 +227,8 @@ function OrgDomainsList() {
                                                                     router.push(concept.url);
                                                                 }}>
                                                                     <TableCell> {page > 1 ? ((page - 1) * rowsPerPage) + (index + 1) : (index + 1)} </TableCell>
-                                                                    <TableCell sx={{fontWeight: 'bold' }}> {concept.id} </TableCell>
-                                                                    <TableCell sx={{fontSize: '1em' }}> {concept.display_name} </TableCell>
+                                                                    <TableCell sx={{ fontWeight: 'bold' }}> {concept.id} </TableCell>
+                                                                    <TableCell sx={{ fontSize: '1em' }}> {concept.display_name} </TableCell>
                                                                     <TableCell> {concept.concept_class} </TableCell>
                                                                     <TableCell> {concept.version} </TableCell>
                                                                     <TableCell> {concept.uuid} </TableCell>

@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { doGetSession } from '@/utilities';
 import Link from 'next/link';
+import NextNProgress from 'nextjs-progressbar';
+
 
 export default function App({ Component, pageProps }) {
     const router = useRouter()
@@ -52,6 +54,7 @@ export default function App({ Component, pageProps }) {
 
     return (
         <>
+            <NextNProgress height={6} showOnShallow={true} />
             <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }} marginBottom={2}>
                 <NavBar loggedIn={isLoggedIn} session={session} user={user} pages={pages} />
                 <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
