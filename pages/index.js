@@ -97,7 +97,6 @@ export default function Home() {
         fetchDomains()
         fetchCollections()
     }, []);
-
     return (
         <>
             <Head>
@@ -182,11 +181,20 @@ export default function Home() {
                                             />
                                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                                 <Typography variant="h6">{domain.name}</Typography>
-                                                <div style={{ display: 'flex', gap: '1em' }}>
-                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}>Subdomains: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_subdomains) }</b></span> */}
-                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}> | </span> */}
-                                                    {/* <span style={{color: '#777', fontSize: '0.9em'}}>Concepts: <b style={{color: '#333'}}>{ new Intl.NumberFormat().format(domain.metadata.number_of_concepts) }</b></span> */}
-                                                </div>
+                                                {domain.sources_data?.filter(d => d && JSON.stringify(d) !== '[]')?.length > 0 ? <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
+                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
+                                                    <span className='text-stone-500'>Source(s):</span> <span style={{ fontWeight: '500', color: 'black' }}>{domain.sources_data[0]?.short_code || '-'}</span>
+                                                </Box>
+                                                {/* <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
+                                                    <span className='text-stone-500'>Mappings:</span> <span style={{ fontWeight: '500', color: 'black' }}>{new Intl.NumberFormat().format(domain.sources_data[0]?.summary?.active_mappings) || 0}</span>
+                                                </Box> */}
+                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
+                                                    <span className='text-stone-500'>Concepts:</span> <span style={{ fontWeight: '500', color: 'black' }}>{new Intl.NumberFormat().format(domain.sources_data[0]?.summary?.active_concepts) || 0}</span>
+                                                </Box>
+                                            </Box> : <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, width: '100%', fontSize: '0.8em' }}>
+                                                <span style={{ fontWeight: '500' }}>&nbsp;</span>
+                                            </Box>
+                                            }
                                             </Box>
                                         </Box>
                                     ))}
