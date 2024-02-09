@@ -43,7 +43,7 @@
         ],
         "icon": "syring",
         "metadata": {
-            "subdomainQueryParam": "conceptClass=procedure",
+            "subdomainQueryParam": "conceptClass=block&limit=500",
             "cascadeQueryParam": "$cascade/?view=hierarchy&reverse=true&includeRetired=false"
         }
     },
@@ -89,10 +89,13 @@
         "id": "community-health",
         "name": "Community Health",
         "apiUrls": [
-            "/orgs/MOH-KENYA/sources/MOHD/"
+            "/orgs/MOH-KENYA/collections/CHC/"
         ],
         "icon": "communit",
-        "metadata": {}
+        "metadata": {
+            "subdomainQueryParam": "conceptClass=Subdomain",
+            "cascadeQueryParam": "$cascade/?cascadeLevels=1&view=hierarchy&reverse=true&includeRetired=false"
+        }
     },
     {
         "id": "functioning-disablility",
