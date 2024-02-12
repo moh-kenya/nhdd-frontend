@@ -11,7 +11,7 @@ export const getOrganizations = () => {
         isError,
         mutate,
     } = useSWR(
-        `${API_BASE_URL}/orgs?limit=1000&verbose=false&includeRetired=false`,
+        `${API_BASE_URL}/orgs/?limit=1000&verbose=false&includeRetired=false`,
         fetcher,
         { revalidateOnFocus: false, revalidateOnReconnect: false }
     );
