@@ -76,7 +76,6 @@ function OrgDomainsList() {
                                             <Link href={`/orgs/${org}/domains/${domain.id}`} style={{ textDecoration: 'none', color: '#1651B6', display: 'flex', alignItems: 'center' }} title={domain.name}>
                                                 <Typography variant="h5" m={0} align="left" fontWeight={'semibold'} color="text.primary" sx={{ ":hover": { color: '#1651B6', textDecoration: 'underline' } }} gutterBottom> {domain.name} </Typography>
                                             </Link>
-
                                             {domain.sources_data?.filter(d => d && JSON.stringify(d) !== '[]')?.length > 0 ? <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
                                                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, fontSize: '0.9em', mx: 1, mb: 1 }}>
                                                     <span className='text-stone-500'>Source(s):</span> <span style={{ fontWeight: '500', color: 'black' }}>{domain.sources_data[0]?.short_code || '-'}</span>
