@@ -28,7 +28,6 @@ function OrgDomainsList() {
     const [subdomainMenuAnchor, setSubdomainMenuAnchor] = React.useState(null);
     const subdomainMenuOpen = Boolean(subdomainMenuAnchor);
 
-
     const fetchConcepts = (subdomain) => {
         setIsLoadingConcepts(true);
         setIsLoading(true);

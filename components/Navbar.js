@@ -83,11 +83,11 @@ function NavBar({ session, loggedIn, user, pages }) {
                         <Box sx={{ display: { xs: 'flex', lg: 'none' }, alignItems: 'center' }}>
                             <Link href={'/search'} style={{ color: '#667' }}> <SearchRounded /> </Link>
                         </Box>
-                            <Box sx={{ display: { md: 'none', lg: 'flex' }, alignItems: 'center', px: 2 }}>
-                                <TextField id="search" label="Global Search" variant="standard" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-                                <Button variant="outlined" color="primary" size='small' sx={{ display: { xs: 'none', md: 'flex' }, borderRadius: '3em', ml: 1 }} onClick={ev=>{
+                            <Box variant="outlined" sx={{ display: { md: 'none', lg: 'flex' }, alignItems: 'center', px: 2 }}>
+                                <TextField variant="outlined" color="primary" id="search" label="Global Search" name='q' size="small" sx={{ display: { xs: 'none', md: 'flex' }, width: 'auto' }} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                                <Button variant="outlined" size='small' sx={{ display: { xs: 'none', md: 'flex' }, p: 1 }} onClick={ev=>{
                                     router.push('/search?q='+searchQuery)
-                                }}><SearchRounded /></Button>
+                                }}><SearchRounded m={4} /></Button>
                             </Box>
                     </Box>}
 

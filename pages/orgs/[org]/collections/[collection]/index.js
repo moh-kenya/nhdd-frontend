@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
 import { getCollectionConcepts } from "../../../../api/collections";
 import Head from "next/head";
+import { formatdDate } from "@/utilities";
 
 function CollectionConcepts() {
     const router = useRouter();
@@ -142,8 +143,8 @@ function CollectionConcepts() {
                                                     <TableCell>{row.datatype}</TableCell>
                                                     <TableCell>{row.collection}</TableCell>
                                                     <TableCell>{row.retired}</TableCell>
-                                                    <TableCell>{row.version_created_on}</TableCell>
-                                                    <TableCell>{row.version_updated_on}</TableCell>
+                                                    <TableCell>{formatdDate(formatDrow.version_created_on)}</TableCell>
+                                                    <TableCell>{formatdDate(row.version_updated_on)}</TableCell>
                                                 </TableRow>
                                             )) : <TableRow><TableCell colSpan={9}>No data</TableCell></TableRow>}
                                         </TableBody>
