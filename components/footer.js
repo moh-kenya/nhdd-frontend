@@ -4,82 +4,73 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <>
-            <Box style={{ backgroundColor: "#fcfcfc" }} my={1}
+        <Box
+            component="footer"
+            sx={{
+                backgroundColor: "#fcfcfc",
+                width: "100%",
+                height: "80px",
+                position: "fixed",
+                bottom: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 1000,
+            }}
+        >
+            <Box
                 sx={{
                     display: "flex",
-                    flexGrow: 1,
                     flexDirection: "row",
-                    alignItems: "center",
-                    px: { xs: "1em", md: "2em" },
-                    py: { xs: "1em", md: "2em" },
+                    justifyContent: "center",
                     gap: 2,
                 }}
             >
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        display: { xs: "none", md: "flex" },
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        gap: 2,
+                <Link
+                    style={{
+                        fontWeight: "500",
+                        textDecoration: "none",
+                        color: "#334",
+                        fontSize: "1.1em",
                     }}
+                    href={"/about"}
                 >
-                    <Link
-                        style={{
-                            fontWeight: "500",
-                            textDecoration: "none",
-                            color: "#334",
-                            fontSize: "1.1em",
-                        }}
-                        href={"/about"}
-                    >
-                        About
-                    </Link>
-                    <Link
-                        style={{
-                            fontWeight: "500",
-                            textDecoration: "none",
-                            color: "#334",
-                            fontSize: "1.1em",
-                        }}
-                        href={"/resources"}
-                    >
-                        Resources
-                    </Link>
-                    <Link
-                        style={{
-                            fontWeight: "500",
-                            textDecoration: "none",
-                            color: "#334",
-                            fontSize: "1.1em",
-                        }}
-                        href={"/knowledgebase"}
-                    >
-                        Knowledge base
-                    </Link>
-                    <Link
-                        style={{
-                            fontWeight: "500",
-                            textDecoration: "none",
-                            color: "#334",
-                            fontSize: "1.1em",
-                        }}
-                        href={"/help"}
-                    >
-                        Help &amp; guides
-                    </Link>
-                </Box>
-                <Box
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                    About
+                </Link>
+                <Link
+                    style={{
+                        fontWeight: "500",
+                        textDecoration: "none",
+                        color: "#334",
+                        fontSize: "1.1em",
                     }}
-                    px={2}
+                    href={"/resources"}
                 >
-                </Box>
+                    Resources
+                </Link>
+                <Link
+                    style={{
+                        fontWeight: "500",
+                        textDecoration: "none",
+                        color: "#334",
+                        fontSize: "1.1em",
+                    }}
+                    href={"/knowledgebase"}
+                >
+                    Knowledge base
+                </Link>
+                <Link
+                    style={{
+                        fontWeight: "500",
+                        textDecoration: "none",
+                        color: "#334",
+                        fontSize: "1.1em",
+                    }}
+                    href={"/help"}
+                >
+                    Help &amp; guides
+                </Link>
             </Box>
-        </>
-    )
+        </Box>
+    );
 }
