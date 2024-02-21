@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { getSourceConcepts } from "../../../../../pages/api/sources";
 import Head from "next/head";
 import { SearchRounded } from "@mui/icons-material";
+import { formatdDate } from "@/utilities";
 
 function SourceConcepts() {
     const router = useRouter();
@@ -156,8 +157,8 @@ function SourceConcepts() {
                                                     <TableCell>{row.datatype}</TableCell>
                                                     <TableCell>{row.source}</TableCell>
                                                     <TableCell>{row.retired}</TableCell>
-                                                    <TableCell>{row.version_created_on}</TableCell>
-                                                    <TableCell>{row.version_updated_on}</TableCell>
+                                                    <TableCell>{formatdDate(row.version_created_on)}</TableCell>
+                                                    <TableCell>{formatdDate(row.version_updated_on)}</TableCell>
                                                 </TableRow>
                                             ))}
                                         </TableBody>

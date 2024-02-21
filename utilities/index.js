@@ -23,7 +23,6 @@ export const doPasswordReset = async (email, password, password_confirmation, to
     }
 }
 
-
 export const doLogin = async (username, password, rtr) => {
     if (typeof window !== 'undefined') {
         // clear session storage
@@ -82,8 +81,6 @@ export const doLogin = async (username, password, rtr) => {
         console.error('window is undefined')
     }
 }
-
-
 
 export const doLogout = async (rtr) => {
     if (typeof window !== 'undefined') {
@@ -155,10 +152,6 @@ export const doGetSession = async () => {
     }
     return null;
 }
-
-
-
-
 
 export const doSignup = async (first_name, last_name, company, username, email, password) => {
     if (typeof window !== 'undefined') {
@@ -251,3 +244,19 @@ export const getResourceRaw = (resource, options) => {
     return fetch(url, request_options)
         .then((res) => res.json())
 }
+
+export const formatdDate = (dateString) => {
+    const dateObject = new Date(dateString);
+  
+    const formattedDate = new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: 'Africa/Nairobi'
+    }).format(dateObject);
+  
+    return formattedDate;
+};
