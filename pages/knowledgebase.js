@@ -37,24 +37,24 @@ const FAQItem = ({ faq }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
             <div
-                style={{ 
-                    cursor: 'pointer', 
-                    display: 'flex', 
-                    alignItems: 'center',
+                style={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'left',
                     color: '#1651B6'
                 }}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <div style={{ 
-                    width: 'calc(100% - 30px)',
-                    marginRight: '10px', 
-                    backgroundColor: '#f2f2f2', 
-                    padding: '10px', 
-                    borderRadius: '5px' 
+                <div style={{
+                    width: 'calc(80% - 30px)',
+                    marginRight: '10px',
+                    backgroundColor: '#f2f2f2',
+                    padding: '15px',
+                    borderRadius: '5px'
                 }}>
-                    <strong style={{ fontSize: '18px' }}>{faq.question}</strong> 
+                    <strong style={{ fontSize: '18px' }}>{faq.question}</strong>
                 </div>
                 <div>{isOpen ? '▼' : '►'}</div>
             </div>
@@ -63,32 +63,31 @@ const FAQItem = ({ faq }) => {
     );
 };
 
-
 function KnowledgeBase() {
     return (
         <>
             <Head>
-                <title>Knowledgebase</title>
-                <meta name="description" content="Help and Guide" />
+                <title>Knowledge Base</title>
+                <meta name="description" content="Knowledge Base" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div style={{ display: 'flex', flexDirection: 'column'}}>
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ backgroundColor: 'white', padding: '10px', borderRadius: '80px' }}>
-                        <div style={{ textAlign: 'center' }}>
-                            <img
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                <div style={{ padding: '40px', borderRadius: '80px', flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'left', flexDirection: 'column' }}>
+                        <div>
+                            <h1 style={{ color: '#1651B6' }}>Knowledge Base</h1>
+
+                            <p style={{ fontSize: '1.2em', lineHeight: '1.5', textAlign: 'left' }}> Click on each question to view response                               <img
                                 src="/assets/images/faq.png"
                                 alt="F.A.Q Icon"
-                                style={{ width: '100px', height: '80px', marginBottom: '2px' }}
-                            />
-                            <h1>Knowledge Base</h1>
-                            <h4>Click on each question to view response.</h4>
-                        </div>
-                        <div style={{ textAlign: 'left' }}>
-                            {faqs.map((faq, index) => (
-                                <FAQItem key={index} faq={faq} />
-                            ))}
+                                style={{ width: '80px', height: '60px', marginBottom: '2px' }}
+                            /></p>
+                            <div style={{ textAlign: 'left' }}>
+                                {faqs.map((faq, index) => (
+                                    <FAQItem key={index} faq={faq} />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,5 +96,4 @@ function KnowledgeBase() {
         </>
     );
 }
-
 export default KnowledgeBase;
