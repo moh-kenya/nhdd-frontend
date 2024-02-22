@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from "react"
 import Title from './Title';
 import { DataGrid, GridToolbar  } from '@mui/x-data-grid'
+import { API_BASE_URL } from '@/pages';
 
 const columns = [
     { field: 'username', headerName: 'User Name', width: 130 },
@@ -12,7 +13,7 @@ export default function UsersList() {
     const [filteredData,setFilteredData] = React.useState("");
    
     const fetchUsers = () => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`).then((res) => {
+        fetch(`${API_BASE_URL}/users`).then((res) => {
             return res.json()
         })
             .then((data) => {
