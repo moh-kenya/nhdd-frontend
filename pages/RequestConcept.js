@@ -17,23 +17,26 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { API_BASE_URL } from "./index";
 import { getSources } from "@/pages/api/sources";
-import { getOrganizations } from "@/pages/api/organizations";
+import { getUserOrganizations } from "@/pages/api/organizations";
+import Cookies from 'js-cookie';
+import { dataTypes, conceptClasses } from "@/utilities/data";
 
-function RequestConcept({ user }) {
+function RequestConcept() {
+  const [sections, setSections] = useState([]);
+  const [dataType, setDataType] = useState("");
+  const [userOrganization, setUserorganization] = useState("");
+  const [organizationSource, setOrganizationSource] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const { data: userOrganizations, isLoading: isLoadingUserOrganizations } =
+    getUserOrganizations();
   const {
     data: organisationSources,
     isLoading: isLoadingOrganizationSources,
     isError,
     mutate,
-  } = getSources("MOH-KENYA");
-  const [sections, setSections] = useState([]);
-  const [dataType, setDataType] = useState("");
-  const [organizationSource, setOrganizationSource] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const { data: allOrganizations, isLoading: isLoadingOrganizations } =
-    getOrganizations();
+  } = getSources(userOrganization);
 
   const addSection = () => {
     setSections([...sections, { id: sections.length + 1 }]);
@@ -47,56 +50,12 @@ function RequestConcept({ user }) {
   };
 
   const handleOrganizationSourceChange = (event) => {
-    setOrganizationSource(event.target.value)
-  }
-  const dataTypes = [
-    "Boolean",
-    "Coded",
-    "Complex",
-    "Date",
-    "Datetime",
-    "Document",
-    "None",
-    "Numeric",
-    "Rule",
-    "Structured-Numeric",
-    "Text",
-    "Time",
-  ];
+    setOrganizationSource(event.target.value);
+  };
 
-  const conceptClasses = [
-    "Test",
-    "Procedure",
-    "Drug",
-    "Diagnosis",
-    "Finding",
-    "Anatomy",
-    "Question",
-    "LabSet",
-    "MedSet",
-    "ConvSet",
-    "Misc",
-    "Symptom",
-    "Symptom/Finding",
-    "Specimen",
-    "Misc Order",
-    "Program",
-    "State",
-    "Medical supply",
-    "Code",
-    "Radiology/Imaging Procedure",
-    "Concept Class",
-    "Indicator",
-    "Drug form",
-    "Units of Measure",
-    "Frequency",
-    "Pharmacologic Drug Class",
-    "Workflow",
-    "Organism",
-    "none",
-    "Products",
-    "InteractSet",
-  ];
+  const handleUserOrganizationChange = (event) => {
+    setUserorganization(event.target.value);
+  };
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -106,9 +65,6 @@ function RequestConcept({ user }) {
 
     try {
       const formData = new FormData(event.currentTarget);
-      formData.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
-      });
 
       let body = {
         parent_concept_urls: [""],
@@ -116,7 +72,6 @@ function RequestConcept({ user }) {
         external_id: "",
         concept_class: formData.get("conceptClass"),
         datatype: formData.get("dataType"),
-        url: "",
         names: [
           {
             name: formData.get("conceptName"),
@@ -141,11 +96,13 @@ function RequestConcept({ user }) {
       };
 
       const response = await fetch(
-        `${API_BASE_URL}/orgs/MOH-KENYA/sources/${formData.get(
-          "organizationSource"
-        )}/concepts/`,
+        `${API_BASE_URL}/orgs/${userOrganization}/sources/${organizationSource}/concepts/`,
         {
           method: "POST",
+          headers: {
+            "Authorization": "Bearer " + Cookies.get("token"),
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(body),
         }
       );
@@ -156,6 +113,7 @@ function RequestConcept({ user }) {
 
       setSuccess(true);
     } catch (error) {
+      console.log("---error", error)
       setError(error.message);
     } finally {
       setIsLoading(false);
@@ -212,7 +170,7 @@ function RequestConcept({ user }) {
               label="Concept Class"
             >
               {conceptClasses.map((type, ind) => (
-                <MenuItem key={ind} value="concept1">
+                <MenuItem key={ind} value={type}>
                   {type}
                 </MenuItem>
               ))}
@@ -241,22 +199,38 @@ function RequestConcept({ user }) {
           </FormControl>
           <FormControl
             variant="outlined"
+            S
             fullWidth
             margin="normal"
             required={true}
           >
-            <TextField
+            <InputLabel id="user-organization-label">Organization </InputLabel>
+            <Select
+              name="userOrganization"
+              labelId="user-organization-label"
+              onChange={handleUserOrganizationChange}
+              value={userOrganization}
               label="Organization"
-              name="organization"
-              variant="outlined"
-              margin="normal"
-              value={"WHO"}
-              fullWidth
-              required={true}
-            />
+            >
+              {isLoadingUserOrganizations ? (
+                <MenuItem>Loading...</MenuItem>
+              ) : userOrganizations?.length > 0 ? (
+                userOrganizations.map((type) => (
+                  <MenuItem key={type.id} value={type.id}>
+                    {type.name}
+                  </MenuItem>
+                ))
+              ) : (
+                <MenuItem>
+                  You do not belong to any organization. Please contact the
+                  admin.
+                </MenuItem>
+              )}
+            </Select>
           </FormControl>
           <FormControl
-            variant="outlined"S
+            variant="outlined"
+            S
             fullWidth
             margin="normal"
             required={true}
@@ -271,12 +245,16 @@ function RequestConcept({ user }) {
             >
               {isLoadingOrganizationSources ? (
                 <MenuItem>Loading...</MenuItem>
-              ) : (
+              ) : organisationSources?.length > 0 ? (
                 organisationSources.map((type) => (
-                  <MenuItem key={type.id} value={type.name}>
+                  <MenuItem key={type.id} value={type.id}>
                     {type.name}
                   </MenuItem>
                 ))
+              ) : (
+                <MenuItem>
+                  There no sources available.
+                </MenuItem>
               )}
             </Select>
           </FormControl>
