@@ -104,9 +104,9 @@ function OrgDomainsList() {
                 )}
 
             </Box>
-            <Box sx={{ marginTop: '-100px' }}>
+            <div>
                 <Footer />
-            </Box>
+            </div>
         </>
 
     )
