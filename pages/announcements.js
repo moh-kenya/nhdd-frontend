@@ -3,13 +3,6 @@ import Footer from '@/components/footer';
 import Head from 'next/head';
 
 function KnightsAnnouncements() {
-    useEffect(() => {
-        // Remove the scroll bar
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
-    }, []);
 
     return (
         <>
@@ -35,16 +28,10 @@ function KnightsAnnouncements() {
                         </div>
                     </div>
                 </div>
-                <Footer />
+                <div>
+                    <Footer />
+                </div>
             </div>
-            <style jsx global>{`
-                @media only screen and (max-width: 768px) {
-                    /* Adjust styles for smaller screens */
-                    body {
-                        overflow: auto; /* Restore scroll for smaller screens */
-                    }
-                }
-            `}</style>
         </>
     );
 }

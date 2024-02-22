@@ -91,7 +91,9 @@ function KnowledgeBase() {
                         </div>
                     </div>
                 </div>
-                <Footer />
+                <div>
+                    <Footer />
+                </div>
             </div>
         </>
     );
