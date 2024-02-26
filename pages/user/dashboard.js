@@ -75,13 +75,13 @@ export default function Dashboard(params) {
              <ListItemIcon>
               <People />
              </ListItemIcon>
-             <ListItemText primary='New Users'/>
+             <ListItemText primary='Verify Users'/>
             </ListItemButton>
             <ListItemButton onClick={()=> SetComponent('concepts')}>
              <ListItemIcon>
               <LibraryBooksIcon />
              </ListItemIcon>
-             <ListItemText primary='New Concepts'/>
+             <ListItemText primary='Verify Concepts'/>
             </ListItemButton>
           </List>
           <Divider />
