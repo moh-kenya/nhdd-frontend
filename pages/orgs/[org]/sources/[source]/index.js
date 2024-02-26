@@ -49,7 +49,7 @@ function SourceConcepts() {
         let url = `${API_BASE_URL}/orgs/${org}/sources/${source}/concepts/?limit=${rows_per_page}&page=${page}&verbose=false&includeRetired=false`
         fetch(url)
             .then((d) => {
-                const conceptspagecount = d.headers.get('pages') ?? 1
+                                const conceptspagecount = d.headers.get('pages') ?? 1
                 const conceptspagesize = d.headers.get('num_returned') ?? 25
                 const conceptscurrentpage = d.headers.get('page_number') ?? 1
                 setTotalPages(conceptspagecount ?? 1);
