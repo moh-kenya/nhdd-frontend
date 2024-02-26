@@ -8,7 +8,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import Container from "@mui/material/Container";
 import { Divider, Stack, Grid, Box, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import Title from "@/components/Dashboard/Title";
+import Title from "@/components/Title";
 
 export default function mainListItemw({ user }) {
   console.log("--user", user)

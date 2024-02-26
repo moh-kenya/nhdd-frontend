@@ -1,5 +1,5 @@
 import React from 'react'
-import Dashboard from '@/components/Dashboard'
+import Dashboard from './dashboard'
 import Head from 'next/head'
 // Authenticated user landing page
 function UserLanding() {
