@@ -13,15 +13,6 @@ function HelpGuide() {
         };
     }, []);
 
-    useEffect(() => {
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.documentElement.style.overflow = '';
-            document.body.style.overflow = '';
-        };
-    }, []);
-
     return (
         <>
             <Head>
@@ -30,24 +21,25 @@ function HelpGuide() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'center', marginTop: '100px' }}>
-                    <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '80px', maxWidth: '800px', width: '100%' }}>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', padding: '0 20px' }}>
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '20px', maxWidth: '800px', width: '100%' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                             <img
                                 src="/assets/images/help.png"
                                 alt="announcement Icon"
                                 style={{ width: '100px', height: '100px', marginRight: '20px' }}
                             />
-                            <div>
-                                <h1>Help and Guide</h1>
-                                <br />
-                                <p> Under Development. Coming Soon</p>
+                            <div style={{ textAlign: 'center' }}>
+                                <h1 style={{ fontSize: '30px', marginBottom: '10px' }}>Help and Guide</h1>
+                                <p style={{ fontSize: '16px' }}>Under Development. Coming Soon</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Footer />
+                <div>
+                    <Footer />
+                </div>
             </div>
         </>
     );

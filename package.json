@@ -21,6 +21,7 @@
     "@mui/material-nextjs": "^5.15.6",
     "@mui/x-charts": "^6.19.3",
     "@mui/x-data-grid": "^6.19.2",
+    "js-cookie": "^3.0.5",
     "next": "14.1.0",
     "next-transpile-modules": "^10.0.1",
     "nextjs-progressbar": "^0.0.16",
