@@ -1,4 +1,4 @@
-const { API_BASE_URL } = require('../../../index');
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default async function handler(req, res) {
     const { org, domain } = req.query;
@@ -20,9 +20,8 @@ export default async function handler(req, res) {
                     }
                     apiurl = apiurl.slice(0, -1)
                 }
-                const response = await fetch(API_BASE_URL + apiurl)
+                const response = await fetch(`${API_BASE_URL}${apiurl}`)
                 const data = await response.json()
-
 
                 if(domainDetail?.metadata?.subdomainQueryParam){
                     // fetch subdomains
@@ -63,7 +62,7 @@ export default async function handler(req, res) {
             domainDetail.data = []
         }
         ///
-        res.status(200).json(domainDetail);
+                res.status(200).json(domainDetail);
     } else {
         res.status(404).json({ message: 'Domain not found' });
     }

@@ -4,7 +4,7 @@ import { API_BASE_URL } from '../../index';
 const domains = require('./domains.json')
 
 export default async function handler(req, res) {
-    for (let i = 0; i < domains.length; i++) {
+        for (let i = 0; i < domains.length; i++) {
         const domain = domains[i]
         // for each domain.apiUrls, fetch the data and add it to domain.data
         let domain_urls = domain.apiUrls
