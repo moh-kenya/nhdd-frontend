@@ -66,22 +66,23 @@ function OrgDomainsList() {
         return response.json();
       })
       .then((data) => {
-                if (data) {
-          let filteredConcepts = data?.concepts?.filter(concept => concept.type === 'Concept')
-          setConcepts(filteredConcepts);
-          setCurrentConcepts(filteredConcepts);
-          setIsLoadingConcepts(false);
+          if (data) {
+            let filteredConcepts = data?.concepts?.filter(concept => concept.type === 'Concept')
+            setConcepts(filteredConcepts);
+            setCurrentConcepts(filteredConcepts);
 
-          setTotalPages(data?.data?.conceptsMeta?.pagecount ?? 1);
-          setRowsPerPage(data?.data?.conceptsMeta?.pagesize ?? 20);
-          setPage(data?.data?.conceptsMeta?.currentpage ?? 1);
-        }
+            setTotalPages(data?.data?.conceptsMeta?.pagecount ?? 1);
+            setRowsPerPage(data?.data?.conceptsMeta?.pagesize ?? 20);
+            setPage(data?.data?.conceptsMeta?.currentpage ?? 1);
+          }
       })
       .catch((err) => {
         console.error('error::', err);
+      })
+      .finally(() => {
         setIsLoadingConcepts(false);
-      });
-    setIsLoading(false);
+        setIsLoading(false);
+      });;
   };
   const onSubdomainClick = (subdomain) => {
     setPage(1);
@@ -104,6 +105,7 @@ function OrgDomainsList() {
   }
 
   const fetchDomainData = (page = 1) => {
+
     fetch("/api/domains/" + domain + "?includeConcepts=true&page=" + page)
       .then((response) => {
         if (!response.ok) {
@@ -115,7 +117,7 @@ function OrgDomainsList() {
         if (data) {
           setDomainData(data);
           setSubDomainData(data.data?.subdomains);
-          let filteredConcepts = data?.data?.concepts.filter(
+          let filteredConcepts = data?.data?.concepts?.filter(
             (concept) => concept.type === "Concept"
           );
           if (data?.data?.subdomains && data?.data?.subdomains.length > 0) {
@@ -124,16 +126,19 @@ function OrgDomainsList() {
           } else {
             setConcepts(filteredConcepts);
             setCurrentConcepts(filteredConcepts);
+            setIsLoadingConcepts(false);
           }
           setTotalPages(data?.data?.conceptsMeta?.pagecount ?? 1);
           setRowsPerPage(data?.data?.conceptsMeta?.pagesize ?? 20);
           setPage(data?.data?.conceptsMeta?.currentpage ?? 1);
-          setIsLoading(false);
-          setIsLoadingConcepts(false);
         }
       })
       .catch((err) => {
         console.error("error::", err);
+      })
+      .finally(() => {
+
+        setIsLoading(false);
       });
   };
   useEffect(() => {
@@ -209,6 +214,7 @@ function OrgDomainsList() {
                 fontWeight={"bold"}
                 color="text.primary"
                 gutterBottom
+                marginRight={4}
               >
                 {domainData?.name}
               </Typography>
