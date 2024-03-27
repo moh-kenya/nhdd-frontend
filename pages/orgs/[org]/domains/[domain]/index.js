@@ -43,7 +43,7 @@ function OrgDomainsList() {
   const [currentConcepts, setCurrentConcepts] = useState([]);
   const [selectedSubdomain, setSelectedSubdomain] = useState(null);
   const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [rowsPerPage, setRowsPerPage] = useState(100);
   const [total_pages, setTotalPages] = useState(1);
   const indexOfLastConcept = page * rowsPerPage;
   const indexOfFirstConcept = indexOfLastConcept - rowsPerPage;

@@ -5,7 +5,7 @@ import { Alert, Typography } from "@mui/material"
 import BioCard from "./userDetails"
 // import Details from "./userDetails"
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL|| 'http://41.89.92.186:8000/'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 const columns = [
   { field: 'username', headerName: 'User Name', width: 130 },

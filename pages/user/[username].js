@@ -1,12 +1,12 @@
 // pages/user-profile.js
 import React from 'react';
 import { Avatar, Button, Sheet, Typography, Textarea, Grid } from '@mui/joy';
-import { styled, useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL|| 'http://41.89.92.186:8000/'
-const TOKEN = process.env.BEARER_TOKEN || '891b4b17feab99f3ff7e5b5d04ccc5da7aa96da6'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
+const TOKEN = Cookies.get("token") || "";
 
 const UserProfile = () => {
    const router = useRouter();
