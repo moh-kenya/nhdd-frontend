@@ -12,7 +12,7 @@ function SourceConcepts() {
     const { source, org } = router.query;
     const [isLoading, setIsLoading] = useState(true);
     const [total_pages, setTotalPages] = useState(1);
-    const [rows_per_page, setRowsPerPage] = useState(25);
+    const [rows_per_page, setRowsPerPage] = useState(100);
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
