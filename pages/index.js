@@ -31,6 +31,9 @@ import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import VerifyEmail from "@/pages/auth/verifyEmail";
 import { redirect } from "next/navigation";
+import CreateCollectionModal from "./createCollections";
+import CollectionDetails from "./CollectionDetails";
+
 const inter = Inter({ subsets: ["latin"] });
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function Home() {
@@ -99,6 +102,21 @@ export default function Home() {
     fetchDomains();
     fetchCollections();
   }, []);
+
+  const handleCollectionCreated = (newCollection) => {
+    setCollections((prevCollections) => [
+      ...prevCollections,
+      {
+        id: newCollection.short_code,
+        name: newCollection.short_name,
+        owner: newCollection.owner,
+        collection_type: newCollection.collection_type,
+        created_at: newCollection.created_at,
+        url: `/collection/${newCollection.short_code}`,
+      },
+    ]);
+  };
+
   return (
     <>
       <Head>
@@ -386,6 +404,12 @@ export default function Home() {
                 sx={{ flexGrow: "1", display: "flex", flexDirection: "column" }}
               >
                 <Typography variant="h4">Collections</Typography>
+                <Box>
+                  <CreateCollectionModal
+                    onCollectionCreated={handleCollectionCreated}
+                  />
+                </Box>
+
                 <TableContainer>
                   <Table>
                     <TableHead>
@@ -405,13 +429,15 @@ export default function Home() {
                       {collections.map((coll, index) => (
                         <TableRow
                           key={index}
-                          sx={
-                            {
-                              // ":hover": { color: '#1651B6', cursor: 'pointer' }
-                            }
-                          }
-                          onClick={(e) => {
-                            router.push(coll.url);
+                          onClick={() => {
+                            router.push(`/collections/${coll.id}`).catch(() => {
+                              // Fallback redirect in case of an issue
+                              router.push(`/collections/${coll.id}`);
+                            });
+                          }}
+                          sx={{
+                            cursor: "pointer",
+                            "&:hover": { backgroundColor: "#f5f5f5" },
                           }}
                         >
                           <TableCell>{coll.id}</TableCell>
